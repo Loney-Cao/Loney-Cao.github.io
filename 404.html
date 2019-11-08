@@ -264,6 +264,7 @@
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
         </div>
           
@@ -485,6 +486,33 @@ window.addEventListener('pjax:success', () => {
   
 
   
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'JB8FpvK5rrCA4RqQfnpxGgiQ-gzGzoHsz',
+    appKey: 'cU9FMU8iuV4LzSjG2QU0OUF6',
+    placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
 
     </div>
 
