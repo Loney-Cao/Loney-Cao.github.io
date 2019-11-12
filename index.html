@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">6</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">13</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-pictures">
+
+    <a href="/categories/%E5%9B%BE%E7%89%87/" rel="section"><i class="fa fa-fw fa-image"></i>图片</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -220,7 +220,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_2/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -234,7 +234,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/07/odoo12_2/" class="post-title-link" itemprop="url">Odoo12-- 改变switchButton的显示内容</a>
+            <a href="/2019/11/07/odoo12_5/" class="post-title-link" itemprop="url">Odoo12-- 列表视图禁止打开表单内容</a>
         </h2>
 
         <div class="post-meta">
@@ -256,7 +256,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 22:06:40" itemprop="dateModified" datetime="2019-11-12T22:06:40+08:00">2019-11-12</time>
+                <time title="修改时间：2019-11-12 22:12:10" itemprop="dateModified" datetime="2019-11-12T22:12:10+08:00">2019-11-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,7 +271,7 @@
             </span>
 
           
-            <span id="/2019/11/07/odoo12_2/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 改变switchButton的显示内容" title="阅读次数">
+            <span id="/2019/11/07/odoo12_5/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 列表视图禁止打开表单内容" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -286,8 +286,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/odoo12_2/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_2/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/07/odoo12_5/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_5/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -302,10 +302,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>odoo原本的switchbutton，当鼠标悬浮上去是显示的是英文，比如：View List, View Kanban</strong></p><p><img alt="switchbutton更改前" data-src="https://upload-images.jianshu.io/upload_images/8791854-55ecdf487553ef7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><strong>现在改变其显示内容，可自定义修改。</strong><br><img alt="switchbutton更改后" data-src="https://upload-images.jianshu.io/upload_images/8791854-0ff221f83ce9bbd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p><p>#####原理：在页面加载时候，渲染SwitchButtons时候，对其重写。<br><strong>对<code>abstract_controller.js</code>文件中<code>_renderSwitchButtons</code>方法进行改造。</strong></p>
+          <p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p><p>1.找到相关的行点击入口，通过万能的context扩展一个独立的禁止打开参数，默认不禁止，视图里通过显式声明使用该功能：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_2/#more" rel="contents">
+              <a class="btn" href="/2019/11/07/odoo12_5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -438,115 +438,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/git_3/" class="post-title-link" itemprop="url">git-- Win下使用GitStats git代码统计工具</a>
-        </h2>
-
-        <div class="post-meta">
-          
-              <i class="fa fa-thumb-tack"></i>
-              <font color=green>置顶</font>
-              <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 22:22:47" itemprop="dateModified" datetime="2019-11-12T22:22:47+08:00">2019-11-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/git_3/" class="post-meta-item leancloud_visitors" data-flag-title="git-- Win下使用GitStats git代码统计工具" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/git_3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>gitstats 是一款git历史统计工具，可以生成定量的统计数据，并以html图表的形式展示。统计文件包括文件数量、代码量、提交量、作者信息、每天活跃度、每周活跃度、每月活跃度以及提交数排名等等，信息比较丰富。</strong><br>##安装<br>gitstats 依赖 Git 、Python2 以及Gnuplot。<br>以下是最新的依赖版本。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/git_3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -656,7 +547,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_1/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -670,7 +561,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/07/odoo12_1/" class="post-title-link" itemprop="url">Odoo12-- statebar根据单据状态动态显示</a>
+            <a href="/2019/11/07/git_3/" class="post-title-link" itemprop="url">git-- Win下使用GitStats git代码统计工具</a>
         </h2>
 
         <div class="post-meta">
@@ -692,7 +583,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 21:53:39" itemprop="dateModified" datetime="2019-11-12T21:53:39+08:00">2019-11-12</time>
+                <time title="修改时间：2019-11-12 22:22:47" itemprop="dateModified" datetime="2019-11-12T22:22:47+08:00">2019-11-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -700,14 +591,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Odoo/" itemprop="url" rel="index">
-                    <span itemprop="name">Odoo</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/07/odoo12_1/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- statebar根据单据状态动态显示" title="阅读次数">
+            <span id="/2019/11/07/git_3/" class="post-meta-item leancloud_visitors" data-flag-title="git-- Win下使用GitStats git代码统计工具" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -722,8 +613,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/odoo12_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/07/git_3/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -738,10 +629,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h5 id="当状态为草稿或者结算时候，显示结算。"><a href="#当状态为草稿或者结算时候，显示结算。" class="headerlink" title="当状态为草稿或者结算时候，显示结算。"></a>当状态为草稿或者结算时候，显示结算。</h5><p><img alt="已审核状态" data-src="https://upload-images.jianshu.io/upload_images/8791854-351316405b170a57.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p><p>#####当进行结算操作，状态变为‘到期收款’或者其他状态时，就显示单据状态<br><img alt="到期收款状态" data-src="https://upload-images.jianshu.io/upload_images/8791854-0f33c4599f6e2776.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><img alt="背书状态" data-src="https://upload-images.jianshu.io/upload_images/8791854-9f627f36b33b68b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p><p><strong>model.py 文件， ‘dynamic_state’选项为动态显示的内容</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">state = fields.Selection([</span><br><span class="line">    (&apos;draft&apos;, &apos;草稿&apos;),</span><br><span class="line">    (&apos;verify&apos;, &apos;已审核&apos;),</span><br><span class="line">    (&apos;due_payment&apos;, &apos;到期收款&apos;),</span><br><span class="line">    (&apos;discount&apos;, &apos;贴现&apos;),</span><br><span class="line">    (&apos;endorsement&apos;, &apos;背书&apos;),</span><br><span class="line">    (&apos;endorsement_return&apos;, &apos;背书退回&apos;),</span><br><span class="line">    (&apos;bill_return&apos;, &apos;票据退回&apos;),</span><br><span class="line">    (&apos;dynamic_state&apos;, &apos;结算&apos;), # 动态显示，设置默认值为&apos;结算&apos;</span><br><span class="line">   ], string=&apos;单据状态&apos;, copy=False, index=True, track_visibility=&apos;onchange&apos;, track_sequence=3, default=&apos;draft&apos;)</span><br></pre></td></tr></table></figure>
+          <p><strong>gitstats 是一款git历史统计工具，可以生成定量的统计数据，并以html图表的形式展示。统计文件包括文件数量、代码量、提交量、作者信息、每天活跃度、每周活跃度、每月活跃度以及提交数排名等等，信息比较丰富。</strong><br>##安装<br>gitstats 依赖 Git 、Python2 以及Gnuplot。<br>以下是最新的依赖版本。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_1/#more" rel="contents">
+              <a class="btn" href="/2019/11/07/git_3/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -874,6 +765,224 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/07/odoo12_2/" class="post-title-link" itemprop="url">Odoo12-- 改变switchButton的显示内容</a>
+        </h2>
+
+        <div class="post-meta">
+          
+              <i class="fa fa-thumb-tack"></i>
+              <font color=green>置顶</font>
+              <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-12 22:06:40" itemprop="dateModified" datetime="2019-11-12T22:06:40+08:00">2019-11-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/07/odoo12_2/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 改变switchButton的显示内容" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/07/odoo12_2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>odoo原本的switchbutton，当鼠标悬浮上去是显示的是英文，比如：View List, View Kanban</strong></p><p><img alt="switchbutton更改前" data-src="https://upload-images.jianshu.io/upload_images/8791854-55ecdf487553ef7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><strong>现在改变其显示内容，可自定义修改。</strong><br><img alt="switchbutton更改后" data-src="https://upload-images.jianshu.io/upload_images/8791854-0ff221f83ce9bbd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p><p>#####原理：在页面加载时候，渲染SwitchButtons时候，对其重写。<br><strong>对<code>abstract_controller.js</code>文件中<code>_renderSwitchButtons</code>方法进行改造。</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/07/odoo12_2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/07/odoo12_1/" class="post-title-link" itemprop="url">Odoo12-- statebar根据单据状态动态显示</a>
+        </h2>
+
+        <div class="post-meta">
+          
+              <i class="fa fa-thumb-tack"></i>
+              <font color=green>置顶</font>
+              <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-12 21:53:39" itemprop="dateModified" datetime="2019-11-12T21:53:39+08:00">2019-11-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/07/odoo12_1/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- statebar根据单据状态动态显示" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/07/odoo12_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="当状态为草稿或者结算时候，显示结算。"><a href="#当状态为草稿或者结算时候，显示结算。" class="headerlink" title="当状态为草稿或者结算时候，显示结算。"></a>当状态为草稿或者结算时候，显示结算。</h5><p><img alt="已审核状态" data-src="https://upload-images.jianshu.io/upload_images/8791854-351316405b170a57.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p><p>#####当进行结算操作，状态变为‘到期收款’或者其他状态时，就显示单据状态<br><img alt="到期收款状态" data-src="https://upload-images.jianshu.io/upload_images/8791854-0f33c4599f6e2776.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><img alt="背书状态" data-src="https://upload-images.jianshu.io/upload_images/8791854-9f627f36b33b68b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p><p><strong>model.py 文件， ‘dynamic_state’选项为动态显示的内容</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">state = fields.Selection([</span><br><span class="line">    (&apos;draft&apos;, &apos;草稿&apos;),</span><br><span class="line">    (&apos;verify&apos;, &apos;已审核&apos;),</span><br><span class="line">    (&apos;due_payment&apos;, &apos;到期收款&apos;),</span><br><span class="line">    (&apos;discount&apos;, &apos;贴现&apos;),</span><br><span class="line">    (&apos;endorsement&apos;, &apos;背书&apos;),</span><br><span class="line">    (&apos;endorsement_return&apos;, &apos;背书退回&apos;),</span><br><span class="line">    (&apos;bill_return&apos;, &apos;票据退回&apos;),</span><br><span class="line">    (&apos;dynamic_state&apos;, &apos;结算&apos;), # 动态显示，设置默认值为&apos;结算&apos;</span><br><span class="line">   ], string=&apos;单据状态&apos;, copy=False, index=True, track_visibility=&apos;onchange&apos;, track_sequence=3, default=&apos;draft&apos;)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/07/odoo12_1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -983,7 +1092,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_5/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/12/picture_girl_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -997,14 +1106,10 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/07/odoo12_5/" class="post-title-link" itemprop="url">Odoo12-- 列表视图禁止打开表单内容</a>
+            <a href="/2019/11/12/picture_girl_2/" class="post-title-link" itemprop="url">清纯美女图</a>
         </h2>
 
         <div class="post-meta">
-          
-              <i class="fa fa-thumb-tack"></i>
-              <font color=green>置顶</font>
-              <span class="post-meta-divider">|</span>
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1012,14 +1117,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
+              <time title="创建时间：2019-11-12 23:57:38" itemprop="dateCreated datePublished" datetime="2019-11-12T23:57:38+08:00">2019-11-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 22:12:10" itemprop="dateModified" datetime="2019-11-12T22:12:10+08:00">2019-11-12</time>
+                <time title="修改时间：2019-11-13 00:15:45" itemprop="dateModified" datetime="2019-11-13T00:15:45+08:00">2019-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1027,14 +1132,26 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Odoo/" itemprop="url" rel="index">
-                    <span itemprop="name">Odoo</span>
+                  <a href="/categories/%E5%9B%BE%E7%89%87/" itemprop="url" rel="index">
+                    <span itemprop="name">图片</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E7%89%87/%E7%BE%8E%E5%A5%B3/" itemprop="url" rel="index">
+                    <span itemprop="name">美女</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E7%89%87/%E7%BE%8E%E5%A5%B3/%E6%B8%85%E7%BA%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">清纯</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/07/odoo12_5/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 列表视图禁止打开表单内容" title="阅读次数">
+            <span id="/2019/11/12/picture_girl_2/" class="post-meta-item leancloud_visitors" data-flag-title="清纯美女图" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1049,8 +1166,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/odoo12_5/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_5/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/12/picture_girl_2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/12/picture_girl_2/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1065,15 +1182,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p><p>1.找到相关的行点击入口，通过万能的context扩展一个独立的禁止打开参数，默认不禁止，视图里通过显式声明使用该功能：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
       
     </div>
 
@@ -1092,7 +1201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/ubuntu_1/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/12/picture_girl_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1106,7 +1215,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/07/ubuntu_1/" class="post-title-link" itemprop="url">ubuntu-- 查找并且杀死查找出的所有进程</a>
+            <a href="/2019/11/12/picture_girl_1/" class="post-title-link" itemprop="url">性感美女</a>
         </h2>
 
         <div class="post-meta">
@@ -1117,14 +1226,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
+              <time title="创建时间：2019-11-12 23:44:24" itemprop="dateCreated datePublished" datetime="2019-11-12T23:44:24+08:00">2019-11-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 22:28:53" itemprop="dateModified" datetime="2019-11-12T22:28:53+08:00">2019-11-12</time>
+                <time title="修改时间：2019-11-13 00:15:39" itemprop="dateModified" datetime="2019-11-13T00:15:39+08:00">2019-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1132,14 +1241,26 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
+                  <a href="/categories/%E5%9B%BE%E7%89%87/" itemprop="url" rel="index">
+                    <span itemprop="name">图片</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E7%89%87/%E7%BE%8E%E5%A5%B3/" itemprop="url" rel="index">
+                    <span itemprop="name">美女</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E7%89%87/%E7%BE%8E%E5%A5%B3/%E6%80%A7%E6%84%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">性感</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/07/ubuntu_1/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu-- 查找并且杀死查找出的所有进程" title="阅读次数">
+            <span id="/2019/11/12/picture_girl_1/" class="post-meta-item leancloud_visitors" data-flag-title="性感美女" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1154,8 +1275,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/ubuntu_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/ubuntu_1/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/12/picture_girl_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/12/picture_girl_1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1170,112 +1291,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>直接命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep abc | awk &apos;&#123;print $2&#125;&apos; | xargs kill -9</span><br></pre></td></tr></table></figure><p>其中abc为要查找的进程</p><p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/git_1/" class="post-title-link" itemprop="url">git-- 出现 refusing to merge unrelated histories 错误</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 22:27:49" itemprop="dateModified" datetime="2019-11-12T22:27:49+08:00">2019-11-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/git_1/" class="post-meta-item leancloud_visitors" data-flag-title="git-- 出现 refusing to merge unrelated histories 错误" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/git_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>引用</p><p>git pull 失败 ,提示：<code>fatal: refusing to [merge](https://www.centos.bz/tag/merge/) unrelated histories</code></p><p>其实这个问题是因为 两个 根本不相干的 git 库， 一个是本地库， 一个是远端库， 然后本地要去推送到远端， 远端觉得这个本地库跟自己不相干， 所以告知无法合并</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/git_1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
       
     </div>
 
@@ -1340,20 +1356,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
