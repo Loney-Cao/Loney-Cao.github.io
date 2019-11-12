@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="LoneyCao" type="application/atom+xml">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="前言Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；作为实时监控信号处理也非常不错。环境Ubuntu 16.04安装Redis服务器端1~ sudo apt-get install redis-server">
+<meta name="keywords" content="Python,Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu-- Ubuntu16.04安装Redis">
+<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;ubuntu_2&#x2F;index.html">
+<meta property="og:site_name" content="LoneyCao">
+<meta property="og:description" content="前言Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；作为实时监控信号处理也非常不错。环境Ubuntu 16.04安装Redis服务器端1~ sudo apt-get install redis-server">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-650264f2ce09f4f5.gif?imageMogr2&#x2F;auto-orient&#x2F;strip">
+<meta property="og:updated_time" content="2019-11-12T14:57:18.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-650264f2ce09f4f5.gif?imageMogr2&#x2F;auto-orient&#x2F;strip">
+
+<link rel="canonical" href="http://loney-cao.github.io/2019/11/07/ubuntu_2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>ubuntu-- Ubuntu16.04安装Redis | LoneyCao</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LoneyCao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">即使一个人，也要活得像军队一样！</h1>
+      
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=32405683&auto=1&height=66"></iframe>
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Loney-Cao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/ubuntu_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          ubuntu-- Ubuntu16.04安装Redis
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-12 22:57:18" itemprop="dateModified" datetime="2019-11-12T22:57:18+08:00">2019-11-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/07/ubuntu_2/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu-- Ubuntu16.04安装Redis" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/07/ubuntu_2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/ubuntu_2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；作为实时监控信号处理也非常不错。</p><h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>Ubuntu 16.04</p><h1 id="安装Redis服务器端"><a href="#安装Redis服务器端" class="headerlink" title="安装Redis服务器端"></a>安装Redis服务器端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo apt-get install redis-server</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+
+<p>安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序</p>
+<h2 id="检查Redis服务器系统进程"><a href="#检查Redis服务器系统进程" class="headerlink" title="检查Redis服务器系统进程"></a>检查Redis服务器系统进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ ps -aux|grep redis</span><br><span class="line">redis 4162  0.1  0.0  10676  1420 ?        Ss   23:24   0:00 /usr/bin/redis-server /etc/redis/redis.conf</span><br><span class="line">conan 4172  0.0  0.0  11064   924 pts/0    S+   23:26   0:00 grep --color=auto redis</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过启动命令检查Redis服务器状态"><a href="#通过启动命令检查Redis服务器状态" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ netstat -nlt|grep 6379 tcp 0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过启动命令检查Redis服务器状态-1"><a href="#通过启动命令检查Redis服务器状态-1" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo /etc/init.d/redis-server status</span><br><span class="line">● redis-server.service - Advanced key-value store</span><br><span class="line">   Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since 四 2017-11-09 12:22:09 CST; 59s ago</span><br><span class="line">     Docs: http://redis.io/documentation,</span><br><span class="line">           man:redis-server(1)</span><br><span class="line"> Main PID: 5394 (redis-server)</span><br><span class="line">   CGroup: /system.slice/redis-server.service</span><br><span class="line">           └─5394 /usr/bin/redis-server 127.0.0.1:6379 11月 09 12:22:09 zzf systemd[1]: Starting Advanced key-value store...</span><br><span class="line">11月 09 12:22:09 zzf run-parts[5388]: run-parts: executing /etc/redis/redi...le</span><br><span class="line">11月 09 12:22:09 zzf run-parts[5395]: run-parts: executing /etc/redis/redi...le</span><br><span class="line">11月 09 12:22:09 zzf systemd[1]: Started Advanced key-value store.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show in full.</span><br></pre></td></tr></table></figure>
+
+<h1 id="通过命令行客户端访问Redis"><a href="#通过命令行客户端访问Redis" class="headerlink" title="通过命令行客户端访问Redis"></a>通过命令行客户端访问Redis</h1><p>安装Redis服务器，会自动地一起安装Redis命令行客户端程序。</p>
+<p>在本机输入redis-cli命令就可以启动，客户端程序访问Redis服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="命令行的帮助"><a href="#命令行的帮助" class="headerlink" title="命令行的帮助"></a>命令行的帮助</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; help</span><br><span class="line">redis-cli 2.2.12 Type: &quot;help @&quot; to get a list of commands in </span><br><span class="line">      &quot;help &quot; for help on &quot;help &quot; to get a list of possible help topics &quot;quit&quot; to exit</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看所有的key列表"><a href="#查看所有的key列表" class="headerlink" title="查看所有的key列表"></a>查看所有的key列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; keys * (empty list or set)&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="基本的Redis客户端命令操作"><a href="#基本的Redis客户端命令操作" class="headerlink" title="基本的Redis客户端命令操作"></a>基本的Redis客户端命令操作</h1><p><strong>增加一条记录key1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; set key1 &quot;hello&quot; OK</span><br></pre></td></tr></table></figure>
+
+<h1 id="打印记录"><a href="#打印记录" class="headerlink" title="打印记录"></a>打印记录</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; get key1 &quot;hello&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>增加一条数字记录</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;set key2 1 OK</span><br></pre></td></tr></table></figure>
+<h1 id="让数字自增"><a href="#让数字自增" class="headerlink" title="让数字自增"></a>让数字自增</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; INCR key2</span><br><span class="line">(integer) 2 redis 127.0.0.1:6379&gt; INCR key2</span><br><span class="line">(integer) 3 # 打印记录</span><br><span class="line">redis 127.0.0.1:6379&gt; get key2 &quot;3&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>增加一个列表记录key3</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; LPUSH key3 a</span><br><span class="line">(integer) 1 # 从左边插入列表</span><br><span class="line">redis 127.0.0.1:6379&gt; LPUSH key3 b</span><br><span class="line">(integer) 2 # 从右边插入列表</span><br><span class="line">redis 127.0.0.1:6379&gt; RPUSH key3 c</span><br><span class="line">(integer) 3 # 打印列表记录，按从左到右的顺序</span><br><span class="line">redis 127.0.0.1:6379&gt; LRANGE key3 0 3</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;c&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>增加一个哈希记表录key4</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET key4 name &quot;John Smith&quot; (integer) 1 # 在哈希表中插入，email的Key和Value的值</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET key4 email &quot;abc@gmail.com&quot; (integer) 1 # 打印哈希表中，name为key的值</span><br><span class="line">redis 127.0.0.1:6379&gt; HGET key4 name &quot;John Smith&quot; # 打印整个哈希表</span><br><span class="line">redis 127.0.0.1:6379&gt; HGETALL key4 1) &quot;name&quot;</span><br><span class="line">2) &quot;John Smith&quot;</span><br><span class="line">3) &quot;email&quot;</span><br><span class="line">4) &quot;abc@gmail.com&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>增加一条哈希表记录key5</strong></p>
+<h1 id="增加一条哈希表记录key5，一次插入多个Key和value的值"><a href="#增加一条哈希表记录key5，一次插入多个Key和value的值" class="headerlink" title="增加一条哈希表记录key5，一次插入多个Key和value的值"></a>增加一条哈希表记录key5，一次插入多个Key和value的值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HMSET key5 username antirez password P1pp0 age 3 OK</span><br></pre></td></tr></table></figure>
+<h1 id="打印哈希表中，username和age为key的值"><a href="#打印哈希表中，username和age为key的值" class="headerlink" title="打印哈希表中，username和age为key的值"></a>打印哈希表中，username和age为key的值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HMGET key5 username age 1) &quot;antirez&quot;</span><br><span class="line">2) &quot;3&quot; # 打印完整的哈希表记录</span><br><span class="line">redis 127.0.0.1:6379&gt; HGETALL key5 1) &quot;username&quot;</span><br><span class="line">2) &quot;antirez&quot;</span><br><span class="line">3) &quot;password&quot;</span><br><span class="line">4) &quot;P1pp0&quot;</span><br><span class="line">5) &quot;age&quot;</span><br><span class="line">6) &quot;3&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除记录</strong></p>
+<h1 id="查看所有的key列表-1"><a href="#查看所有的key列表-1" class="headerlink" title="查看所有的key列表"></a>查看所有的key列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;</span><br><span class="line">4) &quot;key5&quot;</span><br><span class="line">5) &quot;key1&quot; </span><br><span class="line"># 删除key1,key5</span><br><span class="line">redis 127.0.0.1:6379&gt; del key1</span><br><span class="line">(integer) 1 redis 127.0.0.1:6379&gt; del key5</span><br><span class="line">(integer) 1 # 查看所有的key列表</span><br><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改Redis的配置"><a href="#修改Redis的配置" class="headerlink" title="修改Redis的配置"></a>修改Redis的配置</h1><h2 id="使用Redis的访问账号"><a href="#使用Redis的访问账号" class="headerlink" title="使用Redis的访问账号"></a>使用Redis的访问账号</h2><p>默认情况下，访问Redis服务器是不需要密码的，为了增加安全性我们需要设置Redis服务器的访问密码。设置访问密码为redisredis。</p>
+<p>用vi打开Redis服务器的配置文件redis.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo vi /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+<p>#取消注释requirepass</p>
+<figure class="highlight plain"><figcaption><span>redisredis```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 让Redis服务器被远程访问</span><br><span class="line"></span><br><span class="line">默认情况下，Redis服务器不允许远程访问，只允许本机访问，所以我们需要设置打开远程访问的功能。</span><br><span class="line"></span><br><span class="line">用vi打开Redis服务器的配置文件redis.conf</span><br></pre></td></tr></table></figure>
+<p>~ sudo vi /etc/redis/redis.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#注释bind</span><br><span class="line">```#bind 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p>修改后，重启Redis服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ sudo /etc/init.d/redis-server restart</span><br><span class="line">Stopping redis-server: redis-server.</span><br><span class="line">Starting redis-server: redis-server.</span><br></pre></td></tr></table></figure>
+<p>未使用密码登陆Redis服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; keys * (error) ERR operation not permitted</span><br></pre></td></tr></table></figure>
+<p>发现可以登陆，但无法执行命令了。</p>
+<p>登陆Redis服务器，输入密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~  redis-cli -a redisredis</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<p>登陆后，一切正常。</p>
+<p>我们检查Redis的网络监听端口</p>
+<p>检查Redis服务器占用端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ netstat -nlt|grep 6379 tcp 0      0 0.0.0.0:6379            0.0.0.0:*               LISTEN</span><br></pre></td></tr></table></figure>
+<p>我们看到网络监听从之前的 127.0.0.1:3306 变成 0 0.0.0.0:3306，表示Redis已经允许远程登陆访问。</p>
+<p>我们在远程的另一台Linux访问Redis服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli -a redisredis -h 192.168.1.199 redis 192.168.1.199:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;</span><br></pre></td></tr></table></figure>
+<p>远程访问正常。通过上面的操作，我们就把Redis数据库服务器，在Linux Ubuntu中的系统安装完成。</p>
+<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
+
+    </div>
+
+    
+    
+    
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="LoneyCao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="LoneyCao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>LoneyCao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://loney-cao.github.io/2019/11/07/ubuntu_2/" title="ubuntu-- Ubuntu16.04安装Redis">http://loney-cao.github.io/2019/11/07/ubuntu_2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/07/odoo12_4/" rel="next" title="Odoo12-- 销售订单确认后生成销售出库单的代码跟踪">
+                  <i class="fa fa-chevron-left"></i> Odoo12-- 销售订单确认后生成销售出库单的代码跟踪
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/07/odoo12_6/" rel="prev" title="Odoo12-- 自定义水滴状引导提示信息">
+                  Odoo12-- 自定义水滴状引导提示信息 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Redis服务器端"><span class="nav-number">3.</span> <span class="nav-text">安装Redis服务器端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#检查Redis服务器系统进程"><span class="nav-number">3.1.</span> <span class="nav-text">检查Redis服务器系统进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过启动命令检查Redis服务器状态"><span class="nav-number">3.2.</span> <span class="nav-text">通过启动命令检查Redis服务器状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过启动命令检查Redis服务器状态-1"><span class="nav-number">3.3.</span> <span class="nav-text">通过启动命令检查Redis服务器状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通过命令行客户端访问Redis"><span class="nav-number">4.</span> <span class="nav-text">通过命令行客户端访问Redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行的帮助"><span class="nav-number">5.</span> <span class="nav-text">命令行的帮助</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看所有的key列表"><span class="nav-number">6.</span> <span class="nav-text">查看所有的key列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本的Redis客户端命令操作"><span class="nav-number">7.</span> <span class="nav-text">基本的Redis客户端命令操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打印记录"><span class="nav-number">8.</span> <span class="nav-text">打印记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#让数字自增"><span class="nav-number">9.</span> <span class="nav-text">让数字自增</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增加一条哈希表记录key5，一次插入多个Key和value的值"><span class="nav-number">10.</span> <span class="nav-text">增加一条哈希表记录key5，一次插入多个Key和value的值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打印哈希表中，username和age为key的值"><span class="nav-number">11.</span> <span class="nav-text">打印哈希表中，username和age为key的值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看所有的key列表-1"><span class="nav-number">12.</span> <span class="nav-text">查看所有的key列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改Redis的配置"><span class="nav-number">13.</span> <span class="nav-text">修改Redis的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Redis的访问账号"><span class="nav-number">13.1.</span> <span class="nav-text">使用Redis的访问账号</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="LoneyCao"
+    src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">LoneyCao</p>
+  <div class="site-description" itemprop="description">专注Odoo知识领域</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LoneyCao</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'JB8FpvK5rrCA4RqQfnpxGgiQ-gzGzoHsz',
+    appKey: 'cU9FMU8iuV4LzSjG2QU0OUF6',
+    placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-CN' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+    </div>
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <script type="text/javascript" src="/js/src/mouse-click.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true},"log":false});</script></body>
+</html>
