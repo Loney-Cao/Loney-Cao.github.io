@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.0.0">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -438,7 +449,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_5/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -452,7 +463,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/07/odoo12_5/" class="post-title-link" itemprop="url">Odoo12-- 列表视图禁止打开表单内容</a>
+            <a href="/2019/11/07/git_3/" class="post-title-link" itemprop="url">git-- Win下使用GitStats git代码统计工具</a>
         </h2>
 
         <div class="post-meta">
@@ -474,7 +485,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-13 09:52:30" itemprop="dateModified" datetime="2019-11-13T09:52:30+08:00">2019-11-13</time>
+                <time title="修改时间：2019-11-13 08:57:40" itemprop="dateModified" datetime="2019-11-13T08:57:40+08:00">2019-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -488,14 +499,14 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
-                    <span itemprop="name">Odoo</span>
+                  <a href="/categories/technology/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/07/odoo12_5/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 列表视图禁止打开表单内容" title="阅读次数">
+            <span id="/2019/11/07/git_3/" class="post-meta-item leancloud_visitors" data-flag-title="git-- Win下使用GitStats git代码统计工具" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -510,8 +521,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/odoo12_5/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_5/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/07/git_3/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -526,10 +537,121 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p>
+          <p><strong>gitstats 是一款git历史统计工具，可以生成定量的统计数据，并以html图表的形式展示。统计文件包括文件数量、代码量、提交量、作者信息、每天活跃度、每周活跃度、每月活跃度以及提交数排名等等，信息比较丰富。</strong><br>##安装<br>gitstats 依赖 Git 、Python2 以及Gnuplot。<br>以下是最新的依赖版本。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_5/#more" rel="contents">
+              <a class="btn" href="/2019/11/07/git_3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/jinja2_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/07/jinja2_1/" class="post-title-link" itemprop="url">jinja2-- jinja2模板过滤器</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-13 09:52:57" itemprop="dateModified" datetime="2019-11-13T09:52:57+08:00">2019-11-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Jinjia2/" itemprop="url" rel="index">
+                    <span itemprop="name">Jinjia2</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/07/jinja2_1/" class="post-meta-item leancloud_visitors" data-flag-title="jinja2-- jinja2模板过滤器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/07/jinja2_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/jinja2_1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>###jinja2模板过滤器<br>过滤器是通过管道符号’|‘进行使用的，例如 {{ name|length }} ，<br>将返回name的长度，过滤器相当于一个函数，把当前变量传入到过滤<br>器中，然后过滤器根据自己的功能，返回相应的值，之后再将结果渲染<br>到页面中。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/07/jinja2_1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -783,7 +905,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_3/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -797,7 +919,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/07/git_3/" class="post-title-link" itemprop="url">git-- Win下使用GitStats git代码统计工具</a>
+            <a href="/2019/11/07/odoo12_5/" class="post-title-link" itemprop="url">Odoo12-- 列表视图禁止打开表单内容</a>
         </h2>
 
         <div class="post-meta">
@@ -819,7 +941,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-13 08:57:40" itemprop="dateModified" datetime="2019-11-13T08:57:40+08:00">2019-11-13</time>
+                <time title="修改时间：2019-11-13 09:52:30" itemprop="dateModified" datetime="2019-11-13T09:52:30+08:00">2019-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -833,14 +955,14 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/07/git_3/" class="post-meta-item leancloud_visitors" data-flag-title="git-- Win下使用GitStats git代码统计工具" title="阅读次数">
+            <span id="/2019/11/07/odoo12_5/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 列表视图禁止打开表单内容" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -855,8 +977,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/git_3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_3/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/07/odoo12_5/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_5/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -871,121 +993,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>gitstats 是一款git历史统计工具，可以生成定量的统计数据，并以html图表的形式展示。统计文件包括文件数量、代码量、提交量、作者信息、每天活跃度、每周活跃度、每月活跃度以及提交数排名等等，信息比较丰富。</strong><br>##安装<br>gitstats 依赖 Git 、Python2 以及Gnuplot。<br>以下是最新的依赖版本。</p>
+          <p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/07/git_3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/jinja2_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/jinja2_1/" class="post-title-link" itemprop="url">jinja2-- jinja2模板过滤器</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-13 09:52:57" itemprop="dateModified" datetime="2019-11-13T09:52:57+08:00">2019-11-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Jinjia2/" itemprop="url" rel="index">
-                    <span itemprop="name">Jinjia2</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/jinja2_1/" class="post-meta-item leancloud_visitors" data-flag-title="jinja2-- jinja2模板过滤器" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/jinja2_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/jinja2_1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>###jinja2模板过滤器<br>过滤器是通过管道符号’|‘进行使用的，例如 {{ name|length }} ，<br>将返回name的长度，过滤器相当于一个函数，把当前变量传入到过滤<br>器中，然后过滤器根据自己的功能，返回相应的值，之后再将结果渲染<br>到页面中。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/jinja2_1/#more" rel="contents">
+              <a class="btn" href="/2019/11/07/odoo12_5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1448,26 +1459,6 @@
 </div>
 
         
-<div class="busuanzi-count">
-  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
 
 
 
@@ -1587,7 +1578,7 @@ window.addEventListener('pjax:success', () => {
 
 
 <script>
-NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
   var GUEST = ['nick', 'mail', 'link'];
   var guest = 'nick,mail,link';
   guest = guest.split(',').filter(item => {
