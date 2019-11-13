@@ -54,16 +54,16 @@
   };
 </script>
 
-  <meta name="description" content="####抛砖：res.config.settings 是个瞬态的，会被定时清理。在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？例如：在库存的设置中，我勾选了交货包裹这一项。一段时间后，res.config.settings被清理。清理后，我勾选的项依然有效，是什么原理？能否拿到配置中的某个字段，根据这个字段，在我的代码中做一些判断。">
+  <meta name="description" content="####抛砖：res.config.settings 是个瞬态的，会被定时清理。在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？">
 <meta name="keywords" content="Odoo12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Odoo12-- 关于配置模型中的数据问题">
 <meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;odoo12_3&#x2F;index.html">
 <meta property="og:site_name" content="LoneyCao">
-<meta property="og:description" content="####抛砖：res.config.settings 是个瞬态的，会被定时清理。在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？例如：在库存的设置中，我勾选了交货包裹这一项。一段时间后，res.config.settings被清理。清理后，我勾选的项依然有效，是什么原理？能否拿到配置中的某个字段，根据这个字段，在我的代码中做一些判断。">
+<meta property="og:description" content="####抛砖：res.config.settings 是个瞬态的，会被定时清理。在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-650264f2ce09f4f5.gif?imageMogr2&#x2F;auto-orient&#x2F;strip">
-<meta property="og:updated_time" content="2019-11-12T14:09:27.496Z">
+<meta property="og:updated_time" content="2019-11-13T01:52:13.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-650264f2ce09f4f5.gif?imageMogr2&#x2F;auto-orient&#x2F;strip">
 
@@ -163,14 +163,14 @@
     <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
 
   </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">15</span></a>
-
-  </li>
         <li class="menu-item menu-item-pictures">
 
-    <a href="/categories/%E5%9B%BE%E7%89%87/" rel="section"><i class="fa fa-fw fa-image"></i>图片</a>
+    <a href="/categories/image/" rel="section"><i class="fa fa-fw fa-image"></i>图片</a>
+
+  </li>
+        <li class="menu-item menu-item-technologys">
+
+    <a href="/categories/technology/" rel="section"><i class="fa fa-fw fa-code"></i>技术</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 22:09:27" itemprop="dateModified" datetime="2019-11-12T22:09:27+08:00">2019-11-12</time>
+                <time title="修改时间：2019-11-13 09:52:13" itemprop="dateModified" datetime="2019-11-13T09:52:13+08:00">2019-11-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +266,13 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Odoo/" itemprop="url" rel="index">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
                     <span itemprop="name">Odoo</span>
                   </a>
                 </span>
@@ -311,8 +317,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>####抛砖：<br>res.config.settings 是个瞬态的，会被定时清理。<br>在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？</p><p><strong>例如：<br>在库存的设置中，我勾选了交货包裹这一项。一段时间后，res.config.settings被清理。清理后，我勾选的项依然有效，是什么原理？<br>能否拿到配置中的某个字段，根据这个字段，在我的代码中做一些判断。</strong></p><a id="more"></a>
-
+        <p>####抛砖：<br>res.config.settings 是个瞬态的，会被定时清理。<br>在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？</p>
+<a id="more"></a>
+<p><strong>例如：<br>在库存的设置中，我勾选了交货包裹这一项。一段时间后，res.config.settings被清理。清理后，我勾选的项依然有效，是什么原理？<br>能否拿到配置中的某个字段，根据这个字段，在我的代码中做一些判断。</strong></p>
 <p>####引玉：</p>
 <p>我们一般会继承res.config.settings来定义一些配置信息。 而res.config.settings是一个暂态模型(models.TransientModel)并不能长久保存数据，那数据是保存在什么地方的呢？</p>
 <p>简单回答，这些配置数据并不保存在同一个地方，很多设置的状态是通过动态判断来获得的。<br>实际上当我们定义一个一个如下的配置类：</p>
@@ -380,16 +387,16 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/07/odoo12_2/" rel="next" title="Odoo12-- 改变switchButton的显示内容">
-                  <i class="fa fa-chevron-left"></i> Odoo12-- 改变switchButton的显示内容
+                <a href="/2019/11/07/git_3/" rel="next" title="git-- Win下使用GitStats git代码统计工具">
+                  <i class="fa fa-chevron-left"></i> git-- Win下使用GitStats git代码统计工具
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/07/git_3/" rel="prev" title="git-- Win下使用GitStats git代码统计工具">
-                  git-- Win下使用GitStats git代码统计工具 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/07/odoo12_2/" rel="prev" title="Odoo12-- 改变switchButton的显示内容">
+                  Odoo12-- 改变switchButton的显示内容 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -443,15 +450,14 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+          <a href="/archives">
           <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
