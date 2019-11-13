@@ -254,8 +254,8 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/07/odoo12_5/" itemprop="url">
-            <span itemprop="name">Odoo12-- 列表视图禁止打开表单内容</span>
+          <a class="post-title-link" href="/2019/11/07/odoo12_2/" itemprop="url">
+            <span itemprop="name">Odoo12-- 改变switchButton的显示内容</span>
           </a>
       </h3>
 
@@ -294,8 +294,8 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/07/git_3/" itemprop="url">
-            <span itemprop="name">git-- Win下使用GitStats git代码统计工具</span>
+          <a class="post-title-link" href="/2019/11/07/git_2/" itemprop="url">
+            <span itemprop="name">git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决</span>
           </a>
       </h3>
 
@@ -354,48 +354,48 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/07/odoo12_2/" itemprop="url">
-            <span itemprop="name">Odoo12-- 改变switchButton的显示内容</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-07T20:28:12+08:00"
-              content="2019-11-07">
-          11-07
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/07/git_2/" itemprop="url">
-            <span itemprop="name">git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-07T20:28:12+08:00"
-              content="2019-11-07">
-          11-07
-        </time>
-      </div>
-
-      <h3 class="post-title">
           <a class="post-title-link" href="/2019/11/07/odoo12_3/" itemprop="url">
             <span itemprop="name">Odoo12-- 关于配置模型中的数据问题</span>
+          </a>
+      </h3>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2019-11-07T20:28:12+08:00"
+              content="2019-11-07">
+          11-07
+        </time>
+      </div>
+
+      <h3 class="post-title">
+          <a class="post-title-link" href="/2019/11/07/git_3/" itemprop="url">
+            <span itemprop="name">git-- Win下使用GitStats git代码统计工具</span>
+          </a>
+      </h3>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2019-11-07T20:28:12+08:00"
+              content="2019-11-07">
+          11-07
+        </time>
+      </div>
+
+      <h3 class="post-title">
+          <a class="post-title-link" href="/2019/11/07/odoo12_5/" itemprop="url">
+            <span itemprop="name">Odoo12-- 列表视图禁止打开表单内容</span>
           </a>
       </h3>
 
@@ -669,9 +669,12 @@ window.addEventListener('pjax:success', () => {
 
   
 
-
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script>
-NexT.utils.getScript('//cdn1.lncld.net/static/js/av-core-mini-0.6.4.js', () => {
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
   var GUEST = ['nick', 'mail', 'link'];
   var guest = 'nick,mail,link';
   guest = guest.split(',').filter(item => {
@@ -687,7 +690,7 @@ NexT.utils.getScript('//cdn1.lncld.net/static/js/av-core-mini-0.6.4.js', () => {
     avatar: 'mm',
     meta: guest,
     pageSize: '10' || 10,
-    visitor: true,
+    visitor: false,
     lang: 'zh-CN' || 'zh-cn',
     path: location.pathname,
     recordIP: true,

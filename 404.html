@@ -485,9 +485,12 @@ window.addEventListener('pjax:success', () => {
 
   
 
-
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 <script>
-NexT.utils.getScript('//cdn1.lncld.net/static/js/av-core-mini-0.6.4.js', () => {
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
   var GUEST = ['nick', 'mail', 'link'];
   var guest = 'nick,mail,link';
   guest = guest.split(',').filter(item => {
@@ -503,7 +506,7 @@ NexT.utils.getScript('//cdn1.lncld.net/static/js/av-core-mini-0.6.4.js', () => {
     avatar: 'mm',
     meta: guest,
     pageSize: '10' || 10,
-    visitor: true,
+    visitor: false,
     lang: 'zh-CN' || 'zh-cn',
     path: location.pathname,
     recordIP: true,
