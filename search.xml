@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>清纯美女图</title>
+    <title>清纯美女图（早餐）</title>
     <url>/2019/11/12/picture_girl_2/</url>
-    <content><![CDATA[<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>]]></content>
+    <content><![CDATA[<p><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hb9b160e480c24c71b9b3dab3f03439e3R.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/H2bc4d7fc60944409acded54e16044755u.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hf6daa23858c14a30b60fe3a5f166657a5.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hfb5035e6c5074bfc8c83987d9e519faaI.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/H375c3745f0a245718ddc3fabafb328edB.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hae58449e181242499c22ae28e43e387dD.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/H09ef5534385d4a2f9f107261fa895350k.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hb5e3aa60684043e0b140fb8686edb784l.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Had98f4157f334363a24a973c8836aa5cM.jpg"></p>]]></content>
       <categories>
         <category>image</category>
         <category>美女</category>
@@ -11,9 +11,17 @@
       </categories>
   </entry>
   <entry>
-    <title>性感美女</title>
+    <title>性感美女图（滑板）</title>
     <url>/2019/11/12/picture_girl_1/</url>
-    <content><![CDATA[<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>]]></content>
+    <content><![CDATA[<p><img alt="性感美女" data-src="https://pic.superbed.cn/item/5dcc2b2b8e0e2e3ee9f4b91c.jpg"></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/Hcb00c0b1500a4f47a4c0240aeb473302p.jpg"></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/H33e3257a533a42299cacfa5689cfc07bh.jpg"></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/H6c5901b61b3d4ee49574d561394ec974F.jpg"><br> <!-- 
+ ![](https://pic.superbed.cn/item/5dcc2c1e8e0e2e3ee9f4deee.jpg)
+ ![](https://puui.qpic.cn/fans_admin/0/3_600007305_1573661727042/0)
+ ![](https://p.pstatp.com/origin/fef50001455d06f7593b)
+  --></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/H08f5e6c4a17d4824a7937aae86d2b67d8.jpg"></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/Hc4c4c1b09ac245b7b06da2d587ceb62bj.jpg"></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/H58a1abb4cbb54fc18ac2f51cf3ca4e73L.jpg"><br> <!-- 
+ ![](https://pic.superbed.cn/item/5dcc2ca78e0e2e3ee9f4effa.jpg)
+ ![](https://puui.qpic.cn/fans_admin/0/3_600007305_1573661864617/0)
+ ![](https://p.pstatp.com/origin/ff750000b7cb378c598c)
+  --></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/H632e8a4c8a8b48368f41dd221f409e4ax.jpg"></p><p><img alt="性感美女" data-src="https://ae01.alicdn.com/kf/H984a5a8eab6041ad8cc3984bd92c1301D.jpg"></p>]]></content>
       <categories>
         <category>image</category>
         <category>美女</category>
@@ -21,17 +29,16 @@
       </categories>
   </entry>
   <entry>
-    <title>Odoo12-- 列表视图禁止打开表单内容</title>
-    <url>/2019/11/07/odoo12_5/</url>
-    <content><![CDATA[<p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p>
+    <title>Odoo12-- 自定义水滴状引导提示信息</title>
+    <url>/2019/11/07/odoo12_6/</url>
+    <content><![CDATA[<p><strong>如题，odoo本身自带水滴形状的提示。有时候二开的时候需要给某些按钮添加一个提示，则可以利用odoo的tooltips插件</strong><br><img alt="水滴形状提示.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-dfa69d7a825ad73d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
 <a id="more"></a>
-<p>1.找到相关的行点击入口，通过万能的context扩展一个独立的禁止打开参数，默认不禁止，视图里通过显式声明使用该功能：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var ListRenderer = require(&apos;web.ListRenderer&apos;);</span><br><span class="line">ListRenderer.include(&#123;</span><br><span class="line">    _onRowClicked: function (event) &#123;</span><br><span class="line">        var self = this;</span><br><span class="line">        var context = self.dataset.get_context().eval();</span><br><span class="line">        if(!context[&quot;disable_open&quot;])&#123;</span><br><span class="line">            self._super.apply(self, arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;field name=&quot;sale_ids&quot; context=&quot;&#123;&apos;disable_open&apos;: True&#125;&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>2.禁止 鼠标的点击事件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;field name=&quot;sale_ids&quot; style=&quot;pointer-events: none;&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>鼠标移动上去会有文字提示</strong></p>
+<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-1c30d4414b500cd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7c19b939247e26e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-ebc8f9e7637c1aeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p><strong>我们只需要定义一个tour.js文件就可以，在文件中，我们指定元素位置，绑定相关提示信息就可以。</strong><br>其中：<br><code>trigger</code>:要绑定的元素,<br><code>content</code>:  提示内容,<br><code>position</code>: 位置,<br><code>edition</code>:版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">odoo.define(&apos;crm.tour&apos;, function(require) &#123;</span><br><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">var core = require(&apos;web.core&apos;);</span><br><span class="line">var tour = require(&apos;web_tour.tour&apos;);</span><br><span class="line"></span><br><span class="line">var _t = core._t;</span><br><span class="line"></span><br><span class="line">tour.register(&apos;crm_tour&apos;, &#123;</span><br><span class="line">    url: &quot;/web&quot;,</span><br><span class="line">&#125;, [tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app.&quot;),</span><br><span class="line">    position: &apos;right&apos;,</span><br><span class="line">    edition: &apos;community&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app.&quot;),</span><br><span class="line">    position: &apos;bottom&apos;,</span><br><span class="line">    edition: &apos;enterprise&apos;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o-kanban-button-new&quot;,</span><br><span class="line">    extra_trigger: &apos;.o_opportunity_kanban&apos;,</span><br><span class="line">    content: _t(&quot;Click here to &lt;b&gt;create your first opportunity&lt;/b&gt; and add it to your pipeline.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_quick_create input:first&quot;,</span><br><span class="line">    content: _t(&quot;&lt;b&gt;Choose a name&lt;/b&gt; for your opportunity, example: &lt;i&gt;&apos;Need a new website&apos;&lt;/i&gt;&quot;),</span><br><span class="line">    position: &quot;right&quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_quick_create .o_kanban_add&quot;,</span><br><span class="line">    content: _t(&quot;Click here to &lt;b&gt;add your opportunity&lt;/b&gt;.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_opportunity_kanban .o_kanban_group:first-child .o_kanban_record:last-child&quot;,</span><br><span class="line">    content: _t(&quot;&lt;b&gt;Drag &amp;amp; drop opportunities&lt;/b&gt; between columns as you progress in your sales cycle.&quot;),</span><br><span class="line">    position: &quot;right&quot;,</span><br><span class="line">    run: &quot;drag_and_drop .o_opportunity_kanban .o_kanban_group:eq(2) &quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_record:not(.o_updating) .o_activity_color_default&quot;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;This opportunity has &lt;b&gt;no activity planned&lt;/b&gt;.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_schedule_activity&quot;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;Let&apos;s schedule an activity.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.modal-body .o_field_many2one&apos;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;&lt;p&gt;You will be able to customize your followup activities. Examples:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;introductory email&lt;/li&gt;&lt;li&gt;call 10 days after&lt;/li&gt;&lt;li&gt;second call 3 days after, ...&lt;/li&gt;&lt;/ol&gt;&lt;p class=&apos;mb0&apos;&gt;&lt;i&gt;Select a standard activity for now.&lt;/i&gt;&lt;/p&gt;&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    run: function (actions) &#123;</span><br><span class="line">        actions.auto(&apos;.modal-footer button[special=cancel]&apos;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_record&quot;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;Click on the opportunity to zoom in.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    run: function (actions) &#123;</span><br><span class="line">        actions.auto(&quot;.o_kanban_record .oe_kanban_action[data-type=edit]&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_opportunity_form .o_chatter_button_new_message&quot;,</span><br><span class="line">    content: _t(&apos;&lt;p&gt;&lt;b&gt;Send messages&lt;/b&gt; to your prospect and get replies automatically attached to this opportunity.&lt;/p&gt;&lt;p class=&quot;mb0&quot;&gt;Type &lt;i&gt;\&apos;@\&apos;&lt;/i&gt; to mention people - it\&apos;s like cc-ing on emails.&lt;/p&gt;&apos;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.breadcrumb-item:not(.active):last&quot;,</span><br><span class="line">    extra_trigger: &apos;.o_opportunity_form&apos;,</span><br><span class="line">    content: _t(&quot;Use the breadcrumbs to &lt;b&gt;go back to your sales pipeline&lt;/b&gt;.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;base.menu_administration&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Configuration options are available in the Settings app.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    edition: &apos;community&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;base.menu_administration&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Configuration options are available in the Settings app.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    edition: &apos;enterprise&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_web_settings_dashboard .o_user_emails&quot;,</span><br><span class="line">    content: _t(&quot;&lt;b&gt;Invite coworkers&lt;/b&gt; via email.&lt;br/&gt;&lt;i&gt;Enter one email per line.&lt;/i&gt;&quot;),</span><br><span class="line">    position: &quot;right&quot;</span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Good job! You completed the tour of the CRM app.&quot;),</span><br><span class="line">    position: &apos;right&apos;,</span><br><span class="line">    edition: &apos;community&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Good job! You completed the tour of the CRM app.&quot;),</span><br><span class="line">    position: &apos;bottom&apos;,</span><br><span class="line">    edition: &apos;enterprise&apos;</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
 <p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
@@ -42,23 +49,6 @@
       </categories>
       <tags>
         <tag>Odoo12</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决</title>
-    <url>/2019/11/07/git_2/</url>
-    <content><![CDATA[<p>如图：<br><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7a5c238b4bb6e991.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>解决方案也是网上搜的，总结一下</p><p>一，加大缓存区</p><figure class="highlight plain"><figcaption><span>config --global http.postBuffer 524288000```</span></figcaption><table><tr><td class="code"><pre><span class="line">这个大约是500M</span><br><span class="line">二、少clone一些，–depth 1</span><br><span class="line">```git clone https://github.com/flutter/flutter.git --depth 1</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-<p>–depth 1的含义是复制深度为1，就是每个文件只取最近一次提交，不是整个历史版本。<br>三、换协议<br>clone http方式换成SSH的方式，即 https:// 改为 git://<br>例如<code>git clone https://github.com/flutter/flutter.git</code><br>换成<code>git clone git://github.com/flutter/flutter.git</code></p>
-<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -100,6 +90,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Odoo12-- 关于配置模型中的数据问题</title>
+    <url>/2019/11/07/odoo12_3/</url>
+    <content><![CDATA[<p>####抛砖：<br>res.config.settings 是个瞬态的，会被定时清理。<br>在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？</p>
+<a id="more"></a>
+<p><strong>例如：<br>在库存的设置中，我勾选了交货包裹这一项。一段时间后，res.config.settings被清理。清理后，我勾选的项依然有效，是什么原理？<br>能否拿到配置中的某个字段，根据这个字段，在我的代码中做一些判断。</strong></p>
+<p>####引玉：</p>
+<p>我们一般会继承res.config.settings来定义一些配置信息。 而res.config.settings是一个暂态模型(models.TransientModel)并不能长久保存数据，那数据是保存在什么地方的呢？</p>
+<p>简单回答，这些配置数据并不保存在同一个地方，很多设置的状态是通过动态判断来获得的。<br>实际上当我们定义一个一个如下的配置类：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class MyConfigWizard(models.TransientModel):</span><br><span class="line">     _name = &apos;my.settings&apos;</span><br><span class="line">     _inherit = &apos;res.config.settings&apos;</span><br><span class="line"> </span><br><span class="line">    default_foo = fields.type(..., default_model=&apos;my.model&apos;)</span><br><span class="line">    group_bar = fields.Boolean(..., group=&apos;base.group_user&apos;,implied_group=&apos;my.group&apos;)</span><br><span class="line">    module_baz = fields.Boolean(...)</span><br><span class="line">    config_qux = fields.Char(..., config_parameter=&apos;my.parameter&apos;)</span><br><span class="line">    other_field = fields.type(...)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到配置类上的字段分以上5种类型, 也就是：</p>
+<p>名字以default_开头，系统会根据设置的值来设置全局的ir.default值<br>名字以group_开头，系统会根据设置的值来配置res.group值<br>名字以module_baz, 系统会根据设置，安装或卸载baz模块<br>字段定义中包含config_parameter属性，系统将设置的值记录到ir.config_parameter表中，其key为config_parameter的值（上例中为：my.parameter), value为本配置字段的值<br>其他字段，则需要继承set_value方法以设定存储的地点，而get_value中设置获取值的方法<br>当打开配置界面时系统会自动调用res.config.settings类的default_get方法，而该方法定义了如何获取这5类字段的设置值的方法。</p>
+<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>Odoo</category>
+      </categories>
+      <tags>
+        <tag>Odoo12</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Odoo12-- 改变switchButton的显示内容</title>
     <url>/2019/11/07/odoo12_2/</url>
     <content><![CDATA[<p><strong>odoo原本的switchbutton，当鼠标悬浮上去是显示的是英文，比如：View List, View Kanban</strong></p>
@@ -120,18 +133,64 @@
       </tags>
   </entry>
   <entry>
-    <title>Odoo12-- 关于配置模型中的数据问题</title>
-    <url>/2019/11/07/odoo12_3/</url>
-    <content><![CDATA[<p>####抛砖：<br>res.config.settings 是个瞬态的，会被定时清理。<br>在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？</p>
-<a id="more"></a>
-<p><strong>例如：<br>在库存的设置中，我勾选了交货包裹这一项。一段时间后，res.config.settings被清理。清理后，我勾选的项依然有效，是什么原理？<br>能否拿到配置中的某个字段，根据这个字段，在我的代码中做一些判断。</strong></p>
-<p>####引玉：</p>
-<p>我们一般会继承res.config.settings来定义一些配置信息。 而res.config.settings是一个暂态模型(models.TransientModel)并不能长久保存数据，那数据是保存在什么地方的呢？</p>
-<p>简单回答，这些配置数据并不保存在同一个地方，很多设置的状态是通过动态判断来获得的。<br>实际上当我们定义一个一个如下的配置类：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class MyConfigWizard(models.TransientModel):</span><br><span class="line">     _name = &apos;my.settings&apos;</span><br><span class="line">     _inherit = &apos;res.config.settings&apos;</span><br><span class="line"> </span><br><span class="line">    default_foo = fields.type(..., default_model=&apos;my.model&apos;)</span><br><span class="line">    group_bar = fields.Boolean(..., group=&apos;base.group_user&apos;,implied_group=&apos;my.group&apos;)</span><br><span class="line">    module_baz = fields.Boolean(...)</span><br><span class="line">    config_qux = fields.Char(..., config_parameter=&apos;my.parameter&apos;)</span><br><span class="line">    other_field = fields.type(...)</span><br></pre></td></tr></table></figure>
+    <title>git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决</title>
+    <url>/2019/11/07/git_2/</url>
+    <content><![CDATA[<p>如图：<br><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7a5c238b4bb6e991.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>解决方案也是网上搜的，总结一下</p><p>一，加大缓存区</p><figure class="highlight plain"><figcaption><span>config --global http.postBuffer 524288000```</span></figcaption><table><tr><td class="code"><pre><span class="line">这个大约是500M</span><br><span class="line">二、少clone一些，–depth 1</span><br><span class="line">```git clone https://github.com/flutter/flutter.git --depth 1</span><br></pre></td></tr></table></figure><a id="more"></a>
 
-<p>可以看到配置类上的字段分以上5种类型, 也就是：</p>
-<p>名字以default_开头，系统会根据设置的值来设置全局的ir.default值<br>名字以group_开头，系统会根据设置的值来配置res.group值<br>名字以module_baz, 系统会根据设置，安装或卸载baz模块<br>字段定义中包含config_parameter属性，系统将设置的值记录到ir.config_parameter表中，其key为config_parameter的值（上例中为：my.parameter), value为本配置字段的值<br>其他字段，则需要继承set_value方法以设定存储的地点，而get_value中设置获取值的方法<br>当打开配置界面时系统会自动调用res.config.settings类的default_get方法，而该方法定义了如何获取这5类字段的设置值的方法。</p>
+
+<p>–depth 1的含义是复制深度为1，就是每个文件只取最近一次提交，不是整个历史版本。<br>三、换协议<br>clone http方式换成SSH的方式，即 https:// 改为 git://<br>例如<code>git clone https://github.com/flutter/flutter.git</code><br>换成<code>git clone git://github.com/flutter/flutter.git</code></p>
+<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git-- 出现 refusing to merge unrelated histories 错误</title>
+    <url>/2019/11/07/git_1/</url>
+    <content><![CDATA[<p>引用</p><p>git pull 失败 ,提示：<code>fatal: refusing to [merge](https://www.centos.bz/tag/merge/) unrelated histories</code></p><p>其实这个问题是因为 两个 根本不相干的 git 库， 一个是本地库， 一个是远端库， 然后本地要去推送到远端， 远端觉得这个本地库跟自己不相干， 所以告知无法合并</p><a id="more"></a>
+
+
+<p>具体的方法， 一个种方法： 是 从远端库拉下来代码 ， 本地要加入的代码放到远端库下载到本地的库， 然后提交上去 ， 因为这样的话， 你基于的库就是远端的库， 这是一次<a href="https://www.centos.bz/tag/update/" target="_blank" rel="noopener">update</a>了</p>
+<p>第二种方法：<br>使用这个强制的方法</p>
+<p><code>git pull origin [master](https://www.centos.bz/tag/master/) --allow-unrelated-histories</code></p>
+<p>后面加上 <code>--allow-unrelated-histories</code> ， 把两段不相干的 分支进行强行合并</p>
+<p>后面再push就可以了 <code>[git push](https://www.centos.bz/tag/git-push/) [gitlab](https://www.centos.bz/tag/gitlab/) master:init</code></p>
+<p>gitlab是别名 ， 使用</p>
+<p><code>git remote add gitlab ssh://xzh@192.168.1.91:50022/opt/gitrepo/withholdings/WithholdingTransaction</code></p>
+<p>master是本地的branch名字<br>init是远端要推送的branch名字</p>
+<p>本地必须要先add ，<a href="https://www.centos.bz/tag/commit/" target="_blank" rel="noopener">commit</a>完了 才能推上去</p>
+<p>关于这个问题，可以参考<a href="http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。" target="_blank" rel="noopener">http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。</a></p>
+<p>在进行git pull 时，添加一个可选项</p>
+<p><code>git pull origin master --allow-unrelated-histories</code></p>
+<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Odoo12-- 列表视图禁止打开表单内容</title>
+    <url>/2019/11/07/odoo12_5/</url>
+    <content><![CDATA[<p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p>
+<a id="more"></a>
+<p>1.找到相关的行点击入口，通过万能的context扩展一个独立的禁止打开参数，默认不禁止，视图里通过显式声明使用该功能：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var ListRenderer = require(&apos;web.ListRenderer&apos;);</span><br><span class="line">ListRenderer.include(&#123;</span><br><span class="line">    _onRowClicked: function (event) &#123;</span><br><span class="line">        var self = this;</span><br><span class="line">        var context = self.dataset.get_context().eval();</span><br><span class="line">        if(!context[&quot;disable_open&quot;])&#123;</span><br><span class="line">            self._super.apply(self, arguments);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;field name=&quot;sale_ids&quot; context=&quot;&#123;&apos;disable_open&apos;: True&#125;&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.禁止 鼠标的点击事件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;field name=&quot;sale_ids&quot; style=&quot;pointer-events: none;&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+
 <p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
 ]]></content>
       <categories>
@@ -165,34 +224,6 @@
 
 
 
-<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git-- 出现 refusing to merge unrelated histories 错误</title>
-    <url>/2019/11/07/git_1/</url>
-    <content><![CDATA[<p>引用</p><p>git pull 失败 ,提示：<code>fatal: refusing to [merge](https://www.centos.bz/tag/merge/) unrelated histories</code></p><p>其实这个问题是因为 两个 根本不相干的 git 库， 一个是本地库， 一个是远端库， 然后本地要去推送到远端， 远端觉得这个本地库跟自己不相干， 所以告知无法合并</p><a id="more"></a>
-
-
-<p>具体的方法， 一个种方法： 是 从远端库拉下来代码 ， 本地要加入的代码放到远端库下载到本地的库， 然后提交上去 ， 因为这样的话， 你基于的库就是远端的库， 这是一次<a href="https://www.centos.bz/tag/update/" target="_blank" rel="noopener">update</a>了</p>
-<p>第二种方法：<br>使用这个强制的方法</p>
-<p><code>git pull origin [master](https://www.centos.bz/tag/master/) --allow-unrelated-histories</code></p>
-<p>后面加上 <code>--allow-unrelated-histories</code> ， 把两段不相干的 分支进行强行合并</p>
-<p>后面再push就可以了 <code>[git push](https://www.centos.bz/tag/git-push/) [gitlab](https://www.centos.bz/tag/gitlab/) master:init</code></p>
-<p>gitlab是别名 ， 使用</p>
-<p><code>git remote add gitlab ssh://xzh@192.168.1.91:50022/opt/gitrepo/withholdings/WithholdingTransaction</code></p>
-<p>master是本地的branch名字<br>init是远端要推送的branch名字</p>
-<p>本地必须要先add ，<a href="https://www.centos.bz/tag/commit/" target="_blank" rel="noopener">commit</a>完了 才能推上去</p>
-<p>关于这个问题，可以参考<a href="http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。" target="_blank" rel="noopener">http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。</a></p>
-<p>在进行git pull 时，添加一个可选项</p>
-<p><code>git pull origin master --allow-unrelated-histories</code></p>
 <p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
 ]]></content>
       <categories>
@@ -314,29 +345,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Odoo12-- 自定义水滴状引导提示信息</title>
-    <url>/2019/11/07/odoo12_6/</url>
-    <content><![CDATA[<p><strong>如题，odoo本身自带水滴形状的提示。有时候二开的时候需要给某些按钮添加一个提示，则可以利用odoo的tooltips插件</strong><br><img alt="水滴形状提示.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-dfa69d7a825ad73d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<a id="more"></a>
-<p><strong>鼠标移动上去会有文字提示</strong></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-1c30d4414b500cd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7c19b939247e26e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-ebc8f9e7637c1aeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><strong>我们只需要定义一个tour.js文件就可以，在文件中，我们指定元素位置，绑定相关提示信息就可以。</strong><br>其中：<br><code>trigger</code>:要绑定的元素,<br><code>content</code>:  提示内容,<br><code>position</code>: 位置,<br><code>edition</code>:版本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">odoo.define(&apos;crm.tour&apos;, function(require) &#123;</span><br><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">var core = require(&apos;web.core&apos;);</span><br><span class="line">var tour = require(&apos;web_tour.tour&apos;);</span><br><span class="line"></span><br><span class="line">var _t = core._t;</span><br><span class="line"></span><br><span class="line">tour.register(&apos;crm_tour&apos;, &#123;</span><br><span class="line">    url: &quot;/web&quot;,</span><br><span class="line">&#125;, [tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app.&quot;),</span><br><span class="line">    position: &apos;right&apos;,</span><br><span class="line">    edition: &apos;community&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app.&quot;),</span><br><span class="line">    position: &apos;bottom&apos;,</span><br><span class="line">    edition: &apos;enterprise&apos;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o-kanban-button-new&quot;,</span><br><span class="line">    extra_trigger: &apos;.o_opportunity_kanban&apos;,</span><br><span class="line">    content: _t(&quot;Click here to &lt;b&gt;create your first opportunity&lt;/b&gt; and add it to your pipeline.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_quick_create input:first&quot;,</span><br><span class="line">    content: _t(&quot;&lt;b&gt;Choose a name&lt;/b&gt; for your opportunity, example: &lt;i&gt;&apos;Need a new website&apos;&lt;/i&gt;&quot;),</span><br><span class="line">    position: &quot;right&quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_quick_create .o_kanban_add&quot;,</span><br><span class="line">    content: _t(&quot;Click here to &lt;b&gt;add your opportunity&lt;/b&gt;.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_opportunity_kanban .o_kanban_group:first-child .o_kanban_record:last-child&quot;,</span><br><span class="line">    content: _t(&quot;&lt;b&gt;Drag &amp;amp; drop opportunities&lt;/b&gt; between columns as you progress in your sales cycle.&quot;),</span><br><span class="line">    position: &quot;right&quot;,</span><br><span class="line">    run: &quot;drag_and_drop .o_opportunity_kanban .o_kanban_group:eq(2) &quot;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_record:not(.o_updating) .o_activity_color_default&quot;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;This opportunity has &lt;b&gt;no activity planned&lt;/b&gt;.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_schedule_activity&quot;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;Let&apos;s schedule an activity.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.modal-body .o_field_many2one&apos;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;&lt;p&gt;You will be able to customize your followup activities. Examples:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;introductory email&lt;/li&gt;&lt;li&gt;call 10 days after&lt;/li&gt;&lt;li&gt;second call 3 days after, ...&lt;/li&gt;&lt;/ol&gt;&lt;p class=&apos;mb0&apos;&gt;&lt;i&gt;Select a standard activity for now.&lt;/i&gt;&lt;/p&gt;&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    run: function (actions) &#123;</span><br><span class="line">        actions.auto(&apos;.modal-footer button[special=cancel]&apos;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_kanban_record&quot;,</span><br><span class="line">    extra_trigger: &quot;.o_opportunity_kanban&quot;,</span><br><span class="line">    content: _t(&quot;Click on the opportunity to zoom in.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    run: function (actions) &#123;</span><br><span class="line">        actions.auto(&quot;.o_kanban_record .oe_kanban_action[data-type=edit]&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_opportunity_form .o_chatter_button_new_message&quot;,</span><br><span class="line">    content: _t(&apos;&lt;p&gt;&lt;b&gt;Send messages&lt;/b&gt; to your prospect and get replies automatically attached to this opportunity.&lt;/p&gt;&lt;p class=&quot;mb0&quot;&gt;Type &lt;i&gt;\&apos;@\&apos;&lt;/i&gt; to mention people - it\&apos;s like cc-ing on emails.&lt;/p&gt;&apos;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.breadcrumb-item:not(.active):last&quot;,</span><br><span class="line">    extra_trigger: &apos;.o_opportunity_form&apos;,</span><br><span class="line">    content: _t(&quot;Use the breadcrumbs to &lt;b&gt;go back to your sales pipeline&lt;/b&gt;.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;</span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;base.menu_administration&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Configuration options are available in the Settings app.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    edition: &apos;community&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;base.menu_administration&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Configuration options are available in the Settings app.&quot;),</span><br><span class="line">    position: &quot;bottom&quot;,</span><br><span class="line">    edition: &apos;enterprise&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &quot;.o_web_settings_dashboard .o_user_emails&quot;,</span><br><span class="line">    content: _t(&quot;&lt;b&gt;Invite coworkers&lt;/b&gt; via email.&lt;br/&gt;&lt;i&gt;Enter one email per line.&lt;/i&gt;&quot;),</span><br><span class="line">    position: &quot;right&quot;</span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Good job! You completed the tour of the CRM app.&quot;),</span><br><span class="line">    position: &apos;right&apos;,</span><br><span class="line">    edition: &apos;community&apos;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: &apos;.o_app[data-menu-xmlid=&quot;crm.crm_menu_root&quot;]&apos;,</span><br><span class="line">    content: _t(&quot;Good job! You completed the tour of the CRM app.&quot;),</span><br><span class="line">    position: &apos;bottom&apos;,</span><br><span class="line">    edition: &apos;enterprise&apos;</span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>Odoo</category>
-      </categories>
-      <tags>
-        <tag>Odoo12</tag>
       </tags>
   </entry>
   <entry>
