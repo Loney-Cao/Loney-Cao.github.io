@@ -68,23 +68,20 @@
   };
 </script>
 
-  <meta name="description" content="如题，odoo本身自带水滴形状的提示。有时候二开的时候需要给某些按钮添加一个提示，则可以利用odoo的tooltips插件">
-<meta name="keywords" content="Odoo12">
+  <meta name="description" content="如题： Odoo13 新增了许多特性，如动态显示隐藏列，多行编辑。">
+<meta name="keywords" content="Odoo13">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Odoo12-- 自定义水滴状引导提示信息">
-<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;odoo12_6&#x2F;index.html">
+<meta property="og:title" content="Odoo13-- 控制tree视图动态显示隐藏列以及多行编辑的方式">
+<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;11&#x2F;18&#x2F;odoo13_1&#x2F;index.html">
 <meta property="og:site_name" content="LoneyCao">
-<meta property="og:description" content="如题，odoo本身自带水滴形状的提示。有时候二开的时候需要给某些按钮添加一个提示，则可以利用odoo的tooltips插件">
+<meta property="og:description" content="如题： Odoo13 新增了许多特性，如动态显示隐藏列，多行编辑。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-dfa69d7a825ad73d.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-1c30d4414b500cd5.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-7c19b939247e26e6.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-ebc8f9e7637c1aeb.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
-<meta property="og:updated_time" content="2019-11-18T16:02:01.381Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hc21fedad81d343ef8d5eee440e5a28cbT.jpg">
+<meta property="og:updated_time" content="2019-11-18T15:54:48.721Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-dfa69d7a825ad73d.png?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;1240">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hc21fedad81d343ef8d5eee440e5a28cbT.jpg">
 
-<link rel="canonical" href="http://loney-cao.github.io/2019/11/07/odoo12_6/">
+<link rel="canonical" href="http://loney-cao.github.io/2019/11/18/odoo13_1/">
 
 
 <script id="page-configurations">
@@ -98,7 +95,7 @@
   };
 </script>
 
-  <title>Odoo12-- 自定义水滴状引导提示信息 | LoneyCao</title>
+  <title>Odoo13-- 控制tree视图动态显示隐藏列以及多行编辑的方式 | LoneyCao</title>
   
 
 
@@ -250,7 +247,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_6/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/18/odoo13_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -263,7 +260,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          Odoo12-- 自定义水滴状引导提示信息
+          Odoo13-- 控制tree视图动态显示隐藏列以及多行编辑的方式
         </h2>
 
         <div class="post-meta">
@@ -277,16 +274,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
+              <time title="创建时间：2019-11-18 17:28:12 / 修改时间：23:54:48" itemprop="dateCreated datePublished" datetime="2019-11-18T17:28:12+08:00">2019-11-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-19 00:02:01" itemprop="dateModified" datetime="2019-11-19T00:02:01+08:00">2019-11-19</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -306,7 +297,7 @@
             </span>
 
           
-            <span id="/2019/11/07/odoo12_6/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 自定义水滴状引导提示信息" title="阅读次数">
+            <span id="/2019/11/18/odoo13_1/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- 控制tree视图动态显示隐藏列以及多行编辑的方式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -321,8 +312,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/odoo12_6/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_6/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/18/odoo13_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/odoo13_1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -337,14 +328,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>如题，odoo本身自带水滴形状的提示。有时候二开的时候需要给某些按钮添加一个提示，则可以利用odoo的tooltips插件</strong><br><img alt="水滴形状提示.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-dfa69d7a825ad73d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+        <p>如题： Odoo13 新增了许多特性，如动态显示隐藏列，多行编辑。</p>
 <a id="more"></a>
-<p><strong>鼠标移动上去会有文字提示</strong></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-1c30d4414b500cd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7c19b939247e26e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-ebc8f9e7637c1aeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><strong>我们只需要定义一个tour.js文件就可以，在文件中，我们指定元素位置，绑定相关提示信息就可以。</strong><br>其中：<br><code>trigger</code>:要绑定的元素,<br><code>content</code>:  提示内容,<br><code>position</code>: 位置,<br><code>edition</code>:版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">odoo.define(<span class="string">'crm.tour'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> core = <span class="built_in">require</span>(<span class="string">'web.core'</span>);</span><br><span class="line"><span class="keyword">var</span> tour = <span class="built_in">require</span>(<span class="string">'web_tour.tour'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _t = core._t;</span><br><span class="line"></span><br><span class="line">tour.register(<span class="string">'crm_tour'</span>, &#123;</span><br><span class="line">    url: <span class="string">"/web"</span>,</span><br><span class="line">&#125;, [tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app."</span>),</span><br><span class="line">    position: <span class="string">'right'</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app."</span>),</span><br><span class="line">    position: <span class="string">'bottom'</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o-kanban-button-new"</span>,</span><br><span class="line">    extra_trigger: <span class="string">'.o_opportunity_kanban'</span>,</span><br><span class="line">    content: _t(<span class="string">"Click here to &lt;b&gt;create your first opportunity&lt;/b&gt; and add it to your pipeline."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_quick_create input:first"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Choose a name&lt;/b&gt; for your opportunity, example: &lt;i&gt;'Need a new website'&lt;/i&gt;"</span>),</span><br><span class="line">    position: <span class="string">"right"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_quick_create .o_kanban_add"</span>,</span><br><span class="line">    content: _t(<span class="string">"Click here to &lt;b&gt;add your opportunity&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_opportunity_kanban .o_kanban_group:first-child .o_kanban_record:last-child"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Drag &amp;amp; drop opportunities&lt;/b&gt; between columns as you progress in your sales cycle."</span>),</span><br><span class="line">    position: <span class="string">"right"</span>,</span><br><span class="line">    run: <span class="string">"drag_and_drop .o_opportunity_kanban .o_kanban_group:eq(2) "</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_record:not(.o_updating) .o_activity_color_default"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"This opportunity has &lt;b&gt;no activity planned&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_schedule_activity"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"Let's schedule an activity."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.modal-body .o_field_many2one'</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;p&gt;You will be able to customize your followup activities. Examples:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;introductory email&lt;/li&gt;&lt;li&gt;call 10 days after&lt;/li&gt;&lt;li&gt;second call 3 days after, ...&lt;/li&gt;&lt;/ol&gt;&lt;p class='mb0'&gt;&lt;i&gt;Select a standard activity for now.&lt;/i&gt;&lt;/p&gt;"</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params">actions</span>) </span>&#123;</span><br><span class="line">        actions.auto(<span class="string">'.modal-footer button[special=cancel]'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_record"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"Click on the opportunity to zoom in."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params">actions</span>) </span>&#123;</span><br><span class="line">        actions.auto(<span class="string">".o_kanban_record .oe_kanban_action[data-type=edit]"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_opportunity_form .o_chatter_button_new_message"</span>,</span><br><span class="line">    content: _t(<span class="string">'&lt;p&gt;&lt;b&gt;Send messages&lt;/b&gt; to your prospect and get replies automatically attached to this opportunity.&lt;/p&gt;&lt;p class="mb0"&gt;Type &lt;i&gt;\'@\'&lt;/i&gt; to mention people - it\'s like cc-ing on emails.&lt;/p&gt;'</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".breadcrumb-item:not(.active):last"</span>,</span><br><span class="line">    extra_trigger: <span class="string">'.o_opportunity_form'</span>,</span><br><span class="line">    content: _t(<span class="string">"Use the breadcrumbs to &lt;b&gt;go back to your sales pipeline&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="base.menu_administration"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Configuration options are available in the Settings app."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="base.menu_administration"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Configuration options are available in the Settings app."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_web_settings_dashboard .o_user_emails"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Invite coworkers&lt;/b&gt; via email.&lt;br/&gt;&lt;i&gt;Enter one email per line.&lt;/i&gt;"</span>),</span><br><span class="line">    position: <span class="string">"right"</span></span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Good job! You completed the tour of the CRM app."</span>),</span><br><span class="line">    position: <span class="string">'right'</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Good job! You completed the tour of the CRM app."</span>),</span><br><span class="line">    position: <span class="string">'bottom'</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span></span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>动态显示列，只需要在<code>tree</code>视图中定义字段时候，加上 optional 参数即可</p>
+<p>多行编辑，只需要在<code>tree</code>视图定义 multi_edit=”1”</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"view_repair_order_tree"</span> <span class="attr">model</span>=<span class="string">"ir.ui.view"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>repair.tree<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model"</span>&gt;</span>repair.order<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"arch"</span> <span class="attr">type</span>=<span class="string">"xml"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tree</span> <span class="attr">string</span>=<span class="string">"Repairs order"</span> <span class="attr">multi_edit</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">decoration-muted</span>=<span class="string">"state in ('done','cancel')"</span> <span class="attr">decoration-info</span>=<span class="string">"state=='draft'"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"product_id"</span> <span class="attr">readonly</span>=<span class="string">"1"</span> <span class="attr">optional</span>=<span class="string">"show"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"product_qty"</span> <span class="attr">optional</span>=<span class="string">"hide"</span> <span class="attr">string</span>=<span class="string">"Quantity"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"product_uom"</span> <span class="attr">string</span>=<span class="string">"Unit of Measure"</span> <span class="attr">readonly</span>=<span class="string">"1"</span> <span class="attr">optional</span>=<span class="string">"hide"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"user_id"</span> <span class="attr">optional</span>=<span class="string">"hide"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"partner_id"</span> <span class="attr">readonly</span>=<span class="string">"1"</span> <span class="attr">optional</span>=<span class="string">"show"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"address_id"</span> <span class="attr">optional</span>=<span class="string">"show"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"guarantee_limit"</span> <span class="attr">optional</span>=<span class="string">"show"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"location_id"</span> <span class="attr">optional</span>=<span class="string">"hide"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"company_id"</span> <span class="attr">groups</span>=<span class="string">"base.group_multi_company"</span> <span class="attr">readonly</span>=<span class="string">"1"</span> <span class="attr">optional</span>=<span class="string">"show"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"state"</span> <span class="attr">optional</span>=<span class="string">"show"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"activity_exception_decoration"</span> <span class="attr">widget</span>=<span class="string">"activity_exception"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tree</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img alt data-src="https://ae01.alicdn.com/kf/Hc21fedad81d343ef8d5eee440e5a28cbT.jpg"></p>
 
     </div>
 
@@ -387,7 +377,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://loney-cao.github.io/2019/11/07/odoo12_6/" title="Odoo12-- 自定义水滴状引导提示信息">http://loney-cao.github.io/2019/11/07/odoo12_6/</a>
+    <a href="http://loney-cao.github.io/2019/11/18/odoo13_1/" title="Odoo13-- 控制tree视图动态显示隐藏列以及多行编辑的方式">http://loney-cao.github.io/2019/11/18/odoo13_1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -397,24 +387,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Odoo12/" rel="tag"># Odoo12</a>
+              <a href="/tags/Odoo13/" rel="tag"># Odoo13</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/07/odoo12_3/" rel="next" title="Odoo12-- 关于配置模型中的数据问题">
-                  <i class="fa fa-chevron-left"></i> Odoo12-- 关于配置模型中的数据问题
+                <a href="/2019/11/18/python_1/" rel="next" title="Python-- 输出样式详解">
+                  <i class="fa fa-chevron-left"></i> Python-- 输出样式详解
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/12/picture_girl_1/" rel="prev" title="性感美女图（滑板）">
-                  性感美女图（滑板） <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>

@@ -1267,7 +1267,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #1abbbf;
+  background: #8353ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1619,7 +1619,7 @@ pre .javascript .function {
   border-bottom: 1px solid #fc6423;
 }
 body {
-  background: url("https://source.unsplash.com/random/1600x900");
+  background: url("https://pic1.superbed.cn/item/5dd2c9758e0e2e3ee9ec4ea5.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;

@@ -76,10 +76,8 @@
 <meta property="og:site_name" content="LoneyCao">
 <meta property="og:description" content="前言Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；作为实时监控信号处理也非常不错。 环境Ubuntu 16.04 安装Redis服务器端1~ sudo apt-get install redis-server  安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-650264f2ce09f4f5.gif?imageMogr2&#x2F;auto-orient&#x2F;strip">
-<meta property="og:updated_time" content="2019-11-13T01:48:56.097Z">
+<meta property="og:updated_time" content="2019-11-18T16:06:11.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;8791854-650264f2ce09f4f5.gif?imageMogr2&#x2F;auto-orient&#x2F;strip">
 
 <link rel="canonical" href="http://loney-cao.github.io/2019/11/07/ubuntu_2/">
 
@@ -174,7 +172,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">6</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-pictures">
@@ -190,6 +188,11 @@
         <li class="menu-item menu-item-farmercodethings">
 
     <a href="/categories/FarmerCodeThings/" rel="section"><i class="fa fa-fw fa-code"></i>程序员那些事儿</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -273,7 +276,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-13 09:48:56" itemprop="dateModified" datetime="2019-11-13T09:48:56+08:00">2019-11-13</time>
+                <time title="修改时间：2019-11-19 00:06:11" itemprop="dateModified" datetime="2019-11-19T00:06:11+08:00">2019-11-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -327,69 +330,75 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；作为实时监控信号处理也非常不错。</p>
 <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>Ubuntu 16.04</p>
-<h1 id="安装Redis服务器端"><a href="#安装Redis服务器端" class="headerlink" title="安装Redis服务器端"></a>安装Redis服务器端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
+<h1 id="安装Redis服务器端"><a href="#安装Redis服务器端" class="headerlink" title="安装Redis服务器端"></a>安装Redis服务器端</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
 
 <p>安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序</p>
 <a id="more"></a>
 
-<h2 id="检查Redis服务器系统进程"><a href="#检查Redis服务器系统进程" class="headerlink" title="检查Redis服务器系统进程"></a>检查Redis服务器系统进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ ps -aux|grep redis</span><br><span class="line">redis 4162  0.1  0.0  10676  1420 ?        Ss   23:24   0:00 /usr/bin/redis-server /etc/redis/redis.conf</span><br><span class="line">conan 4172  0.0  0.0  11064   924 pts/0    S+   23:26   0:00 grep --color=auto redis</span><br></pre></td></tr></table></figure>
+<h2 id="检查Redis服务器系统进程"><a href="#检查Redis服务器系统进程" class="headerlink" title="检查Redis服务器系统进程"></a>检查Redis服务器系统进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ ps -aux|grep redis</span><br><span class="line">redis 4162  0.1  0.0  10676  1420 ?        Ss   23:24   0:00 /usr/bin/redis-server /etc/redis/redis.conf</span><br><span class="line">conan 4172  0.0  0.0  11064   924 pts/0    S+   23:26   0:00 grep --color=auto redis</span><br></pre></td></tr></table></figure>
 
-<h2 id="通过启动命令检查Redis服务器状态"><a href="#通过启动命令检查Redis服务器状态" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ netstat -nlt|grep 6379 tcp 0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN</span><br></pre></td></tr></table></figure>
+<h2 id="通过启动命令检查Redis服务器状态"><a href="#通过启动命令检查Redis服务器状态" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ netstat -nlt|grep 6379 tcp 0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN</span><br></pre></td></tr></table></figure>
 
-<h2 id="通过启动命令检查Redis服务器状态-1"><a href="#通过启动命令检查Redis服务器状态-1" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo /etc/init.d/redis-server status</span><br><span class="line">● redis-server.service - Advanced key-value store</span><br><span class="line">   Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since 四 2017-11-09 12:22:09 CST; 59s ago</span><br><span class="line">     Docs: http://redis.io/documentation,</span><br><span class="line">           man:redis-server(1)</span><br><span class="line"> Main PID: 5394 (redis-server)</span><br><span class="line">   CGroup: /system.slice/redis-server.service</span><br><span class="line">           └─5394 /usr/bin/redis-server 127.0.0.1:6379 11月 09 12:22:09 zzf systemd[1]: Starting Advanced key-value store...</span><br><span class="line">11月 09 12:22:09 zzf run-parts[5388]: run-parts: executing /etc/redis/redi...le</span><br><span class="line">11月 09 12:22:09 zzf run-parts[5395]: run-parts: executing /etc/redis/redi...le</span><br><span class="line">11月 09 12:22:09 zzf systemd[1]: Started Advanced key-value store.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show in full.</span><br></pre></td></tr></table></figure>
+<h2 id="通过启动命令检查Redis服务器状态-1"><a href="#通过启动命令检查Redis服务器状态-1" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~$ sudo /etc/init.d/redis-server status</span><br><span class="line">● redis-server.service - Advanced key-value store</span><br><span class="line">   Loaded: loaded (/lib/systemd/system/redis-server.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since 四 2017-11-09 12:22:09 CST; 59s ago</span><br><span class="line">     Docs: http://redis.io/documentation,</span><br><span class="line">           man:redis-server(1)</span><br><span class="line"> Main PID: 5394 (redis-server)</span><br><span class="line">   CGroup: /system.slice/redis-server.service</span><br><span class="line">           └─5394 /usr/bin/redis-server 127.0.0.1:6379 11月 09 12:22:09 zzf systemd[1]: Starting Advanced key-value store...</span><br><span class="line">11月 09 12:22:09 zzf run-parts[5388]: run-parts: executing /etc/redis/redi...le</span><br><span class="line">11月 09 12:22:09 zzf run-parts[5395]: run-parts: executing /etc/redis/redi...le</span><br><span class="line">11月 09 12:22:09 zzf systemd[1]: Started Advanced key-value store.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br></pre></td></tr></table></figure>
 
 <h1 id="通过命令行客户端访问Redis"><a href="#通过命令行客户端访问Redis" class="headerlink" title="通过命令行客户端访问Redis"></a>通过命令行客户端访问Redis</h1><p>安装Redis服务器，会自动地一起安装Redis命令行客户端程序。</p>
 <p>在本机输入redis-cli命令就可以启动，客户端程序访问Redis服务器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="命令行的帮助"><a href="#命令行的帮助" class="headerlink" title="命令行的帮助"></a>命令行的帮助</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; help</span><br><span class="line">redis-cli 2.2.12 Type: &quot;help @&quot; to get a list of commands in </span><br><span class="line">      &quot;help &quot; for help on &quot;help &quot; to get a list of possible help topics &quot;quit&quot; to exit</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli</span><br><span class="line">redis 127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="命令行的帮助"><a href="#命令行的帮助" class="headerlink" title="命令行的帮助"></a>命令行的帮助</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; <span class="built_in">help</span></span><br><span class="line">redis-cli 2.2.12 Type: <span class="string">"help @"</span> to get a list of commands <span class="keyword">in</span> </span><br><span class="line">      <span class="string">"help "</span> <span class="keyword">for</span> <span class="built_in">help</span> on <span class="string">"help "</span> to get a list of possible <span class="built_in">help</span> topics <span class="string">"quit"</span> to <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="查看所有的key列表"><a href="#查看所有的key列表" class="headerlink" title="查看所有的key列表"></a>查看所有的key列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; keys * (empty list or set)&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="查看所有的key列表"><a href="#查看所有的key列表" class="headerlink" title="查看所有的key列表"></a>查看所有的key列表</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; keys * (empty list or <span class="built_in">set</span>)&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
 
 <h1 id="基本的Redis客户端命令操作"><a href="#基本的Redis客户端命令操作" class="headerlink" title="基本的Redis客户端命令操作"></a>基本的Redis客户端命令操作</h1><p><strong>增加一条记录key1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; set key1 &quot;hello&quot; OK</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; <span class="built_in">set</span> key1 <span class="string">"hello"</span> OK</span><br></pre></td></tr></table></figure>
 
-<h1 id="打印记录"><a href="#打印记录" class="headerlink" title="打印记录"></a>打印记录</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; get key1 &quot;hello&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="打印记录"><a href="#打印记录" class="headerlink" title="打印记录"></a>打印记录</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; get key1 <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>增加一条数字记录</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;set key2 1 OK</span><br></pre></td></tr></table></figure>
-<h1 id="让数字自增"><a href="#让数字自增" class="headerlink" title="让数字自增"></a>让数字自增</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; INCR key2</span><br><span class="line">(integer) 2 redis 127.0.0.1:6379&gt; INCR key2</span><br><span class="line">(integer) 3 # 打印记录</span><br><span class="line">redis 127.0.0.1:6379&gt; get key2 &quot;3&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="built_in">set</span> key2 1 OK</span><br></pre></td></tr></table></figure>
+
+<h1 id="让数字自增"><a href="#让数字自增" class="headerlink" title="让数字自增"></a>让数字自增</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; INCR key2</span><br><span class="line">(<span class="built_in">integer</span>) 2 redis 127.0.0.1:6379&gt; INCR key2</span><br><span class="line">(<span class="built_in">integer</span>) 3 <span class="comment"># 打印记录</span></span><br><span class="line">redis 127.0.0.1:6379&gt; get key2 <span class="string">"3"</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>增加一个列表记录key3</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; LPUSH key3 a</span><br><span class="line">(integer) 1 # 从左边插入列表</span><br><span class="line">redis 127.0.0.1:6379&gt; LPUSH key3 b</span><br><span class="line">(integer) 2 # 从右边插入列表</span><br><span class="line">redis 127.0.0.1:6379&gt; RPUSH key3 c</span><br><span class="line">(integer) 3 # 打印列表记录，按从左到右的顺序</span><br><span class="line">redis 127.0.0.1:6379&gt; LRANGE key3 0 3</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;c&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; LPUSH key3 a</span><br><span class="line">(<span class="built_in">integer</span>) 1 <span class="comment"># 从左边插入列表</span></span><br><span class="line">redis 127.0.0.1:6379&gt; LPUSH key3 b</span><br><span class="line">(<span class="built_in">integer</span>) 2 <span class="comment"># 从右边插入列表</span></span><br><span class="line">redis 127.0.0.1:6379&gt; RPUSH key3 c</span><br><span class="line">(<span class="built_in">integer</span>) 3 <span class="comment"># 打印列表记录，按从左到右的顺序</span></span><br><span class="line">redis 127.0.0.1:6379&gt; LRANGE key3 0 3</span><br><span class="line">1) <span class="string">"b"</span></span><br><span class="line">2) <span class="string">"a"</span></span><br><span class="line">3) <span class="string">"c"</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>增加一个哈希记表录key4</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET key4 name &quot;John Smith&quot; (integer) 1 # 在哈希表中插入，email的Key和Value的值</span><br><span class="line">redis 127.0.0.1:6379&gt; HSET key4 email &quot;abc@gmail.com&quot; (integer) 1 # 打印哈希表中，name为key的值</span><br><span class="line">redis 127.0.0.1:6379&gt; HGET key4 name &quot;John Smith&quot; # 打印整个哈希表</span><br><span class="line">redis 127.0.0.1:6379&gt; HGETALL key4 1) &quot;name&quot;</span><br><span class="line">2) &quot;John Smith&quot;</span><br><span class="line">3) &quot;email&quot;</span><br><span class="line">4) &quot;abc@gmail.com&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HSET key4 name <span class="string">"John Smith"</span> (<span class="built_in">integer</span>) 1 <span class="comment"># 在哈希表中插入，email的Key和Value的值</span></span><br><span class="line">redis 127.0.0.1:6379&gt; HSET key4 email <span class="string">"abc@gmail.com"</span> (<span class="built_in">integer</span>) 1 <span class="comment"># 打印哈希表中，name为key的值</span></span><br><span class="line">redis 127.0.0.1:6379&gt; HGET key4 name <span class="string">"John Smith"</span> <span class="comment"># 打印整个哈希表</span></span><br><span class="line">redis 127.0.0.1:6379&gt; HGETALL key4 1) <span class="string">"name"</span></span><br><span class="line">2) <span class="string">"John Smith"</span></span><br><span class="line">3) <span class="string">"email"</span></span><br><span class="line">4) <span class="string">"abc@gmail.com"</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>增加一条哈希表记录key5</strong></p>
-<h1 id="增加一条哈希表记录key5，一次插入多个Key和value的值"><a href="#增加一条哈希表记录key5，一次插入多个Key和value的值" class="headerlink" title="增加一条哈希表记录key5，一次插入多个Key和value的值"></a>增加一条哈希表记录key5，一次插入多个Key和value的值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HMSET key5 username antirez password P1pp0 age 3 OK</span><br></pre></td></tr></table></figure>
-<h1 id="打印哈希表中，username和age为key的值"><a href="#打印哈希表中，username和age为key的值" class="headerlink" title="打印哈希表中，username和age为key的值"></a>打印哈希表中，username和age为key的值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HMGET key5 username age 1) &quot;antirez&quot;</span><br><span class="line">2) &quot;3&quot; # 打印完整的哈希表记录</span><br><span class="line">redis 127.0.0.1:6379&gt; HGETALL key5 1) &quot;username&quot;</span><br><span class="line">2) &quot;antirez&quot;</span><br><span class="line">3) &quot;password&quot;</span><br><span class="line">4) &quot;P1pp0&quot;</span><br><span class="line">5) &quot;age&quot;</span><br><span class="line">6) &quot;3&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="增加一条哈希表记录key5，一次插入多个Key和value的值"><a href="#增加一条哈希表记录key5，一次插入多个Key和value的值" class="headerlink" title="增加一条哈希表记录key5，一次插入多个Key和value的值"></a>增加一条哈希表记录key5，一次插入多个Key和value的值</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HMSET key5 username antirez password P1pp0 age 3 OK</span><br></pre></td></tr></table></figure>
+
+<h1 id="打印哈希表中，username和age为key的值"><a href="#打印哈希表中，username和age为key的值" class="headerlink" title="打印哈希表中，username和age为key的值"></a>打印哈希表中，username和age为key的值</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; HMGET key5 username age 1) <span class="string">"antirez"</span></span><br><span class="line">2) <span class="string">"3"</span> <span class="comment"># 打印完整的哈希表记录</span></span><br><span class="line">redis 127.0.0.1:6379&gt; HGETALL key5 1) <span class="string">"username"</span></span><br><span class="line">2) <span class="string">"antirez"</span></span><br><span class="line">3) <span class="string">"password"</span></span><br><span class="line">4) <span class="string">"P1pp0"</span></span><br><span class="line">5) <span class="string">"age"</span></span><br><span class="line">6) <span class="string">"3"</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>删除记录</strong></p>
-<h1 id="查看所有的key列表-1"><a href="#查看所有的key列表-1" class="headerlink" title="查看所有的key列表"></a>查看所有的key列表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;</span><br><span class="line">4) &quot;key5&quot;</span><br><span class="line">5) &quot;key1&quot; </span><br><span class="line"># 删除key1,key5</span><br><span class="line">redis 127.0.0.1:6379&gt; del key1</span><br><span class="line">(integer) 1 redis 127.0.0.1:6379&gt; del key5</span><br><span class="line">(integer) 1 # 查看所有的key列表</span><br><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="查看所有的key列表-1"><a href="#查看所有的key列表-1" class="headerlink" title="查看所有的key列表"></a>查看所有的key列表</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">"key2"</span></span><br><span class="line">2) <span class="string">"key3"</span></span><br><span class="line">3) <span class="string">"key4"</span></span><br><span class="line">4) <span class="string">"key5"</span></span><br><span class="line">5) <span class="string">"key1"</span> </span><br><span class="line"><span class="comment"># 删除key1,key5</span></span><br><span class="line">redis 127.0.0.1:6379&gt; del key1</span><br><span class="line">(<span class="built_in">integer</span>) 1 redis 127.0.0.1:6379&gt; del key5</span><br><span class="line">(<span class="built_in">integer</span>) 1 <span class="comment"># 查看所有的key列表</span></span><br><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">"key2"</span></span><br><span class="line">2) <span class="string">"key3"</span></span><br><span class="line">3) <span class="string">"key4"</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="修改Redis的配置"><a href="#修改Redis的配置" class="headerlink" title="修改Redis的配置"></a>修改Redis的配置</h1><h2 id="使用Redis的访问账号"><a href="#使用Redis的访问账号" class="headerlink" title="使用Redis的访问账号"></a>使用Redis的访问账号</h2><p>默认情况下，访问Redis服务器是不需要密码的，为了增加安全性我们需要设置Redis服务器的访问密码。设置访问密码为redisredis。</p>
 <p>用vi打开Redis服务器的配置文件redis.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo vi /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
-<p>#取消注释requirepass</p>
-<figure class="highlight plain"><figcaption><span>redisredis```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 让Redis服务器被远程访问</span><br><span class="line"></span><br><span class="line">默认情况下，Redis服务器不允许远程访问，只允许本机访问，所以我们需要设置打开远程访问的功能。</span><br><span class="line"></span><br><span class="line">用vi打开Redis服务器的配置文件redis.conf</span><br></pre></td></tr></table></figure>
-<p>~ sudo vi /etc/redis/redis.conf</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#注释bind</span><br><span class="line">```#bind 127.0.0.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo vi /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
 
-<p>修改后，重启Redis服务器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ sudo /etc/init.d/redis-server restart</span><br><span class="line">Stopping redis-server: redis-server.</span><br><span class="line">Starting redis-server: redis-server.</span><br></pre></td></tr></table></figure>
+<p>#取消注释requirepass</p>
+<figure class="highlight plain"><figcaption><span>redisredis```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 让Redis服务器被远程访问</span><br><span class="line"></span><br><span class="line">默认情况下，Redis服务器不允许远程访问，只允许本机访问，所以我们需要设置打开远程访问的功能。</span><br><span class="line"></span><br><span class="line">用vi打开Redis服务器的配置文件redis.conf</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">~ sudo vi /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>#注释bind</p>
+<figure class="highlight plain"><figcaption><span>127.0.0.1```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">修改后，重启Redis服务器。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">~ sudo /etc/init.d/redis-server restart</span><br><span class="line">Stopping redis-server: redis-server.</span><br><span class="line">Starting redis-server: redis-server.</span><br></pre></td></tr></table></figure>
+
 <p>未使用密码登陆Redis服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; keys * (error) ERR operation not permitted</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; keys * (error) ERR operation not permitted</span><br></pre></td></tr></table></figure>
+
 <p>发现可以登陆，但无法执行命令了。</p>
 <p>登陆Redis服务器，输入密码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~  redis-cli -a redisredis</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~  redis-cli -a redisredis</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">"key2"</span></span><br><span class="line">2) <span class="string">"key3"</span></span><br><span class="line">3) <span class="string">"key4"</span>&lt;/pre&gt;</span><br></pre></td></tr></table></figure>
+
 <p>登陆后，一切正常。</p>
 <p>我们检查Redis的网络监听端口</p>
 <p>检查Redis服务器占用端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ netstat -nlt|grep 6379 tcp 0      0 0.0.0.0:6379            0.0.0.0:*               LISTEN</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ netstat -nlt|grep 6379 tcp 0      0 0.0.0.0:6379            0.0.0.0:*               LISTEN</span><br></pre></td></tr></table></figure>
+
 <p>我们看到网络监听从之前的 127.0.0.1:3306 变成 0 0.0.0.0:3306，表示Redis已经允许远程登陆访问。</p>
 <p>我们在远程的另一台Linux访问Redis服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli -a redisredis -h 192.168.1.199 redis 192.168.1.199:6379&gt; keys *</span><br><span class="line">1) &quot;key2&quot;</span><br><span class="line">2) &quot;key3&quot;</span><br><span class="line">3) &quot;key4&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~ redis-cli -a redisredis -h 192.168.1.199 redis 192.168.1.199:6379&gt; keys *</span><br><span class="line">1) <span class="string">"key2"</span></span><br><span class="line">2) <span class="string">"key3"</span></span><br><span class="line">3) <span class="string">"key4"</span></span><br></pre></td></tr></table></figure>
+
 <p>远程访问正常。通过上面的操作，我们就把Redis数据库服务器，在Linux Ubuntu中的系统安装完成。</p>
-<p>====================================================================================================================<br><img alt data-src="https://upload-images.jianshu.io/upload_images/8791854-650264f2ce09f4f5.gif?imageMogr2/auto-orient/strip"></p>
 
     </div>
 
@@ -458,8 +467,8 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/07/git_2/" rel="prev" title="git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决">
-                  git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/11/07/jinja2_1/" rel="prev" title="jinja2-- jinja2模板过滤器">
+                  jinja2-- jinja2模板过滤器 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -515,7 +524,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -527,7 +536,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -536,6 +545,14 @@
     <a href="/atom.xml" rel="alternate">
       <i class="fa fa-rss"></i>RSS
     </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Loney-Cao" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;Loney-Cao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/dd4c87138bc0" title="简书 &amp;rarr; https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;dd4c87138bc0" rel="noopener" target="_blank"><i class="fa fa-fw fa-jianshu"></i>简书</a>
+      </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
