@@ -68,44 +68,20 @@
   };
 </script>
 
-  <meta name="description" content="这是我毕业后的第一份工作…面试时，HR小姐姐告诉我…  然鹅…我入职之后才发现：对标阿里的只有加班强度对标华为的只有狼性文化对标百度的，额，没有对标百度  同事们有的住在海淀区、有的住在朝阳区，作为刚毕业的一枚“穷”学生，我只能住在郊区，一小时的地铁，清晰的“分割”了生活和工作  双休是有的，但也就是换个地方加班…">
-<meta name="keywords" content="Funny">
+  <meta name="description" content="Odoo 的弹窗使用的是Dialog，无论是异常还是警告还是向导，都是一个Dialog对话框。有时候，我们只想给用户一个提示。除了在点击按钮在xml中定义一个confirm提示信息外， 在代码中基本就是使用向导的方式来解决了，这无疑是个麻烦事。上一篇中，我们介绍了如何使用延时提醒的方式。那本篇就扒一扒如何自定义一个Dialog。各位看官，就请关上门，拉上窗，听我细细分说。">
+<meta name="keywords" content="Odoo13">
 <meta property="og:type" content="article">
-<meta property="og:title" content="揭秘 | 程序员突然离职，真相令人扎心！">
-<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;11&#x2F;23&#x2F;farmercodethings_3&#x2F;index.html">
+<meta property="og:title" content="Odoo13-- 弹窗--自定义弹窗">
+<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;11&#x2F;28&#x2F;odoo13_5&#x2F;index.html">
 <meta property="og:site_name" content="LoneyCao">
-<meta property="og:description" content="这是我毕业后的第一份工作…面试时，HR小姐姐告诉我…  然鹅…我入职之后才发现：对标阿里的只有加班强度对标华为的只有狼性文化对标百度的，额，没有对标百度  同事们有的住在海淀区、有的住在朝阳区，作为刚毕业的一枚“穷”学生，我只能住在郊区，一小时的地铁，清晰的“分割”了生活和工作  双休是有的，但也就是换个地方加班…">
+<meta property="og:description" content="Odoo 的弹窗使用的是Dialog，无论是异常还是警告还是向导，都是一个Dialog对话框。有时候，我们只想给用户一个提示。除了在点击按钮在xml中定义一个confirm提示信息外， 在代码中基本就是使用向导的方式来解决了，这无疑是个麻烦事。上一篇中，我们介绍了如何使用延时提醒的方式。那本篇就扒一扒如何自定义一个Dialog。各位看官，就请关上门，拉上窗，听我细细分说。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hda1abd11bede4ec7871475f477aca540l.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H790f9e547cab4e41814f392dbd660d2db.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H8a5aeba73c784ffdaf317c28456b9d8dK.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H791b4a73ca7a44a88057fef842738d42Y.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H604465a55e0e4b3c931cfcb4f34f51deZ.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H4fe4b781356d490fa06943cbe4c20b2fG.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H1997ed25e5ab4493a021994cbed6d254A.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H27281680802148638779d6996cfb8637o.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H9da655bb36eb4f7d8bae18abbe3a264eU.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H27750a2094a748b289b9ef3e08e07806J.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hcd410616c6a54a4ebf129c16336a9ac4P.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H78411e7d95e54c5da239f72c683ab40dm.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hc7cb5c5b98fd4bb0a836d1ec50042701t.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H25c09580b0d748328aa77db7ecb86850K.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H02c3b1ec5194411d8317e7a3666a35f5t.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hd854dba43b1f47cb8e1b21e5ed5eeccdt.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hd3531ecd25624484a98be932afeb2d8e4.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H68d8cfb273dc45a9935ee437e07429c7N.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hb9cafff1a5434c4ab79afa3968b066b2z.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hb6da8210dd4b4457b39ad9c8d12141c6U.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H8ed2866965264f83a27a58a7596bcedf2.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hb4332ce9a3bd480dbfb07a5a99b3c00ej.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H4b23d214762e4b5f83c3bff59d624460s.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H42293e2fe8a649a085af247fa5d50f97r.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H5911bcdfec934502a029ff61c276b3849.jpg">
-<meta property="og:updated_time" content="2019-11-23T04:10:58.243Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hbff951b3224a4456aaa15df994c2fc88U.jpg">
+<meta property="og:updated_time" content="2019-11-28T08:17:57.250Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hda1abd11bede4ec7871475f477aca540l.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;Hbff951b3224a4456aaa15df994c2fc88U.jpg">
 
-<link rel="canonical" href="http://loney-cao.github.io/2019/11/23/farmercodethings_3/">
+<link rel="canonical" href="http://loney-cao.github.io/2019/11/28/odoo13_5/">
 
 
 <script id="page-configurations">
@@ -119,7 +95,7 @@
   };
 </script>
 
-  <title>揭秘 | 程序员突然离职，真相令人扎心！ | LoneyCao</title>
+  <title>Odoo13-- 弹窗--自定义弹窗 | LoneyCao</title>
   
 
 
@@ -271,7 +247,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/23/farmercodethings_3/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/28/odoo13_5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -284,10 +260,14 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          揭秘 | 程序员突然离职，真相令人扎心！
+          Odoo13-- 弹窗--自定义弹窗
         </h2>
 
         <div class="post-meta">
+          
+              <i class="fa fa-thumb-tack"></i>
+              <font color=green>置顶</font>
+              <span class="post-meta-divider">|</span>
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -296,7 +276,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-23 11:28:12 / 修改时间：12:10:58" itemprop="dateCreated datePublished" datetime="2019-11-23T11:28:12+08:00">2019-11-23</time>
+              <time title="创建时间：2019-11-28 19:32:12 / 修改时间：16:17:57" itemprop="dateCreated datePublished" datetime="2019-11-28T19:32:12+08:00">2019-11-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -304,20 +284,20 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/FarmerCodeThings/" itemprop="url" rel="index">
-                    <span itemprop="name">FarmerCodeThings</span>
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
                   </a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/FarmerCodeThings/funny/" itemprop="url" rel="index">
-                    <span itemprop="name">funny</span>
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/23/farmercodethings_3/" class="post-meta-item leancloud_visitors" data-flag-title="揭秘 | 程序员突然离职，真相令人扎心！" title="阅读次数">
+            <span id="/2019/11/28/odoo13_5/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- 弹窗--自定义弹窗" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -332,8 +312,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/23/farmercodethings_3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/23/farmercodethings_3/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/28/odoo13_5/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/28/odoo13_5/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -348,48 +328,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img alt data-src="https://ae01.alicdn.com/kf/Hda1abd11bede4ec7871475f477aca540l.jpg"></p><hr><p><img alt data-src="https://ae01.alicdn.com/kf/H790f9e547cab4e41814f392dbd660d2db.jpg"></p><p>这是我毕业后的第一份工作…<br>面试时，HR小姐姐告诉我…  </p><p><img alt data-src="https://ae01.alicdn.com/kf/H8a5aeba73c784ffdaf317c28456b9d8dK.jpg"></p><p>然鹅…我入职之后才发现：<br>对标阿里的只有加班强度<br>对标华为的只有狼性文化<br>对标百度的，额，没有对标百度  </p><p><img alt data-src="https://ae01.alicdn.com/kf/H791b4a73ca7a44a88057fef842738d42Y.jpg"></p><p>同事们有的住在海淀区、有的住在朝阳区，<br>作为刚毕业的一枚“穷”学生，<br>我只能住在郊区，<br>一小时的地铁，<br>清晰的“分割”了生活和工作  </p><p><img alt data-src="https://ae01.alicdn.com/kf/H604465a55e0e4b3c931cfcb4f34f51deZ.jpg"></p><p>双休是有的，但也就是换个地方加班…</p><a id="more"></a>
+        <p>Odoo 的弹窗使用的是Dialog，无论是异常还是警告还是向导，都是一个Dialog对话框。<br>有时候，我们只想给用户一个提示。除了在点击按钮在xml中定义一个<code>confirm</code>提示信息外， 在代码中基本就是使用向导的方式来解决了，这无疑是个麻烦事。<br>上一篇中，我们介绍了如何使用延时提醒的方式。那本篇就扒一扒如何自定义一个Dialog。<br>各位看官，就请关上门，拉上窗，听我细细分说。  </p><a id="more"></a>
+<h2 id="扒衣服、揭面纱"><a href="#扒衣服、揭面纱" class="headerlink" title="扒衣服、揭面纱"></a>扒衣服、揭面纱</h2><h3 id="Dialog-定义"><a href="#Dialog-定义" class="headerlink" title="Dialog 定义"></a>Dialog 定义</h3><p>Odoo使用的是前端框架有bootstrap框架，那我们的Dialog小姐就是运用此框架。<br>DIalog的定义在<code>odoo\addons\web\static\src\js\core\dialog.js</code>文件中。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">odoo.define(<span class="string">'web.Dialog'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">require</span>) </span>&#123;</span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> core = <span class="built_in">require</span>(<span class="string">'web.core'</span>);</span><br><span class="line"><span class="keyword">var</span> dom = <span class="built_in">require</span>(<span class="string">'web.dom'</span>);</span><br><span class="line"><span class="keyword">var</span> Widget = <span class="built_in">require</span>(<span class="string">'web.Widget'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">var</span> Dialog = Widget.extend(&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
+<p>由此可见， Dialog小姐也是继承自Widget。  </p>
+<h3 id="扒衣服"><a href="#扒衣服" class="headerlink" title="扒衣服"></a>扒衣服</h3><p>相关参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">* @param &#123;Widget&#125; parent</span><br><span class="line">* @param &#123;<span class="built_in">Object</span>&#125; [options]</span><br><span class="line">* @param &#123;string&#125; [options.title=Odoo]</span><br><span class="line">* @param &#123;string&#125; [options.subtitle]</span><br><span class="line">* @param &#123;string&#125; [options.size=large] - <span class="string">'extra-large'</span>, <span class="string">'large'</span>, <span class="string">'medium'</span></span><br><span class="line">*        or <span class="string">'small'</span></span><br><span class="line">* @param &#123;boolean&#125; [options.fullscreen=<span class="literal">false</span>] - whether or not the dialog</span><br><span class="line">*        should be open <span class="keyword">in</span> fullscreen mode (the main usecase is mobile)</span><br><span class="line">* @param &#123;string&#125; [options.dialogClass] - <span class="class"><span class="keyword">class</span> <span class="title">to</span> <span class="title">add</span> <span class="title">to</span> <span class="title">the</span> <span class="title">modal</span>-<span class="title">body</span></span></span><br><span class="line"><span class="class">* @<span class="title">param</span> </span>&#123;jQuery&#125; [options.$content]</span><br><span class="line">*        Element which will be the $el, replace the .modal-body and <span class="keyword">get</span> the</span><br><span class="line">*        modal-body class</span><br><span class="line">* @param &#123;<span class="built_in">Object</span>[]&#125; [options.buttons]</span><br><span class="line">*        List <span class="keyword">of</span> button descriptions. Note: <span class="keyword">if</span> no buttons, a <span class="string">"ok"</span> primary</span><br><span class="line">*        button is added to allow closing the dialog</span><br><span class="line">* @param &#123;string&#125; [options.buttons[].text]</span><br><span class="line">* @param &#123;string&#125; [options.buttons[].classes]</span><br><span class="line">*        Default to <span class="string">'btn-primary'</span> <span class="keyword">if</span> only one button, <span class="string">'btn-secondary'</span></span><br><span class="line">*        otherwise</span><br><span class="line">* @param &#123;boolean&#125; [options.buttons[].close=<span class="literal">false</span>]</span><br><span class="line">* @param &#123;function&#125; [options.buttons[].click]</span><br><span class="line">* @param &#123;boolean&#125; [options.buttons[].disabled]</span><br><span class="line">* @param &#123;boolean&#125; [options.technical=<span class="literal">true</span>]</span><br><span class="line">*        If <span class="keyword">set</span> to false, the modal will have the standard frontend style</span><br><span class="line">*        (use this for non-editor frontend features)</span><br><span class="line">* @param &#123;jQueryElement&#125; [options.$parentNode]</span><br><span class="line">*        Element <span class="keyword">in</span> which dialog will be appended, by <span class="keyword">default</span> it will be</span><br><span class="line">*        <span class="keyword">in</span> the body</span><br><span class="line">* @param &#123;boolean|string&#125; [options.backdrop=<span class="string">'static'</span>]</span><br><span class="line">*        The kind <span class="keyword">of</span> modal backdrop to use (see BS documentation)</span><br><span class="line">* @param &#123;boolean&#125; [options.renderHeader=<span class="literal">true</span>]</span><br><span class="line">*        Whether or not the dialog should be rendered <span class="keyword">with</span> header</span><br><span class="line">* @param &#123;boolean&#125; [options.renderFooter=<span class="literal">true</span>]</span><br><span class="line">*        Whether or not the dialog should be rendered <span class="keyword">with</span> footer</span><br><span class="line">* @param &#123;function&#125; [options.onForceClose]</span><br><span class="line">*        Callback that triggers when the modal is closed by other means than <span class="keyword">with</span> the buttons</span><br><span class="line">*        e.g. pressing ESC</span><br></pre></td></tr></table></figure>
 
+<p>我就不翻译了， 我相信大家都能看的懂，毕竟各位都是连日语都懂的人。  </p>
+<h3 id="找准姿势"><a href="#找准姿势" class="headerlink" title="找准姿势"></a>找准姿势</h3><p>姿势要领：<br>自定义一个dialog，我们仍然使用上一篇中延时提醒的方式，定义一个客户端动作。<br>通过这个客户端动作，返回Dialog小姐。</p>
+<h3 id="前戏"><a href="#前戏" class="headerlink" title="前戏"></a>前戏</h3><p>在js中定义一个客户端动作，并注册。如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Dialog = <span class="built_in">require</span>(<span class="string">'web.Dialog'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">AlertDialog</span>(<span class="params">parent, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dialog = <span class="keyword">new</span> Dialog(<span class="keyword">this</span>, action.params);</span><br><span class="line">    dialog.open();</span><br><span class="line">&#125;</span><br><span class="line">core.action_registry.add(<span class="string">"dialog"</span>, AlertDialog);</span><br></pre></td></tr></table></figure>
 
+<h3 id="入戏"><a href="#入戏" class="headerlink" title="入戏"></a>入戏</h3><p>紧接着，我们就可以在后端代码中，任君发挥了。如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dialog</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">'type'</span>: <span class="string">'ir.actions.client'</span>,</span><br><span class="line">        <span class="string">'tag'</span>: <span class="string">'dialog'</span>,</span><br><span class="line">        <span class="string">'params'</span>: &#123;</span><br><span class="line">            <span class="string">'title'</span>: _(<span class="string">'提示信息'</span>),</span><br><span class="line">            <span class="string">'$content'</span>: _(<span class="string">'&lt;h2 style="color:red; text-align:center; "&gt;123456789&lt;/h2&gt;'</span>),</span><br><span class="line">            <span class="string">'size'</span>: <span class="string">'medium'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-<p><img alt data-src="https://ae01.alicdn.com/kf/H4fe4b781356d490fa06943cbe4c20b2fG.jpg"></p>
-<p>小伙伴的境遇好像也类似，<br>约饭渐渐变成了奢望…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H1997ed25e5ab4493a021994cbed6d254A.jpg"></p>
-<p>好不容易凑到一起，基本也都带着电脑…</p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H27281680802148638779d6996cfb8637o.jpg"></p>
-<p>有些事情，我一直没想明白，<br>为什么迟到一分钟会扣钱，<br>而加班6小时却没有加班费？  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H9da655bb36eb4f7d8bae18abbe3a264eU.jpg"></p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H27750a2094a748b289b9ef3e08e07806J.jpg"></p>
-<p>为什么加班把项目推上线没有奖金，<br>而写出一个Bug却会被惩罚？  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/Hcd410616c6a54a4ebf129c16336a9ac4P.jpg"></p>
-<p>工作一段时间后，我变了很多…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H78411e7d95e54c5da239f72c683ab40dm.jpg"></p>
-<p>不仅是我，我入职时心仪的妹子，也变了  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/Hc7cb5c5b98fd4bb0a836d1ec50042701t.jpg"></p>
-<p>哈，苍天饶过谁呢？<br>不，有些东西不会变…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H25c09580b0d748328aa77db7ecb86850K.jpg"></p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H02c3b1ec5194411d8317e7a3666a35f5t.jpg"></p>
-<p>我离职的冲动越来越强，<br>但是，老板总在关键时刻“指点”我，<br>好吧，也可能是“指指点点”…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/Hd854dba43b1f47cb8e1b21e5ed5eeccdt.jpg"></p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/Hd3531ecd25624484a98be932afeb2d8e4.jpg"></p>
-<p>有时候，HR也会说…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H68d8cfb273dc45a9935ee437e07429c7N.jpg"></p>
-<p>有时候，我会问自己：这样的日子，什么时候是个头呢？  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/Hb9cafff1a5434c4ab79afa3968b066b2z.jpg"></p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/Hb6da8210dd4b4457b39ad9c8d12141c6U.jpg"></p>
-<p>终于有一天…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H8ed2866965264f83a27a58a7596bcedf2.jpg"></p>
-<p>在走出写字楼的一瞬间，我才发现：<br>天也忒蓝了，<br>树也忒绿了，<br>阳光也忒明媚了，<br>生活也忒美好了。<br>于是，我决定…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/Hb4332ce9a3bd480dbfb07a5a99b3c00ej.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H4b23d214762e4b5f83c3bff59d624460s.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H42293e2fe8a649a085af247fa5d50f97r.jpg"></p>
-<p>从西山回来之后…  </p>
-<p><img alt data-src="https://ae01.alicdn.com/kf/H5911bcdfec934502a029ff61c276b3849.jpg"></p>
-<p>当然，以上皆为虚构，如有雷同，表示同情！<br>-END-<br>转载声明：本文转载自「程序员吴小胖」。  </p>
+<p>在参数中。You Can 自定义内容（包括富文本格式），Also Can 设置大小。<br>因为我们已经掌握Dialog的参数了，此处参数只要与Dialog参数一直就可以。<br>弹窗可大可小， 任君安排。  </p>
+<h3 id="耕耘收获"><a href="#耕耘收获" class="headerlink" title="耕耘收获"></a>耕耘收获</h3><p>还是看图：</p>
+<p><img alt="耕耘收获" data-src="https://ae01.alicdn.com/kf/Hbff951b3224a4456aaa15df994c2fc88U.jpg"></p>
+<p>以上</p>
+<p>先了解，再找准，再开发。<br>– end –</p>
 
     </div>
 
@@ -432,7 +391,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://loney-cao.github.io/2019/11/23/farmercodethings_3/" title="揭秘 | 程序员突然离职，真相令人扎心！">http://loney-cao.github.io/2019/11/23/farmercodethings_3/</a>
+    <a href="http://loney-cao.github.io/2019/11/28/odoo13_5/" title="Odoo13-- 弹窗--自定义弹窗">http://loney-cao.github.io/2019/11/28/odoo13_5/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -442,24 +401,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Funny/" rel="tag"># Funny</a>
+              <a href="/tags/Odoo13/" rel="tag"># Odoo13</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/20/farmercodethings_2/" rel="next" title="互联网公司忽悠员工的黑话">
-                  <i class="fa fa-chevron-left"></i> 互联网公司忽悠员工的黑话
+                <a href="/2019/11/27/odoo13_4/" rel="next" title="Odoo13-- 通知--延时弹框的通知提醒">
+                  <i class="fa fa-chevron-left"></i> Odoo13-- 通知--延时弹框的通知提醒
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/23/farmercodethings_4/" rel="prev" title="二逼互联网公司现形记，看看你的公司中了几条？">
-                  二逼互联网公司现形记，看看你的公司中了几条？ <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -499,6 +455,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#扒衣服、揭面纱"><span class="nav-number">1.</span> <span class="nav-text">扒衣服、揭面纱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dialog-定义"><span class="nav-number">1.1.</span> <span class="nav-text">Dialog 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扒衣服"><span class="nav-number">1.2.</span> <span class="nav-text">扒衣服</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找准姿势"><span class="nav-number">1.3.</span> <span class="nav-text">找准姿势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前戏"><span class="nav-number">1.4.</span> <span class="nav-text">前戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入戏"><span class="nav-number">1.5.</span> <span class="nav-text">入戏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#耕耘收获"><span class="nav-number">1.6.</span> <span class="nav-text">耕耘收获</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
