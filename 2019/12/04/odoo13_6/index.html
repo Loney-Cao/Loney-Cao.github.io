@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="LoneyCao" type="application/atom+xml">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="抛砖场景：假设存在一张单据，如采购订单。该订单上有如下字段： 采购申请数量、采购批准数量、汇率、金额、价外税、含税金额、库存数量、累计金额、累计含税金额……单据上有很多表示数量类型的字段，一般在录入单据时，对数据有合法性校验，如不能输入负数数量等等。此时，我们可能会在models.py中写一个使用api.onchange装饰器装饰的方法。在校验的字段很多的情况下，我们可能会写很多个onchange">
+<meta name="keywords" content="Odoo13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Odoo13-- Onchange方法的使用扩展">
+<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;odoo13_6&#x2F;index.html">
+<meta property="og:site_name" content="LoneyCao">
+<meta property="og:description" content="抛砖场景：假设存在一张单据，如采购订单。该订单上有如下字段： 采购申请数量、采购批准数量、汇率、金额、价外税、含税金额、库存数量、累计金额、累计含税金额……单据上有很多表示数量类型的字段，一般在录入单据时，对数据有合法性校验，如不能输入负数数量等等。此时，我们可能会在models.py中写一个使用api.onchange装饰器装饰的方法。在校验的字段很多的情况下，我们可能会写很多个onchange">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-04T13:07:42.763Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://loney-cao.github.io/2019/12/04/odoo13_6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Odoo13-- Onchange方法的使用扩展 | LoneyCao</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LoneyCao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">即使一个人，也要活得像军队一样！</h1>
+      
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=32405683&auto=1&height=66"></iframe>
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-pictures">
+
+    <a href="/categories/image/" rel="section"><i class="fa fa-fw fa-image"></i>图片</a>
+
+  </li>
+        <li class="menu-item menu-item-technologys">
+
+    <a href="/categories/technology/" rel="section"><i class="fa fa-fw fa-code"></i>技术</a>
+
+  </li>
+        <li class="menu-item menu-item-farmercodethings">
+
+    <a href="/categories/FarmerCodeThings/" rel="section"><i class="fa fa-fw fa-code"></i>程序员那些事儿</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Loney-Cao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/12/04/odoo13_6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Odoo13-- Onchange方法的使用扩展
+        </h2>
+
+        <div class="post-meta">
+          
+              <i class="fa fa-thumb-tack"></i>
+              <font color=green>置顶</font>
+              <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-04 19:32:12 / 修改时间：21:07:42" itemprop="dateCreated datePublished" datetime="2019-12-04T19:32:12+08:00">2019-12-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/12/04/odoo13_6/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- Onchange方法的使用扩展" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/04/odoo13_6/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/04/odoo13_6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="抛砖"><a href="#抛砖" class="headerlink" title="抛砖"></a>抛砖</h2><p>场景：<br>假设存在一张单据，如采购订单。该订单上有如下字段： 采购申请数量、采购批准数量、汇率、金额、价外税、含税金额、库存数量、累计金额、累计含税金额……<br>单据上有很多表示<code>数量类型</code>的字段，一般在录入单据时，对数据有合法性校验，如不能输入负数数量等等。<br>此时，我们可能会在<code>models.py</code>中写一个使用<code>api.onchange</code>装饰器装饰的方法。<br>在校验的字段很多的情况下，我们可能会写很多个<code>onchange</code>方法，或者写一个<code>onchange</code>方法但是装饰器中写很多字段参数。<br>那么问题来了，如果写很多个方法，未免太多余，因为都是校验负数。但是如果写一个方法，但是装饰器中添加很多参数，那么在某一字段新增一些逻辑时，要么在此方法中写，要么新写一个方法。又是很冗余。<br>所以，对于这种通用性的校验，是否有一个好的通用方法来写呢？  </p><a id="more"></a>
+<p>各位看官，就请关上门，拉上窗，听我细细分说。  </p>
+<p>关于<code>api.onchange</code>使用，请客官看之前文章的介绍。</p>
+<h2 id="揭开-api-onchange-面纱"><a href="#揭开-api-onchange-面纱" class="headerlink" title="揭开 api.onchange 面纱"></a>揭开 api.onchange 面纱</h2><h3 id="api-onchange-定义"><a href="#api-onchange-定义" class="headerlink" title="api.onchange 定义"></a>api.onchange 定义</h3><p>文件路径： <code>\odoo\odoo\api.py</code><br>源码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onchange</span><span class="params">(*args)</span>:</span></span><br><span class="line">    <span class="string">""" Return a decorator to decorate an onchange method for given fields.</span></span><br><span class="line"><span class="string">        Each argument must be a field name::</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            @api.onchange('partner_id')</span></span><br><span class="line"><span class="string">            def _onchange_partner(self):</span></span><br><span class="line"><span class="string">                self.message = "Dear %s" % (self.partner_id.name or "")</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        In the form views where the field appears, the method will be called</span></span><br><span class="line"><span class="string">        when one of the given fields is modified. The method is invoked on a</span></span><br><span class="line"><span class="string">        pseudo-record that contains the values present in the form. Field</span></span><br><span class="line"><span class="string">        assignments on that record are automatically sent back to the client.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        The method may return a dictionary for changing field domains and pop up</span></span><br><span class="line"><span class="string">        a warning message, like in the old API::</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            return &#123;</span></span><br><span class="line"><span class="string">                'domain': &#123;'other_id': [('partner_id', '=', partner_id)]&#125;,</span></span><br><span class="line"><span class="string">                'warning': &#123;'title': "Warning", 'message': "What is this?", 'type': 'notification'&#125;,</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            If the type is set to notification, the warning will be displayed in a notification.</span></span><br><span class="line"><span class="string">            Otherwise it will be displayed in a dialog as default.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        .. danger::</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            Since ``@onchange`` returns a recordset of pseudo-records,</span></span><br><span class="line"><span class="string">            calling any one of the CRUD methods</span></span><br><span class="line"><span class="string">            (:meth:`create`, :meth:`read`, :meth:`write`, :meth:`unlink`)</span></span><br><span class="line"><span class="string">            on the aforementioned recordset is undefined behaviour,</span></span><br><span class="line"><span class="string">            as they potentially do not exist in the database yet.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            Instead, simply set the record's field like shown in the example</span></span><br><span class="line"><span class="string">            above or call the :meth:`update` method.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        .. warning::</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            ``@onchange`` only supports simple field names, dotted names</span></span><br><span class="line"><span class="string">            (fields of relational fields e.g. ``partner_id.tz``) are not</span></span><br><span class="line"><span class="string">            supported and will be ignored</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> attrsetter(<span class="string">'_onchange'</span>, args)</span><br></pre></td></tr></table></figure>
+
+<p>各位看官，请看，是不是很简单， 很冰清玉洁啊， 朴实无华， 那么多的注释，只有一行代码。<br>啥？看不懂？<code>attrsetter</code>方法是啥？我好想听过<code>setattr</code><br>别急，继续看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">attrsetter</span><span class="params">(attr, value)</span>:</span></span><br><span class="line">    <span class="string">""" Return a function that sets ``attr`` on its argument and returns it. """</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">lambda</span> method: setattr(method, attr, value) <span class="keyword">or</span> method</span><br></pre></td></tr></table></figure>
+
+<p><code>attrsetter</code>的作用是返回一个函数并且设置属性，而恰恰就是使用的<code>setattr</code>方法。<br>返回一个函数？设置属性？好熟悉… 是啥来着…  <strong>装饰器</strong>，可不是咋地，可不就是这玩意儿。<br>搜嘎，原来api.onchange是装饰器 是这么来的。返回了<code>onchange</code>方法  </p>
+<p>那么结合上面api中的<code>onchange</code>方法，我们明白了，原来是就是给相应的字段设置了onchange属性。</p>
+<p>继续看<code>models.py</code>中的<code>onchange</code>方法，路径<code>\odoo\odoo\models.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onchange</span><span class="params">(self, values, field_name, field_onchange)</span>:</span></span><br><span class="line">    <span class="string">""" Perform an onchange on the given field.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :param values: dictionary mapping field names to values, giving the</span></span><br><span class="line"><span class="string">            current state of modification</span></span><br><span class="line"><span class="string">        :param field_name: name of the modified field, or list of field</span></span><br><span class="line"><span class="string">            names (in view order), or False</span></span><br><span class="line"><span class="string">        :param field_onchange: dictionary mapping field names to their</span></span><br><span class="line"><span class="string">            on_change attribute</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># this is for tests using `Form`</span></span><br><span class="line">    self.flush()</span><br><span class="line">    ...</span><br><span class="line">    省略</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<p>:param values: 当前状态下的记录的值<br>:param field_name: 改变的字段，可能是列表<br>:param field_onchange: 给字段设置on_change属性</p>
+<p>所以我们已经掌握了基本姿势。<br>接下来就很简单了，我们只要继承<code>onchange</code>方法，做出相应修改即可。</p>
+<h3 id="姿势要领"><a href="#姿势要领" class="headerlink" title="姿势要领"></a>姿势要领</h3><p>直接实战姿势：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_check_onchange_field</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""返回onchange方法要校验的字段"""</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">'amount'</span>, <span class="string">'quantity'</span>, <span class="string">'tax'</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onchange</span><span class="params">(self, values, field_name, field_onchange)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> field_name <span class="keyword">in</span> self.get_check_onchange_field()：</span><br><span class="line">        <span class="keyword">if</span> getattr(self, field_name) &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValidationError(<span class="string">"数值不合法，不能为负数"</span>)</span><br><span class="line">    <span class="keyword">return</span> super(SaleOrder, self).onchange(values, field_name, field_onchange)</span><br></pre></td></tr></table></figure>
+
+<p>以上</p>
+<p>先了解，再找准，再开发。<br>– end –</p>
+
+    </div>
+
+    
+    
+    
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="LoneyCao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="LoneyCao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>LoneyCao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://loney-cao.github.io/2019/12/04/odoo13_6/" title="Odoo13-- Onchange方法的使用扩展">http://loney-cao.github.io/2019/12/04/odoo13_6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Odoo13/" rel="tag"># Odoo13</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/29/js_1/" rel="next" title="JS-- 获取随机颜色值">
+                  <i class="fa fa-chevron-left"></i> JS-- 获取随机颜色值
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#抛砖"><span class="nav-number">1.</span> <span class="nav-text">抛砖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#揭开-api-onchange-面纱"><span class="nav-number">2.</span> <span class="nav-text">揭开 api.onchange 面纱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#api-onchange-定义"><span class="nav-number">2.1.</span> <span class="nav-text">api.onchange 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#姿势要领"><span class="nav-number">2.2.</span> <span class="nav-text">姿势要领</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="LoneyCao"
+    src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">LoneyCao</p>
+  <div class="site-description" itemprop="description">专注Odoo知识领域</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Loney-Cao" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;Loney-Cao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/dd4c87138bc0" title="简书 &amp;rarr; https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;dd4c87138bc0" rel="noopener" target="_blank"><i class="fa fa-fw fa-jianshu"></i>简书</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LoneyCao</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'JB8FpvK5rrCA4RqQfnpxGgiQ-gzGzoHsz',
+    appKey: 'cU9FMU8iuV4LzSjG2QU0OUF6',
+    placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+    </div>
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <script type="text/javascript" src="/js/src/mouse-click.js"></script>
+  <script src="/live2d-widget/autoload.js"></script>
+</body>
+</html>
