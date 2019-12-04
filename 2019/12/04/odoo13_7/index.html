@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="LoneyCao" type="application/atom+xml">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="题目虽然是颜色选择器使用，但是本篇小黄文会涉及到玉女心经…咳咳， 本篇技术文章涉及到一些重要的姿势，某些看官一直要求我讲一讲有关js方面的姿势。那么本篇大概会出现自定义Widget、Tree视图的渲染等姿势。某些看官（尤其’小萝卜头’…）就不要那么吝啬了，1分钱都不够手机流量费。  那下面就正式开始">
+<meta name="keywords" content="Odoo13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Odoo13-- js之颜色选择器的使用及扩展">
+<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;odoo13_7&#x2F;index.html">
+<meta property="og:site_name" content="LoneyCao">
+<meta property="og:description" content="题目虽然是颜色选择器使用，但是本篇小黄文会涉及到玉女心经…咳咳， 本篇技术文章涉及到一些重要的姿势，某些看官一直要求我讲一讲有关js方面的姿势。那么本篇大概会出现自定义Widget、Tree视图的渲染等姿势。某些看官（尤其’小萝卜头’…）就不要那么吝啬了，1分钱都不够手机流量费。  那下面就正式开始">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H6d2b70f9bfb24f65ab0f0ffea59921f2A.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H64827cad4c7d400d8372211a6c831b44B.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H2d17e7f26f19486abd2c572285b0e7836.gif">
+<meta property="og:updated_time" content="2019-12-04T16:25:15.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;ae01.alicdn.com&#x2F;kf&#x2F;H6d2b70f9bfb24f65ab0f0ffea59921f2A.jpg">
+
+<link rel="canonical" href="http://loney-cao.github.io/2019/12/04/odoo13_7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Odoo13-- js之颜色选择器的使用及扩展 | LoneyCao</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LoneyCao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">即使一个人，也要活得像军队一样！</h1>
+      
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=32405683&auto=1&height=66"></iframe>
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-pictures">
+
+    <a href="/categories/image/" rel="section"><i class="fa fa-fw fa-image"></i>图片</a>
+
+  </li>
+        <li class="menu-item menu-item-technologys">
+
+    <a href="/categories/technology/" rel="section"><i class="fa fa-fw fa-code"></i>技术</a>
+
+  </li>
+        <li class="menu-item menu-item-farmercodethings">
+
+    <a href="/categories/FarmerCodeThings/" rel="section"><i class="fa fa-fw fa-code"></i>程序员那些事儿</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Loney-Cao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/12/04/odoo13_7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Odoo13-- js之颜色选择器的使用及扩展
+        </h2>
+
+        <div class="post-meta">
+          
+              <i class="fa fa-thumb-tack"></i>
+              <font color=green>置顶</font>
+              <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-04 22:32:12" itemprop="dateCreated datePublished" datetime="2019-12-04T22:32:12+08:00">2019-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-05 00:25:15" itemprop="dateModified" datetime="2019-12-05T00:25:15+08:00">2019-12-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/12/04/odoo13_7/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- js之颜色选择器的使用及扩展" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/04/odoo13_7/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/04/odoo13_7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>题目虽然是颜色选择器使用，但是本篇<del>小黄文会涉及到玉女心经…</del><br>咳咳， 本篇<strong>技术文章</strong>涉及到一些重要的姿势，某些看官一直要求我讲一讲有关js方面的姿势。<br>那么本篇大概会出现<strong>自定义Widget、Tree视图的渲染</strong>等姿势。<br>某些看官（尤其’小萝卜头’…）就不要那么吝啬了，1分钱都不够手机流量费。  </p><p>那下面就正式开始  </p><a id="more"></a>
+
+<h2 id="颜色选择器的使用"><a href="#颜色选择器的使用" class="headerlink" title="颜色选择器的使用"></a>颜色选择器的使用</h2><p>Odoo 中关于颜色选择器的使用，有很多例子。这里就以产品属性为例子。<br>下面是定义了一个彩虹屁的属性，并在属性中设置了相关属性值<br><img alt="彩虹屁" data-src="https://ae01.alicdn.com/kf/H6d2b70f9bfb24f65ab0f0ffea59921f2A.jpg"><br>在创建属性值得时候，点击颜色时，会弹出一个颜色选择器的界面。如下<br><img alt="颜色选择器" data-src="https://ae01.alicdn.com/kf/H64827cad4c7d400d8372211a6c831b44B.jpg"></p>
+<p>那么，这是如何实现的呢？进入下一个环境，剥丝抽茧，揭开神秘面纱。</p>
+<h3 id="揭开选择器面纱"><a href="#揭开选择器面纱" class="headerlink" title="揭开选择器面纱"></a>揭开选择器面纱</h3><p>我们查看代码，发现字段定义如下。</p>
+<p>在py文件中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">html_color = fields.Char(</span><br><span class="line">        string=<span class="string">'Color'</span>,</span><br><span class="line">        help=<span class="string">"Here you can set a specific HTML color index (e.g. #ff0000) to display the color if the attribute type is 'Color'."</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在xml文件中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"html_color"</span> <span class="attr">attrs</span>=<span class="string">"&#123;'column_invisible': [('parent.display_type', '!=', 'color')]&#125;"</span> <span class="attr">widget</span>=<span class="string">"color"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>由此可见，该字段是一个<code>Char</code>类型的字段，并且使用了一个<code>color</code>的<code>Widget</code>。<br>因此我们回归到问题， 这个<code>color</code>是什么玩意儿？我能自定义吗？</p>
+<h3 id="color插件的定义"><a href="#color插件的定义" class="headerlink" title="color插件的定义"></a>color插件的定义</h3><p>文件路径： <code>odoo\addons\web\static\src\js\fields\field_registry.js</code><br>源码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">registry</span><br><span class="line">    .add(<span class="string">'abstract'</span>, AbstractField)</span><br><span class="line">    .add(<span class="string">'input'</span>, basic_fields.InputField)</span><br><span class="line">    .add(<span class="string">'integer'</span>, basic_fields.FieldInteger)</span><br><span class="line">    .add(<span class="string">'boolean'</span>, basic_fields.FieldBoolean)</span><br><span class="line">    .add(<span class="string">'date'</span>, basic_fields.FieldDate)</span><br><span class="line">    .add(<span class="string">'datetime'</span>, basic_fields.FieldDateTime)</span><br><span class="line">    .add(<span class="string">'daterange'</span>, basic_fields.FieldDateRange)</span><br><span class="line">    .add(<span class="string">'domain'</span>, basic_fields.FieldDomain)</span><br><span class="line">    .add(<span class="string">'text'</span>, basic_fields.FieldText)</span><br><span class="line">    .add(<span class="string">'list.text'</span>, basic_fields.ListFieldText)</span><br><span class="line">    .add(<span class="string">'html'</span>, basic_fields.FieldText)</span><br><span class="line">    .add(<span class="string">'float'</span>, basic_fields.FieldFloat)</span><br><span class="line">    .add(<span class="string">'char'</span>, basic_fields.FieldChar)</span><br><span class="line">    .add(<span class="string">'link_button'</span>, basic_fields.LinkButton)</span><br><span class="line">    .add(<span class="string">'handle'</span>, basic_fields.HandleWidget)</span><br><span class="line">    .add(<span class="string">'email'</span>, basic_fields.FieldEmail)</span><br><span class="line">    .add(<span class="string">'phone'</span>, basic_fields.FieldPhone)</span><br><span class="line">    .add(<span class="string">'url'</span>, basic_fields.UrlWidget)</span><br><span class="line">    .add(<span class="string">'CopyClipboardText'</span>, basic_fields.TextCopyClipboard)</span><br><span class="line">    .add(<span class="string">'CopyClipboardChar'</span>, basic_fields.CharCopyClipboard)</span><br><span class="line">    .add(<span class="string">'image'</span>, basic_fields.FieldBinaryImage)</span><br><span class="line">    .add(<span class="string">'kanban.image'</span>, basic_fields.KanbanFieldBinaryImage)</span><br><span class="line">    .add(<span class="string">'binary'</span>, basic_fields.FieldBinaryFile)</span><br><span class="line">    .add(<span class="string">'pdf_viewer'</span>, basic_fields.FieldPdfViewer)</span><br><span class="line">    .add(<span class="string">'monetary'</span>, basic_fields.FieldMonetary)</span><br><span class="line">    .add(<span class="string">'percentage'</span>, basic_fields.FieldPercentage)</span><br><span class="line">    .add(<span class="string">'priority'</span>, basic_fields.PriorityWidget)</span><br><span class="line">    .add(<span class="string">'attachment_image'</span>, basic_fields.AttachmentImage)</span><br><span class="line">    .add(<span class="string">'label_selection'</span>, basic_fields.LabelSelection)</span><br><span class="line">    .add(<span class="string">'kanban_label_selection'</span>, basic_fields.LabelSelection) <span class="comment">// deprecated, use label_selection</span></span><br><span class="line">    .add(<span class="string">'state_selection'</span>, basic_fields.StateSelectionWidget)</span><br><span class="line">    .add(<span class="string">'kanban_state_selection'</span>, basic_fields.StateSelectionWidget) <span class="comment">// deprecated, use state_selection</span></span><br><span class="line">    .add(<span class="string">'boolean_favorite'</span>, basic_fields.FavoriteWidget)</span><br><span class="line">    .add(<span class="string">'boolean_toggle'</span>, basic_fields.BooleanToggle)</span><br><span class="line">    .add(<span class="string">'statinfo'</span>, basic_fields.StatInfo)</span><br><span class="line">    .add(<span class="string">'percentpie'</span>, basic_fields.FieldPercentPie)</span><br><span class="line">    .add(<span class="string">'float_time'</span>, basic_fields.FieldFloatTime)</span><br><span class="line">    .add(<span class="string">'float_factor'</span>, basic_fields.FieldFloatFactor)</span><br><span class="line">    .add(<span class="string">'float_toggle'</span>, basic_fields.FieldFloatToggle)</span><br><span class="line">    .add(<span class="string">'progressbar'</span>, basic_fields.FieldProgressBar)</span><br><span class="line">    .add(<span class="string">'toggle_button'</span>, basic_fields.FieldToggleBoolean)</span><br><span class="line">    .add(<span class="string">'dashboard_graph'</span>, basic_fields.JournalDashboardGraph)</span><br><span class="line">    .add(<span class="string">'ace'</span>, basic_fields.AceEditor)</span><br><span class="line">    .add(<span class="string">'color'</span>, basic_fields.FieldColor);</span><br></pre></td></tr></table></figure>
+
+<p>发现是在此处，将<code>basic_fields.FieldColor</code>注册成为一个名为<code>color</code>的widget插件<br>继续跟踪<code>basic_fields.FieldColor</code><br>文件路径： <code>odoo\addons\web\static\src\js\fields\basic_fields.js</code><br>源码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> FieldColor = AbstractField.extend(&#123;</span><br><span class="line">    template: <span class="string">'FieldColor'</span>,</span><br><span class="line">    events: _.extend(&#123;&#125;, AbstractField.prototype.events, &#123;</span><br><span class="line">        <span class="string">'click .o_field_color'</span>: <span class="string">'_onColorClick'</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">    custom_events: _.extend(&#123;&#125;, AbstractField.prototype.custom_events, &#123;</span><br><span class="line">        <span class="string">'colorpicker:saved'</span>: <span class="string">'_onColorpickerSaved'</span>,</span><br><span class="line">    &#125;),</span><br><span class="line"></span><br><span class="line">    <span class="comment">//--------------------------------------------------------------------------</span></span><br><span class="line">    <span class="comment">// Public</span></span><br><span class="line">    <span class="comment">//--------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @override</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    getFocusableElement: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$(<span class="string">'.o_field_color'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//--------------------------------------------------------------------------</span></span><br><span class="line">    <span class="comment">// Private</span></span><br><span class="line">    <span class="comment">//--------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @override</span></span><br><span class="line"><span class="comment">    * @private</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    _render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.$(<span class="string">'.o_field_color'</span>).data(<span class="string">'value'</span>, <span class="keyword">this</span>.value)</span><br><span class="line">            .css(<span class="string">'background-color'</span>, <span class="keyword">this</span>.value)</span><br><span class="line">            .attr(<span class="string">'title'</span>, <span class="keyword">this</span>.value);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._super.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">//--------------------------------------------------------------------------</span></span><br><span class="line">    <span class="comment">// Handlers</span></span><br><span class="line">    <span class="comment">//--------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @private</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    _onColorClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.mode === <span class="string">'edit'</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> dialog = <span class="keyword">new</span> ColorpickerDialog(<span class="keyword">this</span>, &#123;</span><br><span class="line">                defaultColor: <span class="keyword">this</span>.value,</span><br><span class="line">                noTransparency: <span class="literal">true</span>,</span><br><span class="line">            &#125;).open();</span><br><span class="line">            dialog.on(<span class="string">'closed'</span>, <span class="keyword">this</span>, () =&gt; &#123;</span><br><span class="line">                <span class="comment">// we need to wait for the modal to execute its whole close function.</span></span><br><span class="line">                <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">this</span>.getFocusableElement().focus();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * @private</span></span><br><span class="line"><span class="comment">    * @param &#123;OdooEvent&#125; ev</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    _onColorpickerSaved: <span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>._setValue(ev.data.hex);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * @override</span></span><br><span class="line"><span class="comment">     * @private</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    _onKeydown: <span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ev.which === $.ui.keyCode.ENTER) &#123;</span><br><span class="line">            ev.preventDefault();</span><br><span class="line">            ev.stopPropagation();</span><br><span class="line">            <span class="keyword">this</span>._onColorClick(ev);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">this</span>._super.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>我们发现，该插件使用的模板是<code>FieldColor</code>。继续查看<code>FieldColor</code>模板定义。<br>文件路径： <code>\odoo\addons\web\static\src\xml\base.xml</code><br>源码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">t</span> <span class="attr">t-name</span>=<span class="string">"FieldColor"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"o_field_color"</span> <span class="attr">t-attf-tabindex</span>=<span class="string">"#&#123;widget.mode === 'edit' ? 0 : -1&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">t</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>至此，我们已经扒开了<code>color</code>这个<code>widget</code>的层层伪装了。<br>首先是定义了一个模板<code>FieldColor</code>。而模板中定义了一个button按钮，并且class属性为<code>o_field_color</code>（这很关键）<br>其次在js中对<code>AbstractField</code>这个抽象字段插件进行了扩展。<br>扩展步骤：<br>一、引入模板  使用 <code>template: &#39;FieldColor&#39;</code><br>二、定义相关事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">events: _.extend(&#123;&#125;, AbstractField.prototype.events, &#123;</span><br><span class="line">        <span class="string">'click .o_field_color'</span>: <span class="string">'_onColorClick'</span>,  <span class="comment">// 为class属性为 o_field_color的元素绑定click事件</span></span><br><span class="line">    &#125;),</span><br><span class="line"></span><br><span class="line">custom_events: _.extend(&#123;&#125;, AbstractField.prototype.custom_events, &#123;</span><br><span class="line">        <span class="string">'colorpicker:saved'</span>: <span class="string">'_onColorpickerSaved'</span>, <span class="comment">// 自定义事件</span></span><br><span class="line">    &#125;),</span><br></pre></td></tr></table></figure>
+
+<p>重点， 此步骤(events)将模板中的按钮，绑定了事件。</p>
+<p>三、重写<code>render</code>方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.$(<span class="string">'.o_field_color'</span>).data(<span class="string">'value'</span>, <span class="keyword">this</span>.value)  <span class="comment">// 为按钮设置值</span></span><br><span class="line">            .css(<span class="string">'background-color'</span>, <span class="keyword">this</span>.value)            <span class="comment">// 设置背景颜色</span></span><br><span class="line">            .attr(<span class="string">'title'</span>, <span class="keyword">this</span>.value);                     <span class="comment">// 设置title提示</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._super.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>render方法，是渲染字段的方法。在此处就重写渲染字段方法，则会被应用到前端。<br>小姿势：<br>在<code>render</code>方法中，会根据当前单据的打开模式（编辑，只读）会分别执行两个方法。<br><code>_renderEdit</code> 和 <code>readonly</code> （重点）。以后自定义可重写这两个方法。  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.mode === <span class="string">'edit'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._renderEdit();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.mode === <span class="string">'readonly'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._renderReadonly();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>四、点击事件执行_onColorClick方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">_onColorClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.mode === <span class="string">'edit'</span>) &#123;  <span class="comment">// 编辑模式</span></span><br><span class="line">            <span class="keyword">const</span> dialog = <span class="keyword">new</span> ColorpickerDialog(<span class="keyword">this</span>, &#123;  <span class="comment">// 创建一个颜色选择器对象，并打开</span></span><br><span class="line">                defaultColor: <span class="keyword">this</span>.value,</span><br><span class="line">                noTransparency: <span class="literal">true</span>,</span><br><span class="line">            &#125;).open();</span><br><span class="line">            dialog.on(<span class="string">'closed'</span>, <span class="keyword">this</span>, () =&gt; &#123;</span><br><span class="line">                <span class="comment">// we need to wait for the modal to execute its whole close function.</span></span><br><span class="line">                <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">this</span>.getFocusableElement().focus();</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>可以看到在点击事件中这是创建并打开了一个颜色选择器的对话框。</p>
+<p>五、关闭对话框事件_onColorpickerSaved方法。<br>此事件是自定义事件<code>custom_events</code>中的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_onColorpickerSaved: <span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>._setValue(ev.data.hex);  <span class="comment">// 为当前元素设置值</span></span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>到此为止，整个<code>color</code>插件的定义过程就是这样。</p>
+<p>姿势就这些，那么接下来就是学以致用了。进入实战环节。  </p>
+<h2 id="姿势实战"><a href="#姿势实战" class="headerlink" title="姿势实战"></a>姿势实战</h2><p>场景一：点击字段时候，弹出颜色选择器，给字段设置相关背景颜色。<br>裸<del>体代</del>码，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">odoo.define(<span class="string">'web_custom_color.AbstractField'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">require</span>) </span>&#123;</span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> AbstractField = <span class="built_in">require</span>(<span class="string">'web.AbstractField'</span>);</span><br><span class="line"><span class="keyword">var</span> ColorpickerDialog = <span class="built_in">require</span>(<span class="string">'web.ColorpickerDialog'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"web.zoomodoo"</span>);</span><br><span class="line"></span><br><span class="line">AbstractField.include(&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个点击事件</span></span><br><span class="line">    _onMyColorClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.mode === <span class="string">'readonly'</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">            <span class="comment">// 设置默认颜色，如果xml中定义了背景色则使用</span></span><br><span class="line">            <span class="keyword">var</span> defaultColor = self.attrs.bg_color || <span class="string">'#fcfcfc'</span> ;</span><br><span class="line">            <span class="keyword">const</span> dialog = <span class="keyword">new</span> ColorpickerDialog(self, &#123; <span class="comment">//创建颜色选择器</span></span><br><span class="line">                defaultColor: defaultColor,</span><br><span class="line">                noTransparency: <span class="literal">true</span>,</span><br><span class="line">            &#125;).open();</span><br><span class="line">            dialog.on(<span class="string">'colorpicker:saved'</span>, self, <span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123; <span class="comment">// 关闭事件</span></span><br><span class="line">                self.attrs.bg_color = ev.data.hex;</span><br><span class="line">                self.$el.css(<span class="string">'background-color'</span>, ev.data.hex);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    start: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">        self.$el.on(<span class="string">'click'</span>, self._onMyColorClick.bind(self)); <span class="comment">// 给字段绑定事件</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._super.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    _render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.$el.css(<span class="string">'background-color'</span>, <span class="keyword">this</span>.attrs.bg_color || <span class="string">'#fcfcfc'</span>); <span class="comment">// 渲染背景色</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._super.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>耕耘收获：<br><img alt="自定义字段颜色选择器" data-src="https://ae01.alicdn.com/kf/H2d17e7f26f19486abd2c572285b0e7836.gif"></p>
+<p>场景二： 给float类型字段，设置千分符<br>裸<del>体代</del>码，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> basic_fields = <span class="built_in">require</span>(<span class="string">'web.basic_fields'</span>);</span><br><span class="line"><span class="keyword">var</span> field_registry = <span class="built_in">require</span>(<span class="string">'web.field_registry'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> FieldtoExponential = basic_fields.FieldFloat.extend(&#123;</span><br><span class="line">    _renderReadonly: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.$el.text(<span class="keyword">this</span>.value.toExponential(<span class="number">3</span>)); <span class="comment">// 转换千分符</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line">field_registry.add(<span class="string">'toExponential'</span>, FieldtoExponential);</span><br></pre></td></tr></table></figure>
+
+<p>在xml中，给<code>float</code>字段添加一个<code>widget=&quot;toExponential&quot;</code></p>
+<p>场景三： 在Tree视图中，给某些字段加上颜色区分（列区分，非行区分）。比如金额大于0的显示蓝色，小于0的显示红色。（红蓝发票）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 各位看官自己写吧，别偷懒。</span></span><br><span class="line"><span class="comment">// 姿势都已经掌握了， 总要自己实践吧。</span></span><br><span class="line"><span class="comment">// 技巧任君发挥。</span></span><br><span class="line"><span class="comment">// 不然，我也可以帮你实践...</span></span><br><span class="line"><span class="comment">// 就是，</span></span><br><span class="line"><span class="comment">// 我担心，</span></span><br><span class="line"><span class="comment">// 颜色选择器会默认给你选择----绿色</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>以上。<br>先了解，再找准，再开发。<br>– end –</p>
+<p>看官，别吝啬啦！  </p>
+
+    </div>
+
+    
+    
+    
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="LoneyCao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="LoneyCao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>LoneyCao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://loney-cao.github.io/2019/12/04/odoo13_7/" title="Odoo13-- js之颜色选择器的使用及扩展">http://loney-cao.github.io/2019/12/04/odoo13_7/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Odoo13/" rel="tag"># Odoo13</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/12/04/odoo13_6/" rel="next" title="Odoo13-- Onchange方法的使用扩展">
+                  <i class="fa fa-chevron-left"></i> Odoo13-- Onchange方法的使用扩展
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/12/05/picture_girl_3/" rel="prev" title="美女cosplay">
+                  美女cosplay <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#颜色选择器的使用"><span class="nav-number">1.</span> <span class="nav-text">颜色选择器的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#揭开选择器面纱"><span class="nav-number">1.1.</span> <span class="nav-text">揭开选择器面纱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#color插件的定义"><span class="nav-number">1.2.</span> <span class="nav-text">color插件的定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#姿势实战"><span class="nav-number">2.</span> <span class="nav-text">姿势实战</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="LoneyCao"
+    src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">LoneyCao</p>
+  <div class="site-description" itemprop="description">专注Odoo知识领域</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Loney-Cao" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;Loney-Cao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/dd4c87138bc0" title="简书 &amp;rarr; https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;dd4c87138bc0" rel="noopener" target="_blank"><i class="fa fa-fw fa-jianshu"></i>简书</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LoneyCao</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'JB8FpvK5rrCA4RqQfnpxGgiQ-gzGzoHsz',
+    appKey: 'cU9FMU8iuV4LzSjG2QU0OUF6',
+    placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+    </div>
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <script type="text/javascript" src="/js/src/mouse-click.js"></script>
+  <script src="/live2d-widget/autoload.js"></script>
+</body>
+</html>
