@@ -244,6 +244,848 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/12/04/odoo13_6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/04/odoo13_6/" class="post-title-link" itemprop="url">Odoo13-- Onchange方法的使用扩展</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-04 19:32:12" itemprop="dateCreated datePublished" datetime="2019-12-04T19:32:12+08:00">2019-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-07 20:05:48" itemprop="dateModified" datetime="2019-12-07T20:05:48+08:00">2019-12-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/12/04/odoo13_6/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- Onchange方法的使用扩展" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/04/odoo13_6/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/04/odoo13_6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="抛砖"><a href="#抛砖" class="headerlink" title="抛砖"></a>抛砖</h2><p>场景：<br>假设存在一张单据，如采购订单。该订单上有如下字段： 采购申请数量、采购批准数量、汇率、金额、价外税、含税金额、库存数量、累计金额、累计含税金额……<br>单据上有很多表示<code>数量类型</code>的字段，一般在录入单据时，对数据有合法性校验，如不能输入负数数量等等。<br>此时，我们可能会在<code>models.py</code>中写一个使用<code>api.onchange</code>装饰器装饰的方法。<br>在校验的字段很多的情况下，我们可能会写很多个<code>onchange</code>方法，或者写一个<code>onchange</code>方法但是装饰器中写很多字段参数。<br>那么问题来了，如果写很多个方法，未免太多余，因为都是校验负数。但是如果写一个方法，但是装饰器中添加很多参数，那么在某一字段新增一些逻辑时，要么在此方法中写，要么新写一个方法。又是很冗余。<br>所以，对于这种通用性的校验，是否有一个好的通用方法来写呢？  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/04/odoo13_6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/29/js_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/29/js_1/" class="post-title-link" itemprop="url">JS-- 获取随机颜色值</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-29 12:28:12 / 修改时间：09:51:22" itemprop="dateCreated datePublished" datetime="2019-11-29T12:28:12+08:00">2019-11-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/29/js_1/" class="post-meta-item leancloud_visitors" data-flag-title="JS-- 获取随机颜色值" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/29/js_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/29/js_1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通过JS，获取随机颜色的几种方式：  </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'#'</span> + <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">0xffffff</span> ).toString(<span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'#'</span> + ( <span class="built_in">Math</span>.random() * <span class="number">0xffffff</span>&lt;&lt;<span class="number">0</span> ).toString(<span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">256</span> );</span><br><span class="line">    <span class="keyword">var</span> g = <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">256</span> );  </span><br><span class="line">    <span class="keyword">var</span> b = <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">256</span> );</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"rgb("</span>+r+<span class="string">','</span>+g+<span class="string">','</span>+b+<span class="string">")"</span>;  <span class="comment">// rgb 再指定一个参数，就可以设置透明度。 rgb(200,200,200,0.15)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn4</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">"#"</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++ )&#123;</span><br><span class="line">        color += ( <span class="built_in">Math</span>.random()*<span class="number">16</span> | <span class="number">0</span> ).toString(<span class="number">16</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn5</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> colorValue = <span class="string">"0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f"</span>;</span><br><span class="line">    <span class="keyword">var</span> colorArray = colorValue.split(<span class="string">","</span>);</span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">"#"</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++ )&#123;</span><br><span class="line">        color += colorArray[ <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">16</span> ) ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/23/farmercodethings_5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/23/farmercodethings_5/" class="post-title-link" itemprop="url">当都是男程序员们“神仙打架”的研发组来了一个女实习生...</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-23 12:30:12 / 修改时间：13:11:04" itemprop="dateCreated datePublished" datetime="2019-11-23T12:30:12+08:00">2019-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/" itemprop="url" rel="index">
+                    <span itemprop="name">FarmerCodeThings</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/funny/" itemprop="url" rel="index">
+                    <span itemprop="name">funny</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/23/farmercodethings_5/" class="post-meta-item leancloud_visitors" data-flag-title="当都是男程序员们“神仙打架”的研发组来了一个女实习生..." title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/23/farmercodethings_5/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/23/farmercodethings_5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id><a href="#" class="headerlink" title="  "></a><img alt data-src="https://ae01.alicdn.com/kf/Hda1abd11bede4ec7871475f477aca540l.jpg">  </h2><p><img alt data-src="https://ae01.alicdn.com/kf/H53bf02da46154fbe802b4023aeb44172S.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H2e257128671e4085bf4f6dd3d83618e8G.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H884b8efe170c4d48986247a33d9bb38cL.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H1e8911fcf1824d3393d5b68e0619ca3fA.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H9da7466159e84e2c870b0e4a47162f0aV.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H09bdea9b53894573a1011755f90f2ca3p.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H9d7c2c8fb94340ecbecfe575803e4667I.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H73d5677241a64325a4cf2d489a79f3678.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H4ca443cdce9547a0a240e5f51d64b74aL.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H5e27c0627f654c929453446058c9d5db8.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hbe2159d1bb224b7c9b2eb149a79c33253.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H1e8911fcf1824d3393d5b68e0619ca3fA.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hf78be4f3c13b4f58a93e8950619f0e0ca.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hee3c28e6ffc64315ab840c9a926ac37fY.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/He9db3e110e964c8fb0f642419a98da04j.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Ha4cc4a95832a466ea94a156c3226aa05g.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H4d8e9d4e8c0a4a3eab84bc95f1ea442fb.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hb6783f5f977548718717249c379cc56cS.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H33e3441e29a0493b987125ef2c5b0a666.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H38bdae4d8495446a879158dde61c5742S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H24167f2744ce44d0b2d42c47189e1989I.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hcba69ce6b8d4462a98e2e4c703844f0fG.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hab1e3ffeff5a40e39dd26decd2877483v.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H1e8911fcf1824d3393d5b68e0619ca3fA.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H0a4480b38f7e48ca8d2d06f277078f9eB.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H259b7aba5d174a9eb8b3696825c69c86L.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H260f34581a1e41b1a1b1867b0def261aS.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H18515b18c2a34cb586c664f748182c1c0.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H88fcfecf8bba4a41a7f13da3401060caQ.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hc4153a9c7ec14c3ebee47efaf88af0b1U.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H6682d67d54c645029af0051ecfb38fa6y.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/He9edb86bcb254a41a74b5f5014b457d7O.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hcaf437e29f6149e18f462214c2f0df60w.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H8d51d4f061654fc3b26fe2121ab276c1g.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H3df7afeb99db400fbdb32f692ca37e8fg.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H13a29949d9c3487e9a3f00a95ffb22b5o.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H026d3217acc54f57a463cab60e7a26d11.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H1e8911fcf1824d3393d5b68e0619ca3fA.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Ha72284873f7945a49a6cee438bd6978aF.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hb2932c80f4dc418a9444d846e45b8232P.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H983b707f8d0e482aa3d40c7cc9280908M.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hfcefab1d835145d78b01e311a8267ceer.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hb59874facade43e9aa4a7ac3c0b546bcP.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H9a5922c2518a490ea65ec2288275022c4.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H1e8911fcf1824d3393d5b68e0619ca3fA.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H04af9f4ec87b4dd2a0800444844b323fJ.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H4f43134119d54c93ba3c5ae3a76acb6fN.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hf3ef49457b174564aebeee3d568ff50d3.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Ha31ee477ea8e42e598316f8edf6f7b3dE.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hc8524d685a144363a6a660e95485f3cbS.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H111536872d4a45e6a4273e9c27f5f239i.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H90653e96170f4d858f0caf695ffed5f1p.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H2fc40154308e464891837c006308bac8k.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hba183164283e46bb9225124288c59892B.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hd3d071e173ed467496eb1334fd954db8o.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H1e8911fcf1824d3393d5b68e0619ca3fA.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H83c1de7630b94aaf8b81e1e16a18b51b6.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H38c49f07cde846cba7cd2cbec191a8c5d.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H97ae512ad9474f68a102f50101b6d76fp.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H6c52928c8ef74ed682a48b660fac77837.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H6dd15c6c61f841adb68b39a962c6ef20U.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H2d085e949fa34824b1c5b49f11c58b05B.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H348db1c65f4945059c2d0fc95426e3e56.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hd9112e3f677941d48a8db7731048524fb.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H8974e9c03eb94061a6f4ed988e3a8b71N.jpg"></p><p><img alt data-src="https://ae01.alicdn.com/kf/H218fdba073b54b1bb1f1f46ce4933707S.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H69131c376acb4a1ab3c328709e9040dcf.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hbc4b3dbe57244eb48ef0eff7bd93e0faZ.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H1e8911fcf1824d3393d5b68e0619ca3fA.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Ha1cf4c6cacad43158b7525670610f05eP.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Head075c4cb864258b03771076a1b39f5p.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H379d9b4a056e42d0bda1c90326ed2a4dK.jpg"><br>最终话<br><img alt data-src="https://ae01.alicdn.com/kf/Hcdd137dc158943338100cdee03b866c5c.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/Hd9c69558e7004cf2868be02e42796d4f3.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H78060c924f334da6880a55add681239cP.jpg"><br><img alt data-src="https://ae01.alicdn.com/kf/H189cd8cae3f84a2f838cc9cdf3ec6e5c8.jpg"></p><p>成长是一个动态的过程…<br>再牛逼的职场人，都是从实习生成长起来的。<br>奇葩的实习生，可能让人心累又无奈；<br>厉害的实习生，会让人感叹后生可畏。<br>作为职场相对“弱势”的群体，<br>在适当允许犯错的情况下，给予实习生正确的指导；<br>而不是单纯压榨他们。<br>实习生也应该抓住机会表现自己，<br>毕竟，竞争激烈的职场不是象牙塔。  </p><p>最后，“千万不要招实习生”只是一句善意的玩笑，嘻嘻~  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/23/farmercodethings_5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/23/farmercodethings_4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/23/farmercodethings_4/" class="post-title-link" itemprop="url">二逼互联网公司现形记，看看你的公司中了几条？</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-23 12:14:12 / 修改时间：12:33:16" itemprop="dateCreated datePublished" datetime="2019-11-23T12:14:12+08:00">2019-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/" itemprop="url" rel="index">
+                    <span itemprop="name">FarmerCodeThings</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/funny/" itemprop="url" rel="index">
+                    <span itemprop="name">funny</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/23/farmercodethings_4/" class="post-meta-item leancloud_visitors" data-flag-title="二逼互联网公司现形记，看看你的公司中了几条？" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/23/farmercodethings_4/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/23/farmercodethings_4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id><a href="#" class="headerlink" title="  "></a><img alt data-src="https://ae01.alicdn.com/kf/Hda1abd11bede4ec7871475f477aca540l.jpg">  </h2><p>来源：西二旗生活指北（ID：ShelchiLifeGuide）<br>作者：景岁  </p><p>这些年，<br>随着互联网行业的快速发展，<br>很多大大小小的互联网公司涌现了出来。<br>这些公司里，<br>有的发展了很多年，<br>规章制度已经很成熟了，<br>简称普通公司，<br>有的虽然不太成熟，<br>但是却心怀梦想和对员工的关爱，<br>俗称文艺公司，<br>还有的，<br>经常爆出各种奇葩的新闻，<br>简称二逼公司。<br>今天指北就带大家简单盘点一下，<br>这三种互联网公司的区别——  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/23/farmercodethings_4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/23/farmercodethings_3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/23/farmercodethings_3/" class="post-title-link" itemprop="url">揭秘 | 程序员突然离职，真相令人扎心！</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-23 11:28:12 / 修改时间：12:10:58" itemprop="dateCreated datePublished" datetime="2019-11-23T11:28:12+08:00">2019-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/" itemprop="url" rel="index">
+                    <span itemprop="name">FarmerCodeThings</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/funny/" itemprop="url" rel="index">
+                    <span itemprop="name">funny</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/23/farmercodethings_3/" class="post-meta-item leancloud_visitors" data-flag-title="揭秘 | 程序员突然离职，真相令人扎心！" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/23/farmercodethings_3/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/23/farmercodethings_3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img alt data-src="https://ae01.alicdn.com/kf/Hda1abd11bede4ec7871475f477aca540l.jpg"></p><hr><p><img alt data-src="https://ae01.alicdn.com/kf/H790f9e547cab4e41814f392dbd660d2db.jpg"></p><p>这是我毕业后的第一份工作…<br>面试时，HR小姐姐告诉我…  </p><p><img alt data-src="https://ae01.alicdn.com/kf/H8a5aeba73c784ffdaf317c28456b9d8dK.jpg"></p><p>然鹅…我入职之后才发现：<br>对标阿里的只有加班强度<br>对标华为的只有狼性文化<br>对标百度的，额，没有对标百度  </p><p><img alt data-src="https://ae01.alicdn.com/kf/H791b4a73ca7a44a88057fef842738d42Y.jpg"></p><p>同事们有的住在海淀区、有的住在朝阳区，<br>作为刚毕业的一枚“穷”学生，<br>我只能住在郊区，<br>一小时的地铁，<br>清晰的“分割”了生活和工作  </p><p><img alt data-src="https://ae01.alicdn.com/kf/H604465a55e0e4b3c931cfcb4f34f51deZ.jpg"></p><p>双休是有的，但也就是换个地方加班…</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/23/farmercodethings_3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/20/farmercodethings_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/20/farmercodethings_2/" class="post-title-link" itemprop="url">互联网公司忽悠员工的黑话</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-20 18:28:12 / 修改时间：18:51:14" itemprop="dateCreated datePublished" datetime="2019-11-20T18:28:12+08:00">2019-11-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/" itemprop="url" rel="index">
+                    <span itemprop="name">FarmerCodeThings</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FarmerCodeThings/funny/" itemprop="url" rel="index">
+                    <span itemprop="name">funny</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/20/farmercodethings_2/" class="post-meta-item leancloud_visitors" data-flag-title="互联网公司忽悠员工的黑话" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/20/farmercodethings_2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/20/farmercodethings_2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>据说每个互联网公司都有一些心照不宣的黑话，一起欣赏↓</p><h4 id="招聘时"><a href="#招聘时" class="headerlink" title="招聘时"></a>招聘时</h4><p><img alt="黑话" data-src="https://ae01.alicdn.com/kf/Hfbb5ec649cf741b4bac39062e7c15ec3x.jpg"></p><p><img alt="黑话" data-src="https://ae01.alicdn.com/kf/H7cb0e62cc51d438ebd2efb2f342fe8b5i.jpg"></p><p><img alt="黑话" data-src="https://ae01.alicdn.com/kf/Hedb7ea63218f40708882d0227a8f0a6ea.jpg"></p><p><img alt="黑话" data-src="https://ae01.alicdn.com/kf/H636d01eefe0e49fa9f6f439f9ed5bb7eC.jpg"></p><p><img alt="黑话" data-src="https://ae01.alicdn.com/kf/H9ba62f9fc7df4968948413eed0b0909co.jpg"></p><h4 id="老板"><a href="#老板" class="headerlink" title="老板"></a>老板</h4><p>市场很大 = 我还不知道怎么赚钱<br>有一定的用户基础 = 建立了 QQ 群和微信群<br>自主研发的系统 = XXX 开源代码二次开发的<br>采用了大数据技术 = Nginx 日志开起来了，怎么用以后再说<br>采用了云技术 = 买了几台 ECS<br>……  </p><h4 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h4><p>在吗？= 有个需求需要改一下<br>没有我要的那种感觉 = 抄下苹果<br>我下去再确认一下 = 这个老子没想到，别说了<br>设计应该大道至简 = 复杂的我也不会<br>商业模式要形成闭环 = 放东西线上卖<br>……</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/20/farmercodethings_2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/18/python_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/18/python_1/" class="post-title-link" itemprop="url">Python-- 输出样式详解</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-18 12:28:12 / 修改时间：23:55:36" itemprop="dateCreated datePublished" datetime="2019-11-18T12:28:12+08:00">2019-11-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/18/python_1/" class="post-meta-item leancloud_visitors" data-flag-title="Python-- 输出样式详解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/18/python_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/18/python_1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>控制台打印log时候，各种各样的信息难以区分，降低了重要信息的可读性。<br>因此可以使用颜色进行区分。</p><p>书写格式：<br>     开头部分：\033[显示方式;前景色;背景色m + 结尾部分：\033[0m</p><p>注意：开头部分的三个参数：显示方式，前景色，背景色是可选参数，可以只写其中的某一个；另外由于表示三个参数不同含义的数值都是唯一的没有重复的，所以三个参数的书写先后顺序没有固定要求，系统都能识别；但是，建议按照默认的格式规范书写。<br>对于结尾部分，其实也可以省略，但是为了书写规范，建议\033[***开头，\033[0m结尾。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/18/python_1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/12/picture_girl_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/12/picture_girl_2/" class="post-title-link" itemprop="url">清纯美女图（早餐）</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-12 23:57:38" itemprop="dateCreated datePublished" datetime="2019-11-12T23:57:38+08:00">2019-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-14 00:21:23" itemprop="dateModified" datetime="2019-11-14T00:21:23+08:00">2019-11-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/image/" itemprop="url" rel="index">
+                    <span itemprop="name">image</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/image/%E7%BE%8E%E5%A5%B3/" itemprop="url" rel="index">
+                    <span itemprop="name">美女</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/image/%E7%BE%8E%E5%A5%B3/%E6%B8%85%E7%BA%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">清纯</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/12/picture_girl_2/" class="post-meta-item leancloud_visitors" data-flag-title="清纯美女图（早餐）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/12/picture_girl_2/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/12/picture_girl_2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hb9b160e480c24c71b9b3dab3f03439e3R.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/H2bc4d7fc60944409acded54e16044755u.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hf6daa23858c14a30b60fe3a5f166657a5.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hfb5035e6c5074bfc8c83987d9e519faaI.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/H375c3745f0a245718ddc3fabafb328edB.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hae58449e181242499c22ae28e43e387dD.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/H09ef5534385d4a2f9f107261fa895350k.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Hb5e3aa60684043e0b140fb8686edb784l.jpg"><br><img alt="清纯美女" data-src="https://ae01.alicdn.com/kf/Had98f4157f334363a24a973c8836aa5cM.jpg"></p>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/12/picture_girl_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -361,803 +1203,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/jinja2_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/jinja2_1/" class="post-title-link" itemprop="url">jinja2-- jinja2模板过滤器</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-18 23:58:22" itemprop="dateModified" datetime="2019-11-18T23:58:22+08:00">2019-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Jinjia2/" itemprop="url" rel="index">
-                    <span itemprop="name">Jinjia2</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/jinja2_1/" class="post-meta-item leancloud_visitors" data-flag-title="jinja2-- jinja2模板过滤器" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/jinja2_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/jinja2_1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>###jinja2模板过滤器<br>过滤器是通过管道符号’|‘进行使用的，例如 {{ name|length }} ，<br>将返回name的长度，过滤器相当于一个函数，把当前变量传入到过滤<br>器中，然后过滤器根据自己的功能，返回相应的值，之后再将结果渲染<br>到页面中。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/jinja2_1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/odoo12_3/" class="post-title-link" itemprop="url">Odoo12-- 关于配置模型中的数据问题</a>
-        </h2>
-
-        <div class="post-meta">
-          
-              <i class="fa fa-thumb-tack"></i>
-              <font color=green>置顶</font>
-              <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-19 00:00:05" itemprop="dateModified" datetime="2019-11-19T00:00:05+08:00">2019-11-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
-                    <span itemprop="name">Odoo</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/odoo12_3/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 关于配置模型中的数据问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/odoo12_3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>####抛砖：<br>res.config.settings 是个瞬态的，会被定时清理。<br>在这里设置的东西，被清理后，这些配置数据是怎么生效的？？？？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/odoo12_1/" class="post-title-link" itemprop="url">Odoo12-- statebar根据单据状态动态显示</a>
-        </h2>
-
-        <div class="post-meta">
-          
-              <i class="fa fa-thumb-tack"></i>
-              <font color=green>置顶</font>
-              <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-18 23:59:22" itemprop="dateModified" datetime="2019-11-18T23:59:22+08:00">2019-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
-                    <span itemprop="name">Odoo</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/odoo12_1/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- statebar根据单据状态动态显示" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/odoo12_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h5 id="当状态为草稿或者结算时候，显示结算。"><a href="#当状态为草稿或者结算时候，显示结算。" class="headerlink" title="当状态为草稿或者结算时候，显示结算。"></a>当状态为草稿或者结算时候，显示结算。</h5><p><img src="https://upload-images.jianshu.io/upload_images/8791854-351316405b170a57.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="已审核状态"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/git_1/" class="post-title-link" itemprop="url">git-- 出现 refusing to merge unrelated histories 错误</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-18 23:56:21" itemprop="dateModified" datetime="2019-11-18T23:56:21+08:00">2019-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/git_1/" class="post-meta-item leancloud_visitors" data-flag-title="git-- 出现 refusing to merge unrelated histories 错误" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/git_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>引用</p><p>git pull 失败 ,提示：<code>fatal: refusing to [merge](https://www.centos.bz/tag/merge/) unrelated histories</code></p><p>其实这个问题是因为 两个 根本不相干的 git 库， 一个是本地库， 一个是远端库， 然后本地要去推送到远端， 远端觉得这个本地库跟自己不相干， 所以告知无法合并</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/git_1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/odoo12_5/" class="post-title-link" itemprop="url">Odoo12-- 列表视图禁止打开表单内容</a>
-        </h2>
-
-        <div class="post-meta">
-          
-              <i class="fa fa-thumb-tack"></i>
-              <font color=green>置顶</font>
-              <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-19 00:01:45" itemprop="dateModified" datetime="2019-11-19T00:01:45+08:00">2019-11-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
-                    <span itemprop="name">Odoo</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/odoo12_5/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 列表视图禁止打开表单内容" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/odoo12_5/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/ubuntu_2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/ubuntu_2/" class="post-title-link" itemprop="url">ubuntu-- Ubuntu16.04安装Redis</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-19 00:06:11" itemprop="dateModified" datetime="2019-11-19T00:06:11+08:00">2019-11-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/ubuntu_2/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu-- Ubuntu16.04安装Redis" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/ubuntu_2/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/ubuntu_2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；作为实时监控信号处理也非常不错。</p>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>Ubuntu 16.04</p>
-<h1 id="安装Redis服务器端"><a href="#安装Redis服务器端" class="headerlink" title="安装Redis服务器端"></a>安装Redis服务器端</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/ubuntu_2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/git_3/" class="post-title-link" itemprop="url">git-- Win下使用GitStats git代码统计工具</a>
-        </h2>
-
-        <div class="post-meta">
-          
-              <i class="fa fa-thumb-tack"></i>
-              <font color=green>置顶</font>
-              <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-13 08:57:40" itemprop="dateModified" datetime="2019-11-13T08:57:40+08:00">2019-11-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/git_3/" class="post-meta-item leancloud_visitors" data-flag-title="git-- Win下使用GitStats git代码统计工具" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/git_3/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>gitstats 是一款git历史统计工具，可以生成定量的统计数据，并以html图表的形式展示。统计文件包括文件数量、代码量、提交量、作者信息、每天活跃度、每周活跃度、每月活跃度以及提交数排名等等，信息比较丰富。</strong><br>##安装<br>gitstats 依赖 Git 、Python2 以及Gnuplot。<br>以下是最新的依赖版本。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/git_3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1246,121 +1291,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/11/07/git_2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/odoo12_4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/odoo12_4/" class="post-title-link" itemprop="url">Odoo12-- 销售订单确认后生成销售出库单的代码跟踪</a>
-        </h2>
-
-        <div class="post-meta">
-          
-              <i class="fa fa-thumb-tack"></i>
-              <font color=green>置顶</font>
-              <span class="post-meta-divider">|</span>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-19 00:01:16" itemprop="dateModified" datetime="2019-11-19T00:01:16+08:00">2019-11-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
-                    <span itemprop="name">Odoo</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/odoo12_4/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo12-- 销售订单确认后生成销售出库单的代码跟踪" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/odoo12_4/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/odoo12_4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>如题：销售订单在<code>报价单</code>状态点击<code>确认</code>按钮，状态变更为<code>销售订单</code>,同时生成一个<code>销售出库单</code></strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/odoo12_4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
