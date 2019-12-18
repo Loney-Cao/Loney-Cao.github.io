@@ -244,6 +244,214 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/12/04/odoo13_6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/04/odoo13_6/" class="post-title-link" itemprop="url">Odoo13-- Onchange方法的使用扩展</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-04 19:32:12" itemprop="dateCreated datePublished" datetime="2019-12-04T19:32:12+08:00">2019-12-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-07 20:05:48" itemprop="dateModified" datetime="2019-12-07T20:05:48+08:00">2019-12-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/12/04/odoo13_6/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- Onchange方法的使用扩展" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/12/04/odoo13_6/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/12/04/odoo13_6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="抛砖"><a href="#抛砖" class="headerlink" title="抛砖"></a>抛砖</h2><p>场景：<br>假设存在一张单据，如采购订单。该订单上有如下字段： 采购申请数量、采购批准数量、汇率、金额、价外税、含税金额、库存数量、累计金额、累计含税金额……<br>单据上有很多表示<code>数量类型</code>的字段，一般在录入单据时，对数据有合法性校验，如不能输入负数数量等等。<br>此时，我们可能会在<code>models.py</code>中写一个使用<code>api.onchange</code>装饰器装饰的方法。<br>在校验的字段很多的情况下，我们可能会写很多个<code>onchange</code>方法，或者写一个<code>onchange</code>方法但是装饰器中写很多字段参数。<br>那么问题来了，如果写很多个方法，未免太多余，因为都是校验负数。但是如果写一个方法，但是装饰器中添加很多参数，那么在某一字段新增一些逻辑时，要么在此方法中写，要么新写一个方法。又是很冗余。<br>所以，对于这种通用性的校验，是否有一个好的通用方法来写呢？  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/04/odoo13_6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/29/js_1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/29/js_1/" class="post-title-link" itemprop="url">JS-- 获取随机颜色值</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-29 12:28:12 / 修改时间：09:51:22" itemprop="dateCreated datePublished" datetime="2019-11-29T12:28:12+08:00">2019-11-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/11/29/js_1/" class="post-meta-item leancloud_visitors" data-flag-title="JS-- 获取随机颜色值" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/29/js_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/29/js_1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>通过JS，获取随机颜色的几种方式：  </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'#'</span> + <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">0xffffff</span> ).toString(<span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'#'</span> + ( <span class="built_in">Math</span>.random() * <span class="number">0xffffff</span>&lt;&lt;<span class="number">0</span> ).toString(<span class="number">16</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> r = <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">256</span> );</span><br><span class="line">    <span class="keyword">var</span> g = <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">256</span> );  </span><br><span class="line">    <span class="keyword">var</span> b = <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">256</span> );</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"rgb("</span>+r+<span class="string">','</span>+g+<span class="string">','</span>+b+<span class="string">")"</span>;  <span class="comment">// rgb 再指定一个参数，就可以设置透明度。 rgb(200,200,200,0.15)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn4</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">"#"</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++ )&#123;</span><br><span class="line">        color += ( <span class="built_in">Math</span>.random()*<span class="number">16</span> | <span class="number">0</span> ).toString(<span class="number">16</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn5</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> colorValue = <span class="string">"0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f"</span>;</span><br><span class="line">    <span class="keyword">var</span> colorArray = colorValue.split(<span class="string">","</span>);</span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">"#"</span>;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++ )&#123;</span><br><span class="line">        color += colorArray[ <span class="built_in">Math</span>.floor( <span class="built_in">Math</span>.random() * <span class="number">16</span> ) ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/23/farmercodethings_5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -995,7 +1203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/ubuntu_2/">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/jinja2_1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -1009,7 +1217,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/11/07/ubuntu_2/" class="post-title-link" itemprop="url">ubuntu-- Ubuntu16.04安装Redis</a>
+            <a href="/2019/11/07/jinja2_1/" class="post-title-link" itemprop="url">jinja2-- jinja2模板过滤器</a>
         </h2>
 
         <div class="post-meta">
@@ -1027,7 +1235,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-19 00:06:11" itemprop="dateModified" datetime="2019-11-19T00:06:11+08:00">2019-11-19</time>
+                <time title="修改时间：2019-11-18 23:58:22" itemprop="dateModified" datetime="2019-11-18T23:58:22+08:00">2019-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1041,14 +1249,14 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
+                  <a href="/categories/technology/Jinjia2/" itemprop="url" rel="index">
+                    <span itemprop="name">Jinjia2</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/2019/11/07/ubuntu_2/" class="post-meta-item leancloud_visitors" data-flag-title="ubuntu-- Ubuntu16.04安装Redis" title="阅读次数">
+            <span id="/2019/11/07/jinja2_1/" class="post-meta-item leancloud_visitors" data-flag-title="jinja2-- jinja2模板过滤器" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1063,8 +1271,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/11/07/ubuntu_2/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/ubuntu_2/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/11/07/jinja2_1/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/jinja2_1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1079,236 +1287,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；作为实时监控信号处理也非常不错。</p>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>Ubuntu 16.04</p>
-<h1 id="安装Redis服务器端"><a href="#安装Redis服务器端" class="headerlink" title="安装Redis服务器端"></a>安装Redis服务器端</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ sudo apt-get install redis-server</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序</p>
+          <p>###jinja2模板过滤器<br>过滤器是通过管道符号’|‘进行使用的，例如 {{ name|length }} ，<br>将返回name的长度，过滤器相当于一个函数，把当前变量传入到过滤<br>器中，然后过滤器根据自己的功能，返回相应的值，之后再将结果渲染<br>到页面中。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/11/07/ubuntu_2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/git_1/" class="post-title-link" itemprop="url">git-- 出现 refusing to merge unrelated histories 错误</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-18 23:56:21" itemprop="dateModified" datetime="2019-11-18T23:56:21+08:00">2019-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/git_1/" class="post-meta-item leancloud_visitors" data-flag-title="git-- 出现 refusing to merge unrelated histories 错误" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/git_1/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>引用</p><p>git pull 失败 ,提示：<code>fatal: refusing to [merge](https://www.centos.bz/tag/merge/) unrelated histories</code></p><p>其实这个问题是因为 两个 根本不相干的 git 库， 一个是本地库， 一个是远端库， 然后本地要去推送到远端， 远端觉得这个本地库跟自己不相干， 所以告知无法合并</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/git_1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2019/11/07/git_2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="LoneyCao">
-      <meta itemprop="description" content="专注Odoo知识领域">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LoneyCao">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/07/git_2/" class="post-title-link" itemprop="url">git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-11-07 20:28:12" itemprop="dateCreated datePublished" datetime="2019-11-07T20:28:12+08:00">2019-11-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-18 23:56:23" itemprop="dateModified" datetime="2019-11-18T23:56:23+08:00">2019-11-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/" itemprop="url" rel="index">
-                    <span itemprop="name">technology</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/technology/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2019/11/07/git_2/" class="post-meta-item leancloud_visitors" data-flag-title="git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/11/07/git_2/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/07/git_2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>如图：<br><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7a5c238b4bb6e991.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>解决方案也是网上搜的，总结一下</p><p>一，加大缓存区</p><figure class="highlight plain"><figcaption><span>config --global http.postBuffer 524288000```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这个大约是500M</span><br><span class="line">二、少clone一些，–depth 1</span><br><span class="line">```git clone https://github.com/flutter/flutter.git --depth 1</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/11/07/git_2/#more" rel="contents">
+              <a class="btn" href="/2019/11/07/jinja2_1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1377,7 +1359,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
