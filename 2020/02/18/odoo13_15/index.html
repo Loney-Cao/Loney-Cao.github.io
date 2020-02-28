@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入密码') !== ''){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="LoneyCao" type="application/atom+xml">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Odoo权限机制除手动通过自定义模式管理权限外，Odoo还提供了两种数据驱动的机制来管理或限制对数据的访问。这两种机制都通过组来与具体用户相关联：一个用户可属于多个组，安全机制与组进行关联，进而应用对用户应用安全机制。123用户---拥有----&amp;gt; 1个或多个组 ----拥有----&amp;gt;多个权限通过组，用户既可以拥有权限">
+<meta name="keywords" content="Odoo13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Odoo13-- Odoo权限机制">
+<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2020&#x2F;02&#x2F;18&#x2F;odoo13_15&#x2F;index.html">
+<meta property="og:site_name" content="LoneyCao">
+<meta property="og:description" content="Odoo权限机制除手动通过自定义模式管理权限外，Odoo还提供了两种数据驱动的机制来管理或限制对数据的访问。这两种机制都通过组来与具体用户相关联：一个用户可属于多个组，安全机制与组进行关联，进而应用对用户应用安全机制。123用户---拥有----&amp;gt; 1个或多个组 ----拥有----&amp;gt;多个权限通过组，用户既可以拥有权限">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-19T08:06:41.671Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://loney-cao.github.io/2020/02/18/odoo13_15/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Odoo13-- Odoo权限机制 | LoneyCao</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LoneyCao</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">即使一个人，也要活得像军队一样！</h1>
+      
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=32405683&auto=1&height=66"></iframe>
+
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-pictures">
+
+    <a href="/categories/image/" rel="section"><i class="fa fa-fw fa-image"></i>图片</a>
+
+  </li>
+        <li class="menu-item menu-item-technologys">
+
+    <a href="/categories/technology/" rel="section"><i class="fa fa-fw fa-code"></i>技术</a>
+
+  </li>
+        <li class="menu-item menu-item-farmercodethings">
+
+    <a href="/categories/FarmerCodeThings/" rel="section"><i class="fa fa-fw fa-code"></i>程序员那些事儿</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Loney-Cao" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2020/02/18/odoo13_15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Odoo13-- Odoo权限机制
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-18 22:32:12" itemprop="dateCreated datePublished" datetime="2020-02-18T22:32:12+08:00">2020-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-19 16:06:41" itemprop="dateModified" datetime="2020-02-19T16:06:41+08:00">2020-02-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/02/18/odoo13_15/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- Odoo权限机制" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/18/odoo13_15/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/18/odoo13_15/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Odoo权限机制"><a href="#Odoo权限机制" class="headerlink" title="Odoo权限机制"></a>Odoo权限机制</h2><p>除手动通过自定义模式管理权限外，Odoo还提供了两种数据驱动的机制来管理或限制对数据的访问。</p><p>这两种机制都通过组来与具体用户相关联：<strong>一个用户可属于多个组，安全机制与组进行关联，进而应用对用户应用安全机制。</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用户---拥有----&gt; 1个或多个组 ----拥有----&gt;多个权限</span><br><span class="line"></span><br><span class="line">通过组，用户既可以拥有权限</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>Odoo的权限控制方式有以下：<br>一是访问权限(模型<code>ir.model.access</code>)即表级权限<br>二是记录规则(模型<code>ir.rule</code>)即行级权限<br>三是字段级权限，一个对象或表上的某些字段的访问权限。(通过<code>group</code>实现)<br>四是视图界面级权限，不属于指定视图元素所包含组的用户看不到。(通过<code>group</code>实现)</p>
+<h3 id="群组定义"><a href="#群组定义" class="headerlink" title="群组定义"></a>群组定义</h3><p>组的模型为<code>res.groups</code>，只需要在xml文件中定义就行。</p>
+<p>如下示例，定义一个销售管理员组</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"group_sale_manager"</span> <span class="attr">model</span>=<span class="string">"res.groups"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>Administrator<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"comment"</span>&gt;</span>the user will have an access to the sales configuration as well as statistic reports.<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"category_id"</span> <span class="attr">ref</span>=<span class="string">"base.module_category_sales_sales"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"implied_ids"</span> <span class="attr">eval</span>=<span class="string">"[(4, ref('group_sale_salesman_all_leads'))]"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"users"</span> <span class="attr">eval</span>=<span class="string">"[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中：<br><code>name</code>：这是组的显示名称。<br><code>category_id</code>：这是对应用分类的引用，用于在用户表单中组织分组。<br><code>implied_ids</code>：它们是所要继承权限的其它组。<br><code>users</code>：这是属于该组的用户。在新的插件模块中，我们通常希望admin用户属于应用的管理员组。</p>
+<p>再做一些解释：<br><code>category_id</code>的作用就是分类。比如销售应用的组，采购应用的组，技术设置类的组。模型是<code>ir.module.category</code>，odoo翻译为应用。也是在xml中定义。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">model</span>=<span class="string">"ir.module.category"</span> <span class="attr">id</span>=<span class="string">"module_category_sales"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>Sales<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"sequence"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>implied_ids</code>很多人翻译为继承的，可能有些不太好理解，实际上这是一个自关联字段。举个例子：封建社会中有 金钱/权力/女人/马车/豪宅/奴隶。 若是个奴隶，就只有苟活的权利，只能眼巴巴的望着这纸醉金迷的色会。若是个大官，金钱/权力/女人…都会主动靠近，自己拥有。 说白了，<code>implied_ids</code>相当于附加的。有老婆就会有老婆饼，你只有老婆饼就只能很遗憾的想着小金莲。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">组   implied_ids   组</span><br><span class="line">A                B、C、D</span><br><span class="line">B                  C、D</span><br><span class="line"></span><br><span class="line">用户属于A组，就自动拥有B、C、D组的权限</span><br><span class="line">用户属于B组，就自动拥有C、D组的权限</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问权限"><a href="#访问权限" class="headerlink" title="访问权限"></a>访问权限</h3><p>模型权限访问管理：模型级的权限控制，该模型的所有记录，对于群组内用户(如无定义，则对所有用户)的读写改删权限控制。<br>access rule是通过security文件夹下的ir.model.access.csv文件来控制的：<br>这个文件第一行指明了需要控制的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">id，name，model_id,group_id,perm_read,perm_write,perm_create,perm_unlink</span><br><span class="line"></span><br><span class="line">分别对应：  </span><br><span class="line">id：记录的外部标识符 (也称为 XML ID)。在我们的模块中它应该是唯一。</span><br><span class="line">name：描述标题。官方模块通常使用模型名称和组的圆点分隔的字符串。如： todo.task.user</span><br><span class="line">model_id ：模型的外部标识符。todo.task对应该标识符是model_todo_task</span><br><span class="line">group_id：权限组，在第一步中通过groups.xml。最重要的一点是供定义它的模块名前缀。比如员工组，它的标识符为base.group_user。 </span><br><span class="line">perm_XX：字段标记授予 读, 写, 创建，删除 权限。</span><br></pre></td></tr></table></figure>
+
+<p>举例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink</span><br><span class="line">access_crm_team,crm.team,model_crm_team,base.group_user,1,0,0,0</span><br><span class="line">access_crm_team_user,crm.team.user,model_crm_team,sales_team.group_sale_salesman,1,0,0,0</span><br><span class="line">access_crm_team_manager,crm.team.manager,model_crm_team,sales_team.group_sale_manager,1,1,1,1</span><br></pre></td></tr></table></figure>
+
+<h3 id="记录规则"><a href="#记录规则" class="headerlink" title="记录规则"></a>记录规则</h3><p>记录规则也是通过xml文件定义，定义方式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"模块名_对象_rule"</span> <span class="attr">model</span>=<span class="string">"ir.rule"</span>&gt;</span> //为某对象添加记录规则</span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>规则名<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"model_id"</span> <span class="attr">ref</span>=<span class="string">"model_对象"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"domain_force"</span>&gt;</span>[('字段名','操作符',值)]<span class="tag">&lt;/<span class="name">field</span>&gt;</span> //记录过滤表达式：符合该表达式的记录才能被访问</span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"groups"</span> <span class="attr">eval</span>=<span class="string">"[(值,ref('访问组id'))]"</span>/&gt;</span> //访问组id在第一步创建时指定，用于指定本规则作用于哪些组</span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"perm_read"</span> <span class="attr">eval</span>=<span class="string">"0/1"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"perm_write"</span> <span class="attr">eval</span>=<span class="string">"0/1"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"perm_create"</span> <span class="attr">eval</span>=<span class="string">"0/1"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"perm_unlink"</span> <span class="attr">eval</span>=<span class="string">"0/1"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">record</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//只看自己的</span><br><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"sale_order_personal_rule"</span> <span class="attr">model</span>=<span class="string">"ir.rule"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>Personal Orders<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">ref</span>=<span class="string">"model_sale_order"</span> <span class="attr">name</span>=<span class="string">"model_id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"domain_force"</span>&gt;</span>['|',('user_id','=',user.id),('user_id','=',False)]<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"groups"</span> <span class="attr">eval</span>=<span class="string">"[(4, ref('sales_team.group_sale_salesman'))]"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//看所有的</span><br><span class="line"><span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"sale_order_see_all"</span> <span class="attr">model</span>=<span class="string">"ir.rule"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>All Orders<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">ref</span>=<span class="string">"model_sale_order"</span> <span class="attr">name</span>=<span class="string">"model_id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"domain_force"</span>&gt;</span>[(1,'=',1)]<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"groups"</span> <span class="attr">eval</span>=<span class="string">"[(4, ref('sales_team.group_sale_salesman_all_leads'))]"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在记录规则未分配给任何安全组时，它被标记为全局并由不同的规则来进行处理。<br>规则适用的记录行，用domain来定义，符合domain规则的可访问，不符合的则不能访问。这里的domain有两个上下文可以使用：user是当前用户，time是时间。<br>全局规则（规则中未指定组）和组规则（规则中指定了组）的使用方式截然不同：<br>全局规则是减法的，必须全部匹配才能访问记录<br>组规则是加法的，其中任何一个匹配（并且全部的全局规则都匹配）就能访问记录<br>这意味着第一个组规则限制记录的访问，但是其它的所有组规则都在扩展访问。而全局规则是每一个规则都在限制记录的访问（或者不起作用）。</p>
+<h3 id="字段级权限"><a href="#字段级权限" class="headerlink" title="字段级权限"></a>字段级权限</h3><p>在某些情况下，我们可能会需要更精准控制的访问控制，可能会需要限制对模型具体字段的访问。<br>在定义字段时候，可以使用groups属性来让字段仅能由指定的安全组所访问。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phone = fields.Char(string=<span class="string">"Private Phone"</span>, groups=<span class="string">"hr.group_hr_user"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>带有groups属性的字段进行了特殊处理，它检查用户是否属于属性中所指定的任意安全组。如果用户不属于指定的某一组，Odoo会在用户界面中删除该字段并限制对该字段的ORM操作。<br>注意这并不仅仅是表面工作。该字段不仅在用户界面中会隐藏，同时在用户的其它ORM操作中也无法使用它，比如读和写。对于XML-RPC或JSON-RPC调用同样如此。<br>在业务逻辑或用户界面on-change事件（@api.onchange方法）中使用这些字段时需要小心，在用户没有该字段访问权限时会抛出错误。一种避免的方式是使用提权，比如sudo()模型方法或计算字段的compute_sudo字段属性。</p>
+<h3 id="视图界面级权限"><a href="#视图界面级权限" class="headerlink" title="视图界面级权限"></a>视图界面级权限</h3><p>就是给视图界面元素定义时，添加<code>groups</code>属性，同时还有<code>div</code>标签、<code>button</code>标签同样适用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">menuitem</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">"menu_human_resources_configuration"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"Configuration"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">parent</span>=<span class="string">"menu_hr_root"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">groups</span>=<span class="string">"group_hr_manager"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">sequence</span>=<span class="string">"100"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"app_settings_block"</span> <span class="attr">data-string</span>=<span class="string">"Employees"</span> <span class="attr">string</span>=<span class="string">"Employees"</span> <span class="attr">data-key</span>=<span class="string">"hr"</span> <span class="attr">groups</span>=<span class="string">"hr.group_hr_manager"</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">"set_recruit"</span> <span class="attr">string</span>=<span class="string">"Start Recruitment"</span> <span class="attr">states</span>=<span class="string">"open"</span> <span class="attr">type</span>=<span class="string">"object"</span> <span class="attr">class</span>=<span class="string">"oe_highlight"</span> <span class="attr">groups</span>=<span class="string">"base.group_user"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启用禁用功能"><a href="#启用禁用功能" class="headerlink" title="启用禁用功能"></a>启用禁用功能</h3><p>如Odoo中的启用多组织、多计量，就是利用安全组的策略实现的。</p>
+<p>第一步，定义一个安全组</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">data</span> <span class="attr">noupdate</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">record</span> <span class="attr">id</span>=<span class="string">"group_uom"</span> <span class="attr">model</span>=<span class="string">"res.groups"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span>Manage Multiple Units of Measure<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"category_id"</span> <span class="attr">ref</span>=<span class="string">"base.module_category_hidden"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">record</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第二步，继承<code>res.config.settings</code>模型，增加字段，并在xml中添加字段用以展示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResConfigSettings</span><span class="params">(models.TransientModel)</span>:</span></span><br><span class="line">    _inherit = <span class="string">'res.config.settings'</span></span><br><span class="line"></span><br><span class="line">    group_uom = fields.Boolean(<span class="string">"Units of Measure"</span>, group=<span class="string">'base.group_user'</span>, implied_group=<span class="string">'uom.group_uom'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意： 字段必须以<code>group_</code>开头， <code>implied_group</code>属性就是我们第一步创建的组。<code>group</code>属性可以不写，默认为<code>base.group_user</code>。</p>
+<p>第三步， 给我们需要启用的功能添加组</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"product_uom"</span> <span class="attr">groups</span>=<span class="string">"uom.group_uom"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第四步，在设置界面对字段<code>group_uom</code>进行勾选保存，就可以看到<code>product_uom</code>字段已经启用。</p>
+<p>原理很简单，你只要记得我上面说的老婆饼和小金莲就懂了，源码位于<code>\base\models\res_config.py</code> 567行。<br>就是让<code>implied_group</code>成为<code>group</code>的附加的就可以。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># group fields: modify group / implied groups</span></span><br><span class="line">current_settings = self.default_get(list(self.fields_get()))</span><br><span class="line"><span class="keyword">with</span> self.env.norecompute():</span><br><span class="line">    <span class="keyword">for</span> name, groups, implied_group <span class="keyword">in</span> sorted(classified[<span class="string">'group'</span>], key=<span class="keyword">lambda</span> k: self[k[<span class="number">0</span>]]):</span><br><span class="line">        groups = groups.sudo()</span><br><span class="line">        implied_group = implied_group.sudo()</span><br><span class="line">        <span class="keyword">if</span> self[name] == current_settings[name]:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> int(self[name]):</span><br><span class="line">            groups.write(&#123;<span class="string">'implied_ids'</span>: [(<span class="number">4</span>, implied_group.id)]&#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            groups.write(&#123;<span class="string">'implied_ids'</span>: [(<span class="number">3</span>, implied_group.id)]&#125;)</span><br><span class="line">            implied_group.sudo().write(&#123;<span class="string">'users'</span>: [(<span class="number">5</span>,)]&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="权限控制代码层面原理"><a href="#权限控制代码层面原理" class="headerlink" title="权限控制代码层面原理"></a>权限控制代码层面原理</h3><p>原理就是在加载视图时会进行权限校验，受限制的字段将在fields_get()请求中被移除。<br>具体代码：models.py中<code>check_access_rights</code>和<code>check_access_rule</code>两个校验方法<br>此外：使用 <code>user_has_groups</code>方法可以判断当前用户是否拥有组</p>
+
+    </div>
+
+    
+    
+    
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="LoneyCao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="LoneyCao 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>LoneyCao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://loney-cao.github.io/2020/02/18/odoo13_15/" title="Odoo13-- Odoo权限机制">http://loney-cao.github.io/2020/02/18/odoo13_15/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Odoo13/" rel="tag"># Odoo13</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/17/odoo12_8/" rel="next" title="Odoo-- odoo配置文件之config参数含义、功能详解">
+                  <i class="fa fa-chevron-left"></i> Odoo-- odoo配置文件之config参数含义、功能详解
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/02/21/docker_1/" rel="prev" title="Docker基本命令">
+                  Docker基本命令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Odoo权限机制"><span class="nav-number">1.</span> <span class="nav-text">Odoo权限机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#群组定义"><span class="nav-number">1.1.</span> <span class="nav-text">群组定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问权限"><span class="nav-number">1.2.</span> <span class="nav-text">访问权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录规则"><span class="nav-number">1.3.</span> <span class="nav-text">记录规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段级权限"><span class="nav-number">1.4.</span> <span class="nav-text">字段级权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图界面级权限"><span class="nav-number">1.5.</span> <span class="nav-text">视图界面级权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用禁用功能"><span class="nav-number">1.6.</span> <span class="nav-text">启用禁用功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限控制代码层面原理"><span class="nav-number">1.7.</span> <span class="nav-text">权限控制代码层面原理</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="LoneyCao"
+    src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">LoneyCao</p>
+  <div class="site-description" itemprop="description">专注Odoo知识领域</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Loney-Cao" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;Loney-Cao" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.jianshu.com/u/dd4c87138bc0" title="简书 &amp;rarr; https:&#x2F;&#x2F;www.jianshu.com&#x2F;u&#x2F;dd4c87138bc0" rel="noopener" target="_blank"><i class="fa fa-fw fa-jianshu"></i>简书</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LoneyCao</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'JB8FpvK5rrCA4RqQfnpxGgiQ-gzGzoHsz',
+    appKey: 'cU9FMU8iuV4LzSjG2QU0OUF6',
+    placeholder: "ヾﾉ≧∀≦)o来啊，快活啊!",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: true,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+    </div>
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <script type="text/javascript" src="/js/src/mouse-click.js"></script>
+  <script src="/live2d-widget/autoload.js"></script>
+</body>
+</html>
