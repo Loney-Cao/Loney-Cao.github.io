@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Odoo13-- Odoo修改翻译</title>
+    <url>/2020/03/02/odoo13_16/</url>
+    <content><![CDATA[<p>场景： odoo原生模块翻译不正确，我们想在新模块通过<code>po</code>文件进行翻译且不动原生模块。</p><p><strong>方式一：xml视图继承。</strong><br>这也是最常规的，通过xpath定位找到相关翻译，进行添加属性，或者替换等操作，此时我们的模块可以导出po文件。<br>此操作不仅适用于字段，还适用于div等标签属性的翻译。  </p><p><strong>方式二：python后台字段继承。</strong><br>此方式适用于硬编码，不需要<code>po</code>文件。直接重写字段的定义。  </p><a id="more"></a>
+
+
+<p><strong>方式三：<code>po</code>文件覆盖。</strong><br>此方式需要添加配置。需要在config文件中添加<code>overwrite_existing_translations = True</code>。<br>然后在我们的新模块的<code>po</code>文件中重写原模块的翻译。  </p>
+<p>举例：<br>原模块<code>po</code>文件：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#. module: sale</span></span><br><span class="line"><span class="comment">#: model:ir.model.fields,field_description:sale.field_sale_order__validity_date</span></span><br><span class="line"><span class="string">msgid</span> <span class="string">"Expiration"</span></span><br><span class="line"><span class="string">msgstr</span> <span class="string">"到期"</span></span><br></pre></td></tr></table></figure>
+
+<p>新模块<code>po</code>文件：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#. module: sale</span></span><br><span class="line"><span class="comment">#: model:ir.model.fields,field_description:sale.field_sale_order__validity_date</span></span><br><span class="line"><span class="string">msgid</span> <span class="string">"Expiration"</span></span><br><span class="line"><span class="string">msgstr</span> <span class="string">"到期时间"</span></span><br></pre></td></tr></table></figure>
+
+<p>升级新模块即生效。<strong>注意：加载翻译不生效，且会变回原有的。</strong></p>
+<p>以下为<code>config</code>文件部分配置：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">group.add_option(<span class="string">'--load-language'</span>, dest=<span class="string">"load_language"</span>,</span><br><span class="line">                    help=<span class="string">"specifies the languages for the translations you want to be loaded"</span>)</span><br><span class="line">group.add_option(<span class="string">'-l'</span>, <span class="string">"--language"</span>, dest=<span class="string">"language"</span>,</span><br><span class="line">                    help=<span class="string">"specify the language of the translation file. Use it with --i18n-export or --i18n-import"</span>)</span><br><span class="line">group.add_option(<span class="string">"--i18n-export"</span>, dest=<span class="string">"translate_out"</span>,</span><br><span class="line">                    help=<span class="string">"export all sentences to be translated to a CSV file, a PO file or a TGZ archive and exit"</span>)</span><br><span class="line">group.add_option(<span class="string">"--i18n-import"</span>, dest=<span class="string">"translate_in"</span>,</span><br><span class="line">                    help=<span class="string">"import a CSV or a PO file with translations and exit. The '-l' option is required."</span>)</span><br><span class="line">group.add_option(<span class="string">"--i18n-overwrite"</span>, dest=<span class="string">"overwrite_existing_translations"</span>, action=<span class="string">"store_true"</span>, my_default=<span class="literal">False</span>,</span><br><span class="line">                    help=<span class="string">"overwrites existing translation terms on updating a module or importing a CSV or a PO file."</span>)</span><br><span class="line">group.add_option(<span class="string">"--modules"</span>, dest=<span class="string">"translate_modules"</span>,</span><br><span class="line">                    help=<span class="string">"specify modules to export. Use in combination with --i18n-export"</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>Odoo</category>
+      </categories>
+      <tags>
+        <tag>Odoo13</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker基本命令</title>
     <url>/2020/02/21/docker_1/</url>
     <content><![CDATA[<h2 id="Docker容器基本使用"><a href="#Docker容器基本使用" class="headerlink" title="Docker容器基本使用"></a>Docker容器基本使用</h2><h3 id="容器基本命令"><a href="#容器基本命令" class="headerlink" title="容器基本命令"></a>容器基本命令</h3><p>启动容器： <code>docker run Image [command] [arg...]</code></p><p>启动交互式容器： <code>docker run -i -t Image /bin/bash</code></p><p>自定义容器名： <code>docker run --name=自定义名 -i -t Image /bin/bash</code></p><a id="more"></a>
@@ -1440,84 +1465,6 @@
       </categories>
   </entry>
   <entry>
-    <title>女程序员：梦见男朋友和别的女人一起逛街怎么办？在线等,挺急的</title>
-    <url>/2019/11/07/farmercodethings_1/</url>
-    <content><![CDATA[<p><img alt="趣图" data-src="https://ae01.alicdn.com/kf/H560c21980ed540dd9a3e029eef047d27a.jpg"></p><hr><h1 id="神级评论"><a href="#神级评论" class="headerlink" title="神级评论"></a>神级评论</h1><h2 id="亡羊补牢型"><a href="#亡羊补牢型" class="headerlink" title="亡羊补牢型"></a>亡羊补牢型</h2><p>1.把那个女人的指针指向你即可；</p><p>2.谁让你把男朋友设成 public 的；</p><p>3.心真软，就该把他的接口屏蔽掉；</p><p>4.protected 逛街(youOnly)；</p><p>5.设计问题，应该采用单例模式；</p><p>6.没做回归测试；</p><p>7.标准做法是做个断言；</p><p>8.注释掉了，逛街的参数就不用改了吗？</p><p>9.“最后含泪把那个女人注释掉了，再一运行就是我男朋友自己逛街了。”很明显是变量名作用域的问题，改个名字就行了；</p><a id="more"></a>
-<!-- 
-![](https://pic.superbed.cn/item/5dce1ac58e0e2e3ee931bd9d.jpg)
-![](https://puui.qpic.cn/fans_admin/0/3_118841988_1573788358855/0)
-![](https://p.pstatp.com/origin/fec30000447fd374a680)
--->
-
-
-
-
-
-
-
-
-
-
-
-<p>10.还可以有个多线程的算法，把你的优先级设成 99，一个 idle 线程的优先级设成 50，把那个女人的优先级设成 49。酱紫就永远调度不到啦。</p>
-<h2 id="我行我素型"><a href="#我行我素型" class="headerlink" title="我行我素型"></a>我行我素型</h2><p>1.加个断点看看那个女人是谁；</p>
-<p>2.那也没关系，那就老调用那个女人…你BF放在那里不动…养着…</p>
-<p>3.上绝招，用 goto，做个死循环，让他们逛死；</p>
-<p>4.善心点，别 goto 了，加个 exit 结束进程吧，冤冤相报何时了啊。</p>
-<h2 id="要出大事型"><a href="#要出大事型" class="headerlink" title="要出大事型"></a>要出大事型</h2><p>1.查一下 Log，仅仅只有逛街了吗……</p>
-]]></content>
-      <categories>
-        <category>FarmerCodeThings</category>
-        <category>funny</category>
-      </categories>
-      <tags>
-        <tag>Funny</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git-- 出现 refusing to merge unrelated histories 错误</title>
-    <url>/2019/11/07/git_1/</url>
-    <content><![CDATA[<p>引用</p><p>git pull 失败 ,提示：<code>fatal: refusing to [merge](https://www.centos.bz/tag/merge/) unrelated histories</code></p><p>其实这个问题是因为 两个 根本不相干的 git 库， 一个是本地库， 一个是远端库， 然后本地要去推送到远端， 远端觉得这个本地库跟自己不相干， 所以告知无法合并</p><a id="more"></a>
-
-
-<p>具体的方法， 一个种方法： 是 从远端库拉下来代码 ， 本地要加入的代码放到远端库下载到本地的库， 然后提交上去 ， 因为这样的话， 你基于的库就是远端的库， 这是一次<a href="https://www.centos.bz/tag/update/" target="_blank" rel="noopener">update</a>了</p>
-<p>第二种方法：<br>使用这个强制的方法</p>
-<p><code>git pull origin [master](https://www.centos.bz/tag/master/) --allow-unrelated-histories</code></p>
-<p>后面加上 <code>--allow-unrelated-histories</code> ， 把两段不相干的 分支进行强行合并</p>
-<p>后面再push就可以了 <code>[git push](https://www.centos.bz/tag/git-push/) [gitlab](https://www.centos.bz/tag/gitlab/) master:init</code></p>
-<p>gitlab是别名 ， 使用</p>
-<p><code>git remote add gitlab ssh://xzh@192.168.1.91:50022/opt/gitrepo/withholdings/WithholdingTransaction</code></p>
-<p>master是本地的branch名字<br>init是远端要推送的branch名字</p>
-<p>本地必须要先add ，<a href="https://www.centos.bz/tag/commit/" target="_blank" rel="noopener">commit</a>完了 才能推上去</p>
-<p>关于这个问题，可以参考<a href="http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。" target="_blank" rel="noopener">http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。</a></p>
-<p>在进行git pull 时，添加一个可选项</p>
-<p><code>git pull origin master --allow-unrelated-histories</code></p>
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决</title>
-    <url>/2019/11/07/git_2/</url>
-    <content><![CDATA[<p>如图：<br><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7a5c238b4bb6e991.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>解决方案也是网上搜的，总结一下</p><p>一，加大缓存区</p><figure class="highlight plain"><figcaption><span>config --global http.postBuffer 524288000```</span></figcaption><table><tr><td class="code"><pre><span class="line">这个大约是500M</span><br><span class="line">二、少clone一些，–depth 1</span><br><span class="line">```git clone https://github.com/flutter/flutter.git --depth 1</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-<p>–depth 1的含义是复制深度为1，就是每个文件只取最近一次提交，不是整个历史版本。<br>三、换协议<br>clone http方式换成SSH的方式，即 https:// 改为 git://<br>例如<code>git clone https://github.com/flutter/flutter.git</code><br>换成<code>git clone git://github.com/flutter/flutter.git</code></p>
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>git-- Win下使用GitStats git代码统计工具</title>
     <url>/2019/11/07/git_3/</url>
     <content><![CDATA[<p><strong>gitstats 是一款git历史统计工具，可以生成定量的统计数据，并以html图表的形式展示。统计文件包括文件数量、代码量、提交量、作者信息、每天活跃度、每周活跃度、每月活跃度以及提交数排名等等，信息比较丰富。</strong><br>##安装<br>gitstats 依赖 Git 、Python2 以及Gnuplot。<br>以下是最新的依赖版本。</p><a id="more"></a>
@@ -1551,40 +1498,22 @@
       </tags>
   </entry>
   <entry>
-    <title>jinja2-- jinja2模板过滤器</title>
-    <url>/2019/11/07/jinja2_1/</url>
-    <content><![CDATA[<p>###jinja2模板过滤器<br>过滤器是通过管道符号’|‘进行使用的，例如 {{ name|length }} ，<br>将返回name的长度，过滤器相当于一个函数，把当前变量传入到过滤<br>器中，然后过滤器根据自己的功能，返回相应的值，之后再将结果渲染<br>到页面中。</p>
+    <title>Odoo12-- 改变switchButton的显示内容</title>
+    <url>/2019/11/07/odoo12_2/</url>
+    <content><![CDATA[<p><strong>odoo原本的switchbutton，当鼠标悬浮上去是显示的是英文，比如：View List, View Kanban</strong></p>
 <a id="more"></a>
-<p>####基本用法：</p>
- {{变量|过滤器名}} 
+<p><img alt="switchbutton更改前" data-src="https://upload-images.jianshu.io/upload_images/8791854-55ecdf487553ef7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><strong>现在改变其显示内容，可自定义修改。</strong><br><img alt="switchbutton更改后" data-src="https://upload-images.jianshu.io/upload_images/8791854-0ff221f83ce9bbd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>#####原理：在页面加载时候，渲染SwitchButtons时候，对其重写。<br><strong>对<code>abstract_controller.js</code>文件中<code>_renderSwitchButtons</code>方法进行改造。</strong></p>
+<p><strong>参考代码：</strong><br><img alt="主要代码" data-src="https://upload-images.jianshu.io/upload_images/8791854-f736cecc922c8943.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$switchButtons.each(<span class="function"><span class="keyword">function</span> (<span class="params">k, v</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (v.type &amp;&amp; v.type === <span class="string">'button'</span>) &#123;</span><br><span class="line">                <span class="keyword">var</span> data_original_title_node = v.attributes.getNamedItem(<span class="string">'data-original-title'</span>);</span><br><span class="line">                <span class="keyword">var</span> view_type = v.attributes.getNamedItem(<span class="string">'data-view-type'</span>).nodeValue;</span><br><span class="line">                <span class="keyword">if</span> (view_type === <span class="string">'list'</span>) &#123;</span><br><span class="line">                    data_original_title_node.nodeValue = <span class="string">'列表视图'</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (view_type === <span class="string">'kanban'</span>) &#123;</span><br><span class="line">                    data_original_title_node.nodeValue = <span class="string">'看板视图'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                v.attributes.setNamedItem(data_original_title_node);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
 
-<p>####常用过滤器：<br><strong>default过滤器</strong><br>使用方式: {{ value|default('默认值') }} ，如果value这个key不存在，那么就会使用default过滤器提供的默认值。如果你想判断一个值是否为False（例如：None、空字符串、空列表、空字典），那么就必须传递另外一个参数 {{ value|default('默认值',boolean=True) }} 可以使用‘or’来替代default 例如 {{signature or ‘no signature’}} 。<br>####自动转义过滤器：<br><strong>’safe‘过滤器：</strong>可以关闭一个字符串的自动转义。<br><strong>‘escape’过滤器：</strong>对某一改字符串进行转义。<br><strong>’autoescape‘标签，</strong>可以对他里面的代码块关闭或开启自动转义。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% autoescape off %&#125;  &#123;#使用闭合标签关闭自动转义，off关闭，on开启#&#125;</span><br><span class="line">&lt;p&gt;&#123;&#123; talk|escape &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endautoescape %&#125;</span><br></pre></td></tr></table></figure>
-<p>等等还有很多常用过滤器，请自行查阅。</p>
-<p>####自定义过滤器:<br>过滤器本质上是一个函数。如果在模板中调用这个过滤器，就会将这个变量的值作为第一个参数传给过滤器函数，然后过滤器函数返回过滤后的值，需要使用到一个装饰器，<strong>@app.template_filter(‘自定义过滤器名’)</strong>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.template_filter('my_cut')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cut</span><span class="params">(value)</span>:</span></span><br><span class="line">    value = value.replace(<span class="string">'hello'</span>, <span class="string">''</span>)</span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;&#123; article|my_cut &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>#####自定义时间处理过滤器：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">create_time = datetime(<span class="number">2019</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">15</span>, <span class="number">11</span>, <span class="number">0</span>)  <span class="comment"># 发表时间</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.template_filter('handle_time')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_time</span><span class="params">(time)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(time, datetime):</span><br><span class="line">        now = datetime.now()</span><br><span class="line">        timestamp = (now - time).total_seconds()</span><br><span class="line">        <span class="keyword">if</span> timestamp &lt; <span class="number">60</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'刚刚'</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="number">60</span> &lt;= timestamp &lt;= <span class="number">60</span>*<span class="number">60</span>:</span><br><span class="line">            minutes = timestamp/<span class="number">60</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">'%s分钟前'</span> % int(minutes)</span><br><span class="line">        <span class="keyword">elif</span> <span class="number">60</span>*<span class="number">60</span> &lt;= timestamp &lt;= <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>:</span><br><span class="line">            hours = timestamp/(<span class="number">60</span>*<span class="number">60</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"%s小时前"</span> % int(hours)</span><br><span class="line">        <span class="keyword">elif</span> <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span> &lt;= timestamp &lt;= <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">30</span>:</span><br><span class="line">            days = timestamp/(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"%s天前"</span> % int(days)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> time.strftime(<span class="string">"%Y/%m/%d %H:%M"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> time</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; create_time|handle_time &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>###宏<br>宏类似于Python中的函数，我们在宏中定义行为，还可以进行传递参数，就像Python中的函数一样一样儿的。</p>
-<p>在宏中定义一个宏的关键字是macro，后面跟其 宏的名称和参数等</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% macro input(name,age=18) %&#125;  # 参数age的默认值为18</span><br><span class="line"> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">name</span>=<span class="string">" &#123;&#123; name &#125;&#125;"</span> <span class="attr">value</span>=<span class="string">" &#123;&#123; age &#125;&#125;"</span> &gt;</span></span><br><span class="line">&#123;% endmacro %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用方法也和Python的类似</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; input('daxin') &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; input('daxin',age=20) &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>technology</category>
-        <category>Jinjia2</category>
+        <category>Odoo</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>Django</tag>
+        <tag>Odoo12</tag>
       </tags>
   </entry>
   <entry>
@@ -1600,6 +1529,47 @@
 
 <p><strong>js文件，继承relational_fields.js 。FieldStatus的widget进行重写。</strong></p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">odoo.define(<span class="string">'ps_base.statusbar_dynamic_visible'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">require</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> relational_fields = <span class="built_in">require</span>(<span class="string">'web.relational_fields'</span>);</span><br><span class="line"></span><br><span class="line">relational_fields.FieldStatus.include(&#123;</span><br><span class="line"></span><br><span class="line">_setState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.field.type === <span class="string">'many2one'</span>) &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.status_information = _.map(<span class="keyword">this</span>.record.specialData[<span class="keyword">this</span>.name], <span class="function"><span class="keyword">function</span> (<span class="params">info</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> _.extend(&#123;</span><br><span class="line"></span><br><span class="line">selected: info.id === self.value.res_id,</span><br><span class="line"></span><br><span class="line">&#125;, info);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> selection = <span class="keyword">this</span>.field.selection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.attrs.statusbar_visible) &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> restriction = <span class="keyword">this</span>.attrs.statusbar_visible;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.attrs.dynamic_visible) &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dynamic_state = <span class="keyword">this</span>.attrs.dynamic_visible.split(<span class="string">","</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (dynamic_state.indexOf(self.value) !== <span class="number">-1</span>) &#123;</span><br><span class="line"></span><br><span class="line">restriction = restriction.replace(<span class="string">'dynamic_state'</span>, self.value);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">restriction = restriction.split(<span class="string">","</span>);</span><br><span class="line"></span><br><span class="line">selection = _.filter(selection, <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> _.contains(restriction, val[<span class="number">0</span>]) || val[<span class="number">0</span>] === self.value;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>.status_information = _.map(selection, <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> &#123;<span class="attr">id</span>: val[<span class="number">0</span>], <span class="attr">display_name</span>: val[<span class="number">1</span>], <span class="attr">selected</span>: val[<span class="number">0</span>] === self.value, <span class="attr">fold</span>: <span class="literal">false</span>&#125;;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>technology</category>
+        <category>Odoo</category>
+      </categories>
+      <tags>
+        <tag>Odoo12</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Odoo12-- 自定义水滴状引导提示信息</title>
+    <url>/2019/11/07/odoo12_6/</url>
+    <content><![CDATA[<p><strong>如题，odoo本身自带水滴形状的提示。有时候二开的时候需要给某些按钮添加一个提示，则可以利用odoo的tooltips插件</strong><br><img alt="水滴形状提示.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-dfa69d7a825ad73d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<a id="more"></a>
+<p><strong>鼠标移动上去会有文字提示</strong></p>
+<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-1c30d4414b500cd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7c19b939247e26e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-ebc8f9e7637c1aeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p><strong>我们只需要定义一个tour.js文件就可以，在文件中，我们指定元素位置，绑定相关提示信息就可以。</strong><br>其中：<br><code>trigger</code>:要绑定的元素,<br><code>content</code>:  提示内容,<br><code>position</code>: 位置,<br><code>edition</code>:版本</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">odoo.define(<span class="string">'crm.tour'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> core = <span class="built_in">require</span>(<span class="string">'web.core'</span>);</span><br><span class="line"><span class="keyword">var</span> tour = <span class="built_in">require</span>(<span class="string">'web_tour.tour'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _t = core._t;</span><br><span class="line"></span><br><span class="line">tour.register(<span class="string">'crm_tour'</span>, &#123;</span><br><span class="line">    url: <span class="string">"/web"</span>,</span><br><span class="line">&#125;, [tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app."</span>),</span><br><span class="line">    position: <span class="string">'right'</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app."</span>),</span><br><span class="line">    position: <span class="string">'bottom'</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o-kanban-button-new"</span>,</span><br><span class="line">    extra_trigger: <span class="string">'.o_opportunity_kanban'</span>,</span><br><span class="line">    content: _t(<span class="string">"Click here to &lt;b&gt;create your first opportunity&lt;/b&gt; and add it to your pipeline."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_quick_create input:first"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Choose a name&lt;/b&gt; for your opportunity, example: &lt;i&gt;'Need a new website'&lt;/i&gt;"</span>),</span><br><span class="line">    position: <span class="string">"right"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_quick_create .o_kanban_add"</span>,</span><br><span class="line">    content: _t(<span class="string">"Click here to &lt;b&gt;add your opportunity&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_opportunity_kanban .o_kanban_group:first-child .o_kanban_record:last-child"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Drag &amp;amp; drop opportunities&lt;/b&gt; between columns as you progress in your sales cycle."</span>),</span><br><span class="line">    position: <span class="string">"right"</span>,</span><br><span class="line">    run: <span class="string">"drag_and_drop .o_opportunity_kanban .o_kanban_group:eq(2) "</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_record:not(.o_updating) .o_activity_color_default"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"This opportunity has &lt;b&gt;no activity planned&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_schedule_activity"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"Let's schedule an activity."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.modal-body .o_field_many2one'</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;p&gt;You will be able to customize your followup activities. Examples:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;introductory email&lt;/li&gt;&lt;li&gt;call 10 days after&lt;/li&gt;&lt;li&gt;second call 3 days after, ...&lt;/li&gt;&lt;/ol&gt;&lt;p class='mb0'&gt;&lt;i&gt;Select a standard activity for now.&lt;/i&gt;&lt;/p&gt;"</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params">actions</span>) </span>&#123;</span><br><span class="line">        actions.auto(<span class="string">'.modal-footer button[special=cancel]'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_record"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"Click on the opportunity to zoom in."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params">actions</span>) </span>&#123;</span><br><span class="line">        actions.auto(<span class="string">".o_kanban_record .oe_kanban_action[data-type=edit]"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_opportunity_form .o_chatter_button_new_message"</span>,</span><br><span class="line">    content: _t(<span class="string">'&lt;p&gt;&lt;b&gt;Send messages&lt;/b&gt; to your prospect and get replies automatically attached to this opportunity.&lt;/p&gt;&lt;p class="mb0"&gt;Type &lt;i&gt;\'@\'&lt;/i&gt; to mention people - it\'s like cc-ing on emails.&lt;/p&gt;'</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".breadcrumb-item:not(.active):last"</span>,</span><br><span class="line">    extra_trigger: <span class="string">'.o_opportunity_form'</span>,</span><br><span class="line">    content: _t(<span class="string">"Use the breadcrumbs to &lt;b&gt;go back to your sales pipeline&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="base.menu_administration"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Configuration options are available in the Settings app."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="base.menu_administration"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Configuration options are available in the Settings app."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_web_settings_dashboard .o_user_emails"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Invite coworkers&lt;/b&gt; via email.&lt;br/&gt;&lt;i&gt;Enter one email per line.&lt;/i&gt;"</span>),</span><br><span class="line">    position: <span class="string">"right"</span></span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Good job! You completed the tour of the CRM app."</span>),</span><br><span class="line">    position: <span class="string">'right'</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Good job! You completed the tour of the CRM app."</span>),</span><br><span class="line">    position: <span class="string">'bottom'</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span></span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>Odoo</category>
+      </categories>
+      <tags>
+        <tag>Odoo12</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Odoo12-- 列表视图禁止打开表单内容</title>
+    <url>/2019/11/07/odoo12_5/</url>
+    <content><![CDATA[<p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p>
+<a id="more"></a>
+<p>1.找到相关的行点击入口，通过万能的context扩展一个独立的禁止打开参数，默认不禁止，视图里通过显式声明使用该功能：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ListRenderer = <span class="built_in">require</span>(<span class="string">'web.ListRenderer'</span>);</span><br><span class="line">ListRenderer.include(&#123;</span><br><span class="line">    _onRowClicked: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> context = self.dataset.get_context().eval();</span><br><span class="line">        <span class="keyword">if</span>(!context[<span class="string">"disable_open"</span>])&#123;</span><br><span class="line">            self._super.apply(self, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"sale_ids"</span> <span class="attr">context</span>=<span class="string">"&#123;'disable_open': True&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.禁止 鼠标的点击事件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"sale_ids"</span> <span class="attr">style</span>=<span class="string">"pointer-events: none;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>technology</category>
         <category>Odoo</category>
@@ -1676,66 +1646,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Odoo12-- 改变switchButton的显示内容</title>
-    <url>/2019/11/07/odoo12_2/</url>
-    <content><![CDATA[<p><strong>odoo原本的switchbutton，当鼠标悬浮上去是显示的是英文，比如：View List, View Kanban</strong></p>
-<a id="more"></a>
-<p><img alt="switchbutton更改前" data-src="https://upload-images.jianshu.io/upload_images/8791854-55ecdf487553ef7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><strong>现在改变其显示内容，可自定义修改。</strong><br><img alt="switchbutton更改后" data-src="https://upload-images.jianshu.io/upload_images/8791854-0ff221f83ce9bbd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p>#####原理：在页面加载时候，渲染SwitchButtons时候，对其重写。<br><strong>对<code>abstract_controller.js</code>文件中<code>_renderSwitchButtons</code>方法进行改造。</strong></p>
-<p><strong>参考代码：</strong><br><img alt="主要代码" data-src="https://upload-images.jianshu.io/upload_images/8791854-f736cecc922c8943.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$switchButtons.each(<span class="function"><span class="keyword">function</span> (<span class="params">k, v</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (v.type &amp;&amp; v.type === <span class="string">'button'</span>) &#123;</span><br><span class="line">                <span class="keyword">var</span> data_original_title_node = v.attributes.getNamedItem(<span class="string">'data-original-title'</span>);</span><br><span class="line">                <span class="keyword">var</span> view_type = v.attributes.getNamedItem(<span class="string">'data-view-type'</span>).nodeValue;</span><br><span class="line">                <span class="keyword">if</span> (view_type === <span class="string">'list'</span>) &#123;</span><br><span class="line">                    data_original_title_node.nodeValue = <span class="string">'列表视图'</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (view_type === <span class="string">'kanban'</span>) &#123;</span><br><span class="line">                    data_original_title_node.nodeValue = <span class="string">'看板视图'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                v.attributes.setNamedItem(data_original_title_node);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>Odoo</category>
-      </categories>
-      <tags>
-        <tag>Odoo12</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Odoo12-- 列表视图禁止打开表单内容</title>
-    <url>/2019/11/07/odoo12_5/</url>
-    <content><![CDATA[<p>正常的列表视图做为菜单动作直接打开的话，直接点击是跳转当前动作下的表单视图；还有一种是做为表单视图One2many、Many2many类型的嵌入式列表视图，直接点击打开Dialog窗口展示表单视图，一些特殊的需求场景下往往希望只将信息展示到列表即止，不用更多的详细互动。<br>两种方式：</p>
-<a id="more"></a>
-<p>1.找到相关的行点击入口，通过万能的context扩展一个独立的禁止打开参数，默认不禁止，视图里通过显式声明使用该功能：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ListRenderer = <span class="built_in">require</span>(<span class="string">'web.ListRenderer'</span>);</span><br><span class="line">ListRenderer.include(&#123;</span><br><span class="line">    _onRowClicked: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> context = self.dataset.get_context().eval();</span><br><span class="line">        <span class="keyword">if</span>(!context[<span class="string">"disable_open"</span>])&#123;</span><br><span class="line">            self._super.apply(self, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"sale_ids"</span> <span class="attr">context</span>=<span class="string">"&#123;'disable_open': True&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.禁止 鼠标的点击事件</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"sale_ids"</span> <span class="attr">style</span>=<span class="string">"pointer-events: none;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>Odoo</category>
-      </categories>
-      <tags>
-        <tag>Odoo12</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Odoo12-- 自定义水滴状引导提示信息</title>
-    <url>/2019/11/07/odoo12_6/</url>
-    <content><![CDATA[<p><strong>如题，odoo本身自带水滴形状的提示。有时候二开的时候需要给某些按钮添加一个提示，则可以利用odoo的tooltips插件</strong><br><img alt="水滴形状提示.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-dfa69d7a825ad73d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<a id="more"></a>
-<p><strong>鼠标移动上去会有文字提示</strong></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-1c30d4414b500cd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7c19b939247e26e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-ebc8f9e7637c1aeb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
-<p><strong>我们只需要定义一个tour.js文件就可以，在文件中，我们指定元素位置，绑定相关提示信息就可以。</strong><br>其中：<br><code>trigger</code>:要绑定的元素,<br><code>content</code>:  提示内容,<br><code>position</code>: 位置,<br><code>edition</code>:版本</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">odoo.define(<span class="string">'crm.tour'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> core = <span class="built_in">require</span>(<span class="string">'web.core'</span>);</span><br><span class="line"><span class="keyword">var</span> tour = <span class="built_in">require</span>(<span class="string">'web_tour.tour'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> _t = core._t;</span><br><span class="line"></span><br><span class="line">tour.register(<span class="string">'crm_tour'</span>, &#123;</span><br><span class="line">    url: <span class="string">"/web"</span>,</span><br><span class="line">&#125;, [tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app."</span>),</span><br><span class="line">    position: <span class="string">'right'</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Ready to boost your sales? Your &lt;b&gt;Pipeline&lt;/b&gt; can be found here, under the &lt;b&gt;CRM&lt;/b&gt; app."</span>),</span><br><span class="line">    position: <span class="string">'bottom'</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o-kanban-button-new"</span>,</span><br><span class="line">    extra_trigger: <span class="string">'.o_opportunity_kanban'</span>,</span><br><span class="line">    content: _t(<span class="string">"Click here to &lt;b&gt;create your first opportunity&lt;/b&gt; and add it to your pipeline."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_quick_create input:first"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Choose a name&lt;/b&gt; for your opportunity, example: &lt;i&gt;'Need a new website'&lt;/i&gt;"</span>),</span><br><span class="line">    position: <span class="string">"right"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_quick_create .o_kanban_add"</span>,</span><br><span class="line">    content: _t(<span class="string">"Click here to &lt;b&gt;add your opportunity&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_opportunity_kanban .o_kanban_group:first-child .o_kanban_record:last-child"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Drag &amp;amp; drop opportunities&lt;/b&gt; between columns as you progress in your sales cycle."</span>),</span><br><span class="line">    position: <span class="string">"right"</span>,</span><br><span class="line">    run: <span class="string">"drag_and_drop .o_opportunity_kanban .o_kanban_group:eq(2) "</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_record:not(.o_updating) .o_activity_color_default"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"This opportunity has &lt;b&gt;no activity planned&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_schedule_activity"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"Let's schedule an activity."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.modal-body .o_field_many2one'</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;p&gt;You will be able to customize your followup activities. Examples:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;introductory email&lt;/li&gt;&lt;li&gt;call 10 days after&lt;/li&gt;&lt;li&gt;second call 3 days after, ...&lt;/li&gt;&lt;/ol&gt;&lt;p class='mb0'&gt;&lt;i&gt;Select a standard activity for now.&lt;/i&gt;&lt;/p&gt;"</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params">actions</span>) </span>&#123;</span><br><span class="line">        actions.auto(<span class="string">'.modal-footer button[special=cancel]'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_kanban_record"</span>,</span><br><span class="line">    extra_trigger: <span class="string">".o_opportunity_kanban"</span>,</span><br><span class="line">    content: _t(<span class="string">"Click on the opportunity to zoom in."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    run: <span class="function"><span class="keyword">function</span> (<span class="params">actions</span>) </span>&#123;</span><br><span class="line">        actions.auto(<span class="string">".o_kanban_record .oe_kanban_action[data-type=edit]"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_opportunity_form .o_chatter_button_new_message"</span>,</span><br><span class="line">    content: _t(<span class="string">'&lt;p&gt;&lt;b&gt;Send messages&lt;/b&gt; to your prospect and get replies automatically attached to this opportunity.&lt;/p&gt;&lt;p class="mb0"&gt;Type &lt;i&gt;\'@\'&lt;/i&gt; to mention people - it\'s like cc-ing on emails.&lt;/p&gt;'</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".breadcrumb-item:not(.active):last"</span>,</span><br><span class="line">    extra_trigger: <span class="string">'.o_opportunity_form'</span>,</span><br><span class="line">    content: _t(<span class="string">"Use the breadcrumbs to &lt;b&gt;go back to your sales pipeline&lt;/b&gt;."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span></span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="base.menu_administration"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Configuration options are available in the Settings app."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="base.menu_administration"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Configuration options are available in the Settings app."</span>),</span><br><span class="line">    position: <span class="string">"bottom"</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">".o_web_settings_dashboard .o_user_emails"</span>,</span><br><span class="line">    content: _t(<span class="string">"&lt;b&gt;Invite coworkers&lt;/b&gt; via email.&lt;br/&gt;&lt;i&gt;Enter one email per line.&lt;/i&gt;"</span>),</span><br><span class="line">    position: <span class="string">"right"</span></span><br><span class="line">&#125;, tour.STEPS.TOGGLE_HOME_MENU, tour.STEPS.SHOW_APPS_MENU_ITEM, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Good job! You completed the tour of the CRM app."</span>),</span><br><span class="line">    position: <span class="string">'right'</span>,</span><br><span class="line">    edition: <span class="string">'community'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    trigger: <span class="string">'.o_app[data-menu-xmlid="crm.crm_menu_root"]'</span>,</span><br><span class="line">    content: _t(<span class="string">"Good job! You completed the tour of the CRM app."</span>),</span><br><span class="line">    position: <span class="string">'bottom'</span>,</span><br><span class="line">    edition: <span class="string">'enterprise'</span></span><br><span class="line">&#125;]);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>technology</category>
-        <category>Odoo</category>
-      </categories>
-      <tags>
-        <tag>Odoo12</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Odoo12-- 自定义配置面板</title>
     <url>/2019/11/07/odoo12_7/</url>
     <content><![CDATA[<p><strong>如题，Odoo开发过程中，有时遇到一些需求需要在页面中快速配置一些信息数据,此时就需要用到配置面板， 如下图所示：</strong><br><img alt="配置面板" data-src="https://upload-images.jianshu.io/upload_images/8791854-48b3b9b19f3e5a8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
@@ -1758,6 +1668,133 @@
       </categories>
       <tags>
         <tag>Odoo12</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>女程序员：梦见男朋友和别的女人一起逛街怎么办？在线等,挺急的</title>
+    <url>/2019/11/07/farmercodethings_1/</url>
+    <content><![CDATA[<p><img alt="趣图" data-src="https://ae01.alicdn.com/kf/H560c21980ed540dd9a3e029eef047d27a.jpg"></p><hr><h1 id="神级评论"><a href="#神级评论" class="headerlink" title="神级评论"></a>神级评论</h1><h2 id="亡羊补牢型"><a href="#亡羊补牢型" class="headerlink" title="亡羊补牢型"></a>亡羊补牢型</h2><p>1.把那个女人的指针指向你即可；</p><p>2.谁让你把男朋友设成 public 的；</p><p>3.心真软，就该把他的接口屏蔽掉；</p><p>4.protected 逛街(youOnly)；</p><p>5.设计问题，应该采用单例模式；</p><p>6.没做回归测试；</p><p>7.标准做法是做个断言；</p><p>8.注释掉了，逛街的参数就不用改了吗？</p><p>9.“最后含泪把那个女人注释掉了，再一运行就是我男朋友自己逛街了。”很明显是变量名作用域的问题，改个名字就行了；</p><a id="more"></a>
+<!-- 
+![](https://pic.superbed.cn/item/5dce1ac58e0e2e3ee931bd9d.jpg)
+![](https://puui.qpic.cn/fans_admin/0/3_118841988_1573788358855/0)
+![](https://p.pstatp.com/origin/fec30000447fd374a680)
+-->
+
+
+
+
+
+
+
+
+
+
+
+<p>10.还可以有个多线程的算法，把你的优先级设成 99，一个 idle 线程的优先级设成 50，把那个女人的优先级设成 49。酱紫就永远调度不到啦。</p>
+<h2 id="我行我素型"><a href="#我行我素型" class="headerlink" title="我行我素型"></a>我行我素型</h2><p>1.加个断点看看那个女人是谁；</p>
+<p>2.那也没关系，那就老调用那个女人…你BF放在那里不动…养着…</p>
+<p>3.上绝招，用 goto，做个死循环，让他们逛死；</p>
+<p>4.善心点，别 goto 了，加个 exit 结束进程吧，冤冤相报何时了啊。</p>
+<h2 id="要出大事型"><a href="#要出大事型" class="headerlink" title="要出大事型"></a>要出大事型</h2><p>1.查一下 Log，仅仅只有逛街了吗……</p>
+]]></content>
+      <categories>
+        <category>FarmerCodeThings</category>
+        <category>funny</category>
+      </categories>
+      <tags>
+        <tag>Funny</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git-- 出现 RPC failed; curl 18 transfer closed with outstanding read data remaining的解决</title>
+    <url>/2019/11/07/git_2/</url>
+    <content><![CDATA[<p>如图：<br><img alt="image.png" data-src="https://upload-images.jianshu.io/upload_images/8791854-7a5c238b4bb6e991.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>解决方案也是网上搜的，总结一下</p><p>一，加大缓存区</p><figure class="highlight plain"><figcaption><span>config --global http.postBuffer 524288000```</span></figcaption><table><tr><td class="code"><pre><span class="line">这个大约是500M</span><br><span class="line">二、少clone一些，–depth 1</span><br><span class="line">```git clone https://github.com/flutter/flutter.git --depth 1</span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>–depth 1的含义是复制深度为1，就是每个文件只取最近一次提交，不是整个历史版本。<br>三、换协议<br>clone http方式换成SSH的方式，即 https:// 改为 git://<br>例如<code>git clone https://github.com/flutter/flutter.git</code><br>换成<code>git clone git://github.com/flutter/flutter.git</code></p>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git-- 出现 refusing to merge unrelated histories 错误</title>
+    <url>/2019/11/07/git_1/</url>
+    <content><![CDATA[<p>引用</p><p>git pull 失败 ,提示：<code>fatal: refusing to [merge](https://www.centos.bz/tag/merge/) unrelated histories</code></p><p>其实这个问题是因为 两个 根本不相干的 git 库， 一个是本地库， 一个是远端库， 然后本地要去推送到远端， 远端觉得这个本地库跟自己不相干， 所以告知无法合并</p><a id="more"></a>
+
+
+<p>具体的方法， 一个种方法： 是 从远端库拉下来代码 ， 本地要加入的代码放到远端库下载到本地的库， 然后提交上去 ， 因为这样的话， 你基于的库就是远端的库， 这是一次<a href="https://www.centos.bz/tag/update/" target="_blank" rel="noopener">update</a>了</p>
+<p>第二种方法：<br>使用这个强制的方法</p>
+<p><code>git pull origin [master](https://www.centos.bz/tag/master/) --allow-unrelated-histories</code></p>
+<p>后面加上 <code>--allow-unrelated-histories</code> ， 把两段不相干的 分支进行强行合并</p>
+<p>后面再push就可以了 <code>[git push](https://www.centos.bz/tag/git-push/) [gitlab](https://www.centos.bz/tag/gitlab/) master:init</code></p>
+<p>gitlab是别名 ， 使用</p>
+<p><code>git remote add gitlab ssh://xzh@192.168.1.91:50022/opt/gitrepo/withholdings/WithholdingTransaction</code></p>
+<p>master是本地的branch名字<br>init是远端要推送的branch名字</p>
+<p>本地必须要先add ，<a href="https://www.centos.bz/tag/commit/" target="_blank" rel="noopener">commit</a>完了 才能推上去</p>
+<p>关于这个问题，可以参考<a href="http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。" target="_blank" rel="noopener">http://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories。</a></p>
+<p>在进行git pull 时，添加一个可选项</p>
+<p><code>git pull origin master --allow-unrelated-histories</code></p>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jinja2-- jinja2模板过滤器</title>
+    <url>/2019/11/07/jinja2_1/</url>
+    <content><![CDATA[<p>###jinja2模板过滤器<br>过滤器是通过管道符号’|‘进行使用的，例如 {{ name|length }} ，<br>将返回name的长度，过滤器相当于一个函数，把当前变量传入到过滤<br>器中，然后过滤器根据自己的功能，返回相应的值，之后再将结果渲染<br>到页面中。</p>
+<a id="more"></a>
+<p>####基本用法：</p>
+ {{变量|过滤器名}} 
+
+<p>####常用过滤器：<br><strong>default过滤器</strong><br>使用方式: {{ value|default('默认值') }} ，如果value这个key不存在，那么就会使用default过滤器提供的默认值。如果你想判断一个值是否为False（例如：None、空字符串、空列表、空字典），那么就必须传递另外一个参数 {{ value|default('默认值',boolean=True) }} 可以使用‘or’来替代default 例如 {{signature or ‘no signature’}} 。<br>####自动转义过滤器：<br><strong>’safe‘过滤器：</strong>可以关闭一个字符串的自动转义。<br><strong>‘escape’过滤器：</strong>对某一改字符串进行转义。<br><strong>’autoescape‘标签，</strong>可以对他里面的代码块关闭或开启自动转义。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% autoescape off %&#125;  &#123;#使用闭合标签关闭自动转义，off关闭，on开启#&#125;</span><br><span class="line">&lt;p&gt;&#123;&#123; talk|escape &#125;&#125;&lt;/p&gt;</span><br><span class="line">&#123;% endautoescape %&#125;</span><br></pre></td></tr></table></figure>
+<p>等等还有很多常用过滤器，请自行查阅。</p>
+<p>####自定义过滤器:<br>过滤器本质上是一个函数。如果在模板中调用这个过滤器，就会将这个变量的值作为第一个参数传给过滤器函数，然后过滤器函数返回过滤后的值，需要使用到一个装饰器，<strong>@app.template_filter(‘自定义过滤器名’)</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.template_filter('my_cut')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cut</span><span class="params">(value)</span>:</span></span><br><span class="line">    value = value.replace(<span class="string">'hello'</span>, <span class="string">''</span>)</span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;&#123; article|my_cut &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>#####自定义时间处理过滤器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">create_time = datetime(<span class="number">2019</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">15</span>, <span class="number">11</span>, <span class="number">0</span>)  <span class="comment"># 发表时间</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.template_filter('handle_time')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_time</span><span class="params">(time)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(time, datetime):</span><br><span class="line">        now = datetime.now()</span><br><span class="line">        timestamp = (now - time).total_seconds()</span><br><span class="line">        <span class="keyword">if</span> timestamp &lt; <span class="number">60</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'刚刚'</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="number">60</span> &lt;= timestamp &lt;= <span class="number">60</span>*<span class="number">60</span>:</span><br><span class="line">            minutes = timestamp/<span class="number">60</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">'%s分钟前'</span> % int(minutes)</span><br><span class="line">        <span class="keyword">elif</span> <span class="number">60</span>*<span class="number">60</span> &lt;= timestamp &lt;= <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>:</span><br><span class="line">            hours = timestamp/(<span class="number">60</span>*<span class="number">60</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"%s小时前"</span> % int(hours)</span><br><span class="line">        <span class="keyword">elif</span> <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span> &lt;= timestamp &lt;= <span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>*<span class="number">30</span>:</span><br><span class="line">            days = timestamp/(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"%s天前"</span> % int(days)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> time.strftime(<span class="string">"%Y/%m/%d %H:%M"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> time</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; create_time|handle_time &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>###宏<br>宏类似于Python中的函数，我们在宏中定义行为，还可以进行传递参数，就像Python中的函数一样一样儿的。</p>
+<p>在宏中定义一个宏的关键字是macro，后面跟其 宏的名称和参数等</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% macro input(name,age=18) %&#125;  # 参数age的默认值为18</span><br><span class="line"> <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">name</span>=<span class="string">" &#123;&#123; name &#125;&#125;"</span> <span class="attr">value</span>=<span class="string">" &#123;&#123; age &#125;&#125;"</span> &gt;</span></span><br><span class="line">&#123;% endmacro %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用方法也和Python的类似</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; input('daxin') &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; input('daxin',age=20) &#125;&#125; <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>technology</category>
+        <category>Jinjia2</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Django</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu-- 查找并且杀死查找出的所有进程</title>
+    <url>/2019/11/07/ubuntu_1/</url>
+    <content><![CDATA[<p>直接命令</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep abc | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</span><br></pre></td></tr></table></figure><p>其中abc为要查找的进程</p>]]></content>
+      <categories>
+        <category>technology</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1841,18 +1878,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>Ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ubuntu-- 查找并且杀死查找出的所有进程</title>
-    <url>/2019/11/07/ubuntu_1/</url>
-    <content><![CDATA[<p>直接命令</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep abc | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</span><br></pre></td></tr></table></figure><p>其中abc为要查找的进程</p>]]></content>
-      <categories>
-        <category>technology</category>
-        <category>运维</category>
-      </categories>
-      <tags>
         <tag>Ubuntu</tag>
       </tags>
   </entry>

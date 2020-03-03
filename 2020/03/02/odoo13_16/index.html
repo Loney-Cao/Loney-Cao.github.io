@@ -68,17 +68,18 @@
   };
 </script>
 
-  <meta name="description" content="专注Odoo知识领域">
-<meta name="keywords" content="Odoo,Python,前端,运维">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LoneyCao">
-<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;tags&#x2F;Python&#x2F;index.html">
+  <meta name="description" content="场景： odoo原生模块翻译不正确，我们想在新模块通过po文件进行翻译且不动原生模块。方式一：xml视图继承。这也是最常规的，通过xpath定位找到相关翻译，进行添加属性，或者替换等操作，此时我们的模块可以导出po文件。此操作不仅适用于字段，还适用于div等标签属性的翻译。  方式二：python后台字段继承。此方式适用于硬编码，不需要po文件。直接重写字段的定义。">
+<meta name="keywords" content="Odoo13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Odoo13-- Odoo修改翻译">
+<meta property="og:url" content="http:&#x2F;&#x2F;loney-cao.github.io&#x2F;2020&#x2F;03&#x2F;02&#x2F;odoo13_16&#x2F;index.html">
 <meta property="og:site_name" content="LoneyCao">
-<meta property="og:description" content="专注Odoo知识领域">
+<meta property="og:description" content="场景： odoo原生模块翻译不正确，我们想在新模块通过po文件进行翻译且不动原生模块。方式一：xml视图继承。这也是最常规的，通过xpath定位找到相关翻译，进行添加属性，或者替换等操作，此时我们的模块可以导出po文件。此操作不仅适用于字段，还适用于div等标签属性的翻译。  方式二：python后台字段继承。此方式适用于硬编码，不需要po文件。直接重写字段的定义。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-03T13:09:33.581Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://loney-cao.github.io/tags/Python/">
+<link rel="canonical" href="http://loney-cao.github.io/2020/03/02/odoo13_16/">
 
 
 <script id="page-configurations">
@@ -86,13 +87,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: Python | LoneyCao</title>
+  <title>Odoo13-- Odoo修改翻译 | LoneyCao</title>
   
 
 
@@ -239,237 +240,189 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Python
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://loney-cao.github.io/2020/03/02/odoo13_16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="LoneyCao">
+      <meta itemprop="description" content="专注Odoo知识领域">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LoneyCao">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Odoo13-- Odoo修改翻译
         </h2>
-      </div>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-02 22:32:12" itemprop="dateCreated datePublished" datetime="2020-03-02T22:32:12+08:00">2020-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-03 21:09:33" itemprop="dateModified" datetime="2020-03-03T21:09:33+08:00">2020-03-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/Odoo/" itemprop="url" rel="index">
+                    <span itemprop="name">Odoo</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/03/02/odoo13_16/" class="post-meta-item leancloud_visitors" data-flag-title="Odoo13-- Odoo修改翻译" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/03/02/odoo13_16/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/02/odoo13_16/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2019</h2>
-    </div>
+        <p>场景： odoo原生模块翻译不正确，我们想在新模块通过<code>po</code>文件进行翻译且不动原生模块。</p><p><strong>方式一：xml视图继承。</strong><br>这也是最常规的，通过xpath定位找到相关翻译，进行添加属性，或者替换等操作，此时我们的模块可以导出po文件。<br>此操作不仅适用于字段，还适用于div等标签属性的翻译。  </p><p><strong>方式二：python后台字段继承。</strong><br>此方式适用于硬编码，不需要<code>po</code>文件。直接重写字段的定义。  </p><a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-23T22:18:12+08:00"
-              content="2019-12-23">
-          12-23
-        </time>
-      </div>
+<p><strong>方式三：<code>po</code>文件覆盖。</strong><br>此方式需要添加配置。需要在config文件中添加<code>overwrite_existing_translations = True</code>。<br>然后在我们的新模块的<code>po</code>文件中重写原模块的翻译。  </p>
+<p>举例：<br>原模块<code>po</code>文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#. module: sale</span></span><br><span class="line"><span class="comment">#: model:ir.model.fields,field_description:sale.field_sale_order__validity_date</span></span><br><span class="line"><span class="string">msgid</span> <span class="string">"Expiration"</span></span><br><span class="line"><span class="string">msgstr</span> <span class="string">"到期"</span></span><br></pre></td></tr></table></figure>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/23/python_10/" itemprop="url">
-            <span itemprop="name">Python-- 进程、线程、协程</span>
-          </a>
-      </h3>
+<p>新模块<code>po</code>文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#. module: sale</span></span><br><span class="line"><span class="comment">#: model:ir.model.fields,field_description:sale.field_sale_order__validity_date</span></span><br><span class="line"><span class="string">msgid</span> <span class="string">"Expiration"</span></span><br><span class="line"><span class="string">msgstr</span> <span class="string">"到期时间"</span></span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-23T22:18:12+08:00"
-              content="2019-12-23">
-          12-23
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/23/python_9/" itemprop="url">
-            <span itemprop="name">Python-- websocket实现</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-20T20:01:31+08:00"
-              content="2019-12-20">
-          12-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/20/python_8/" itemprop="url">
-            <span itemprop="name">Python-- 描述符的使用</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-20T19:57:30+08:00"
-              content="2019-12-20">
-          12-20
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/20/python_7/" itemprop="url">
-            <span itemprop="name">Python-- property用法(实现了get，set，delete三种方法)</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-07T14:18:12+08:00"
-              content="2019-12-07">
-          12-07
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/07/python_6/" itemprop="url">
-            <span itemprop="name">Python-- Python中浮点数精度问题（四舍六入五成双的陷阱）</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-07T14:10:12+08:00"
-              content="2019-12-07">
-          12-07
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/07/python_5/" itemprop="url">
-            <span itemprop="name">Python-- Python 偏函数</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-07T13:28:12+08:00"
-              content="2019-12-07">
-          12-07
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/07/python_4/" itemprop="url">
-            <span itemprop="name">Python-- collections 模块简介</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-07T12:28:12+08:00"
-              content="2019-12-07">
-          12-07
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/07/python_3/" itemprop="url">
-            <span itemprop="name">Python-- Inspect 模块简介</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-06T22:28:12+08:00"
-              content="2019-12-06">
-          12-06
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/12/06/python_2/" itemprop="url">
-            <span itemprop="name">Python-- Python秘史之“装饰器”</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-18T12:28:12+08:00"
-              content="2019-11-18">
-          11-18
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/11/18/python_1/" itemprop="url">
-            <span itemprop="name">Python-- 输出样式详解</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
+<p>升级新模块即生效。<strong>注意：加载翻译不生效，且会变回原有的。</strong></p>
+<p>以下为<code>config</code>文件部分配置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">group.add_option(<span class="string">'--load-language'</span>, dest=<span class="string">"load_language"</span>,</span><br><span class="line">                    help=<span class="string">"specifies the languages for the translations you want to be loaded"</span>)</span><br><span class="line">group.add_option(<span class="string">'-l'</span>, <span class="string">"--language"</span>, dest=<span class="string">"language"</span>,</span><br><span class="line">                    help=<span class="string">"specify the language of the translation file. Use it with --i18n-export or --i18n-import"</span>)</span><br><span class="line">group.add_option(<span class="string">"--i18n-export"</span>, dest=<span class="string">"translate_out"</span>,</span><br><span class="line">                    help=<span class="string">"export all sentences to be translated to a CSV file, a PO file or a TGZ archive and exit"</span>)</span><br><span class="line">group.add_option(<span class="string">"--i18n-import"</span>, dest=<span class="string">"translate_in"</span>,</span><br><span class="line">                    help=<span class="string">"import a CSV or a PO file with translations and exit. The '-l' option is required."</span>)</span><br><span class="line">group.add_option(<span class="string">"--i18n-overwrite"</span>, dest=<span class="string">"overwrite_existing_translations"</span>, action=<span class="string">"store_true"</span>, my_default=<span class="literal">False</span>,</span><br><span class="line">                    help=<span class="string">"overwrites existing translation terms on updating a module or importing a CSV or a PO file."</span>)</span><br><span class="line">group.add_option(<span class="string">"--modules"</span>, dest=<span class="string">"translate_modules"</span>,</span><br><span class="line">                    help=<span class="string">"specify modules to export. Use in combination with --i18n-export"</span>)</span><br></pre></td></tr></table></figure>
 
     </div>
+
+    
+    
+    
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+        <div class="reward-container">
+  <div></div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="LoneyCao 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="LoneyCao 支付宝">
+        <p>支付宝</p>
+      </div>
+
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>LoneyCao
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://loney-cao.github.io/2020/03/02/odoo13_16/" title="Odoo13-- Odoo修改翻译">http://loney-cao.github.io/2020/03/02/odoo13_16/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Odoo13/" rel="tag"># Odoo13</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/21/docker_1/" rel="next" title="Docker基本命令">
+                  <i class="fa fa-chevron-left"></i> Docker基本命令
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
   
   
   
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/Python/page/2/">2</a><a class="extend next" rel="next" href="/tags/Python/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
         </div>
           
